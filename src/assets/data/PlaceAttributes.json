@@ -1,0 +1,2298 @@
+[
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Ab Band"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badghis",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Kushk wa Kashan Rod",
+      "DISTRICT": "Ab Kamari"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Achin"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Dasht-i Naomid",
+      "DISTRICT": "Adraskan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Ajristan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kapisa",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Alasay"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunduz",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Ali abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Laghman",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Alingar",
+      "DISTRICT": "Alingar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Laghman",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Alingar",
+      "DISTRICT": "Alishing"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Almar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Dasht-i Naomid",
+      "DISTRICT": "Anar Dara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Andar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Andarab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Andkhoy"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Aqcha"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Lower Arghandab",
+      "DISTRICT": "Arghandab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Arghandab",
+      "DISTRICT": "Arghandab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Arghistan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Asad abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Atghar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Samangan",
+      "BASIN": "Northern",
+      "WATERSHED": "Khulm",
+      "DISTRICT": "Aybak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Azro"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Baghlan City"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Baghlani Jadid"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Bagram"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Bagrami"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Baharak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Bak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Khuspas Rod",
+      "DISTRICT": "Bakwa"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Bala Buluk"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Balkh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Sari Pul",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Balkhab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Bamyan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Bamyan City"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Bangi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Bar Kunar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Logar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Baraki Barak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nuristan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Bargi Matal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Bati Kot"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Bilchiragh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Middle Hilmand",
+      "DISTRICT": "Bughran"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Burka"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Burmul"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghor",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Bala Murghab",
+      "DISTRICT": "Chaghcharan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Ab-i-Rustaq",
+      "DISTRICT": "Chah Ab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Chahar Asyab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Chaharikar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Chak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nimroz",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Khash Rod",
+      "DISTRICT": "Chakhansur"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Chal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Chamkani"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Chapa Dara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Chaparhar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Char Bolak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nimroz",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sistan-Helmand",
+      "DISTRICT": "Char Burjak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunduz",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Char Dara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Logar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Charkh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Charkint"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Chawkay"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Chimtal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Upper Hari Rod",
+      "DISTRICT": "Chishti Sharif"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Uruzgan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Chora"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Dahana-I-Ghori"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Registan",
+      "DISTRICT": "Daman"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Dand Wa Patan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Dangam"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Dara-I-Nur"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Dara-i-Pech"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Samangan",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Dara-i-Suf"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Ab-i-Rustaq",
+      "DISTRICT": "Darqad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Panj",
+      "DISTRICT": "Darwaz"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Darzab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunduz",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Dashti Archi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Dawlat abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Dawlat abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Laghman",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Alingar",
+      "DISTRICT": "Dawlat Shah"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Daykundi",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Day Kundi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Arghandab",
+      "DISTRICT": "Daychopan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Daymirdad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Dih Bala"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Dih Sabz"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Dihdadi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Uruzgan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Dihrawud"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Dihyak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Dila"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Registan-i Sedi",
+      "DISTRICT": "Disho"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Doshi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Dur Baba"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Farah City"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Farkhar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Upper Hari Rod",
+      "DISTRICT": "Farsi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Fayz abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Fayzabad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Gardez"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Chagay",
+      "DISTRICT": "Garmser"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Gayan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Tarnak Rod",
+      "DISTRICT": "Gelan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Ghazni"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Middle Hilmand",
+      "DISTRICT": "Ghorak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Ghorband"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badghis",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Bala Murghab",
+      "DISTRICT": "Ghormach"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Dasht-i Naomid",
+      "DISTRICT": "Ghoryan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Giro"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Daykundi",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Gizab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Gomal",
+      "DISTRICT": "Gomal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Goshta"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Gul dara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Gulistan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Kushk wa Kashan Rod",
+      "DISTRICT": "Gulran"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Gurbuz"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Lower Hari Rod",
+      "DISTRICT": "Guzara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunduz",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Hazrati Imam"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Samangan",
+      "BASIN": "Northern",
+      "WATERSHED": "Khulm",
+      "DISTRICT": "Hazrati Sultan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Lower Hari Rod",
+      "DISTRICT": "Hirat City"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Hisa-i-Awali Bihsud"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Panjshir",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Hisa-I-Awali Panjsher"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Panjshir",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Hisa-I-Duwum Panjsher"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Hisarak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Lower Hari Rod",
+      "DISTRICT": "Injil"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Ishkamish"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Panj",
+      "DISTRICT": "Ishkashim"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Istalif"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Jabalussaraj"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Jadran"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Jaghatu"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Arghandab",
+      "DISTRICT": "Jaghuri"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Jaji"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Jaji Maydan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Jalal abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Jalrez"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Jani Khel"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badghis",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Bala Murghab",
+      "DISTRICT": "Jawand"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Jurm"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Kabul City"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Kahmard"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Middle Hilmand",
+      "DISTRICT": "Kajaki"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Kalafgan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Kalakan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Dasht-i Shortepa",
+      "DISTRICT": "Kaldar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Kama"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nuristan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Kamdesh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Lower Arghandab",
+      "DISTRICT": "Kandahar City"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nimroz",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Khash Rod",
+      "DISTRICT": "Kang"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Lower Hari Rod",
+      "DISTRICT": "Karukh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Khaki Jabar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Khaki Safed"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Lower Arghandab",
+      "DISTRICT": "Khakrez"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Khamyab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunduz",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Khan Abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Khan Char Bagh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Khas Kunar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Uruzgan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Khas Uruzgan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nimroz",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Khash Rod",
+      "DISTRICT": "Khash Rod"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Khinjan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Khogyani"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Khost (Matun)"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Khost Wa Firing"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Khulm",
+      "DISTRICT": "Khulm"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Samangan",
+      "BASIN": "Northern",
+      "WATERSHED": "Khulm",
+      "DISTRICT": "Khuram Wa Sarbagh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Logar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Khushi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Panj",
+      "DISTRICT": "Khwahan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Khwaja Du Koh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Khwaja Ghar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Khwaja Sabz Posh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Daykundi",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Kijran"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Kishim"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Kishindih"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kapisa",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Kohband"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Kohi Safi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Bala Murghab",
+      "DISTRICT": "Kohistan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kapisa",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Kohistan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Sari Pul",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Kohistanat"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Lower Hari Rod",
+      "DISTRICT": "Kuhsan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunduz",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Kunduz"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Kuran Wa Munjan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Kushk wa Kashan Rod",
+      "DISTRICT": "Kushk"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Kushk wa Kashan Rod",
+      "DISTRICT": "Kushki Kuhna"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Kuz Kunar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Lal Pur"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghor",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Upper Hari Rod",
+      "DISTRICT": "Lal Wa Sarjangal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Adraskan Rod",
+      "DISTRICT": "Lash Wa Juwayn"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Lower Hilmand",
+      "DISTRICT": "Lashkargah"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Lija Mangal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kapisa",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Mahmud Raqi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Arghandab",
+      "DISTRICT": "Malistan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Mando Zayi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nuristan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Alingar",
+      "DISTRICT": "Mandol"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Mardyan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Markazi Bihsud"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Marmul"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Maruf"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Marwara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Mata Khan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Maydan Shahr"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Maymana"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Lower Arghandab",
+      "DISTRICT": "Maywand"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Mazar-i-Sharif"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Laghman",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Alingar",
+      "DISTRICT": "Mihtarlam"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Mingajik"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Mirbacha Kot"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Arghandab",
+      "DISTRICT": "Mizan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Logar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Muhammad Agha"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Muhmand Dara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badghis",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Kushk wa Kashan Rod",
+      "DISTRICT": "Muqur"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Tarnak Rod",
+      "DISTRICT": "Muqur"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badghis",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Bala Murghab",
+      "DISTRICT": "Murghab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Musa Khel"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Middle Hilmand",
+      "DISTRICT": "Musa Qala"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Musayi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Khash Rod",
+      "DISTRICT": "Nad Ali"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Nadir Shah Kot"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Middle Hilmand",
+      "DISTRICT": "Nahri Sarraj"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Nahri Shahi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Nahrin"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Nali"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Narang Wa Badil"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Middle Hilmand",
+      "DISTRICT": "Naw Zad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Nawa"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Lower Hilmand",
+      "DISTRICT": "Nawa-i-Barak Zayi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Nawur"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Nazyan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Uruzgan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Nesh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kapisa",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Nijrab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Nika"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Nirkh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Nurgal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nuristan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Alingar",
+      "DISTRICT": "Nuristan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Upper Hari Rod",
+      "DISTRICT": "Obe"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Omna"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Pachir Wa Agam"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Paghman"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Bamyan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Panjab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Panjshir",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Panjsher"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Registan",
+      "DISTRICT": "Panjwayi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghor",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Pasaband"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Pashtun Kot"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Lower Hari Rod",
+      "DISTRICT": "Pashtun Zarghun"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Logar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Puli Alam"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Puli Khumri"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Purchaman"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Pusht Rod"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badghis",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Kushk wa Kashan Rod",
+      "DISTRICT": "Qadis"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Adraskan Rod",
+      "DISTRICT": "Qala-I-Kah"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badghis",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Kushk wa Kashan Rod",
+      "DISTRICT": "Qala-I-Naw"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunduz",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Qala-I-Zal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Qalandar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Tarnak Rod",
+      "DISTRICT": "Qalat"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Qarabagh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Qarabagh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Qaram Qol"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Laghman",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Qarghayi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Dasht-i Shortepa",
+      "DISTRICT": "Qarqin"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Qaysar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Panj",
+      "DISTRICT": "Ragh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Lower Hilmand",
+      "DISTRICT": "Reg"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Registan",
+      "DISTRICT": "Reg"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Rodat"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Samangan",
+      "BASIN": "Northern",
+      "WATERSHED": "Khulm",
+      "DISTRICT": "Royi Du Ab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Ab-i-Rustaq",
+      "DISTRICT": "Rustaq"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Sabari"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghor",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Saghar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Salang"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Sari Pul",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Sangcharak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Middle Hilmand",
+      "DISTRICT": "Sangin"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Sar Hawza"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Sari Pul",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Sar-i-Pul City"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Sarobi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Wardak",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Chak wa Logar Rod",
+      "DISTRICT": "Sayid Abad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Sayid Karam"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Sari Pul",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Sayyad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Arghandab",
+      "DISTRICT": "Shah Wali Kot"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Uruzgan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Shahidi Hasas"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Tarnak Rod",
+      "DISTRICT": "Shahjoy"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghor",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Upper Hari Rod",
+      "DISTRICT": "Shahrak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Shahri Buzurg"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Daykundi",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Shahristan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Shakar Dara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Shamul"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Shamul zayi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Sharan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Shekh Ali"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Sherzad"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Farah",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Adraskan Rod",
+      "DISTRICT": "Shib Koh"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Bamyan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Shibar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Jawzjan",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Shibirghan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Panj",
+      "DISTRICT": "Shighnan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Adraskan Rod",
+      "DISTRICT": "Shindand"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Shinkay"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Shinwar"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Shinwari"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Faryab",
+      "BASIN": "Northern",
+      "WATERSHED": "Shirin Tagab",
+      "DISTRICT": "Shirin Tagab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Sholgara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Pishin Lora",
+      "DISTRICT": "Shorabak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Balkh",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Dasht-i Shortepa",
+      "DISTRICT": "Shortepa"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Shwak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kunar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Sirkanay"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Sari Pul",
+      "BASIN": "Northern",
+      "WATERSHED": "Sari Pul",
+      "DISTRICT": "Sozma Qala"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Spera"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kandahar",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Spin Boldak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nangarhar",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Surkh Rod"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Parwan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Surkhi Parsa"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kabul",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kabul",
+      "DISTRICT": "Surobi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Kapisa",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Ghorband wa Panjsher",
+      "DISTRICT": "Tagab"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Baghlan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kunduz",
+      "DISTRICT": "Tala Wa Barfak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Taluqan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Tani"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Zabul",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Tarnak Rod",
+      "DISTRICT": "Tarnak Wa Jaldak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghor",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Farah Rod",
+      "DISTRICT": "Taywara"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Khost",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Tere Zayi"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Uruzgan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Tirin Kot"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghor",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Upper Hari Rod",
+      "DISTRICT": "Tulak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Urgun"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Panj",
+      "DISTRICT": "Wakhan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nuristan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Wama"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Bamyan",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Upper Helmand",
+      "DISTRICT": "Waras"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Khanabad",
+      "DISTRICT": "Warsaj"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hilmand",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Khash Rod",
+      "DISTRICT": "Washer"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nuristan",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Kunar",
+      "DISTRICT": "Waygal"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Arghistan",
+      "DISTRICT": "Wazakhwa"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Gomal",
+      "DISTRICT": "Wolmamay"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Bamyan",
+      "BASIN": "Northern",
+      "WATERSHED": "Balkhab",
+      "DISTRICT": "Yakawlang"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Takhar",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Ab-i-Rustaq",
+      "DISTRICT": "Yangi Qala"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Ghazni",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Zana Khan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Nimroz",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sistan-Helmand",
+      "DISTRICT": "Zaranj"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Zarghun Shahr"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Badakhshan",
+      "BASIN": "Amu Darya",
+      "WATERSHED": "Kokcha",
+      "DISTRICT": "Zebak"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktika",
+      "BASIN": "Kabul (Indus)",
+      "WATERSHED": "Shamal",
+      "DISTRICT": "Ziluk"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Hirat",
+      "BASIN": "Harirod-Murghab",
+      "WATERSHED": "Lower Hari Rod",
+      "DISTRICT": "Zinda Jan"
+    },
+    {
+      "COUNTRY": "Afghanistan",
+      "PROVINCE": "Paktya",
+      "BASIN": "Hilmand",
+      "WATERSHED": "Sardih wa Ghazni Rod",
+      "DISTRICT": "Zurmat"
+    }
+   ]
