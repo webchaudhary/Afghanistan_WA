@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import SearchBar from '../components/SearchBar'
 import { MapContainer, GeoJSON, TileLayer } from 'react-leaflet'
 import * as L from "leaflet";
 import "leaflet/dist/leaflet.css"
@@ -14,31 +13,25 @@ import AFG_water_basin from '../assets/data/shapefiles/AFG_water_basin.json';
 import { SelectedFeaturesAverageStatsFunction, SelectedFeaturesCroplandStatFunction, calculateAverageOfArray, getAnnualDataFromMonthly } from '../helpers/functions';
 import OverviewSection from '../components/OverviewSection';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
-import { HydroclimaticStats } from "../assets/data/HydroclimaticStats.js";
 import { BaseMapsLayers, mapCenter, maxBounds, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
-import FiltererdJsonFeature from './FiltererdJsonFeature';
-import BenchmarkBarChart from '../components/charts/BenchmarkBarChart';
-import { LandcoverStats } from '../assets/data/LandcoverStats.js';
+
+import FiltererdJsonFeature from '../components/FiltererdJsonFeature.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
-import PlaceAttributes from "../assets/data/PlaceAttributes.json"
+import axios from 'axios';
+import { useLoaderContext } from '../contexts/LoaderContext.js';
 
 const HomePage = () => {
     const [selectedBasemapLayer, setSelectedBasemapLayer] = useState(BaseMapsLayers[0]);
-    const { selectedView, setSelectedView, selectedFeatureName, setSelectedFeatureName } = useSelectedFeatureContext();
+    const { selectedView, setSelectedView, selectedFeatureName, setSelectedFeatureName, dataView, setDataView } = useSelectedFeatureContext();
+    const [landCoverStats, setLandCoverStats] = useState(null); // Correctly declare state variables.
+    const [hydroclimaticStats, setHydroclimaticStats] = useState(null);
 
-    const filteredFeaturesItems = selectedView && selectedFeatureName !== "" ? HydroclimaticStats.filter(item => item[selectedView] === selectedFeatureName) : HydroclimaticStats;
-    const SelectedFeaturesStatsData = SelectedFeaturesAverageStatsFunction(filteredFeaturesItems)
-
-
-    const filteredLandCoverFeaturesItems = selectedView && selectedFeatureName !== "" ? LandcoverStats.filter(item => item[selectedView] === selectedFeatureName) : LandcoverStats;
-    const SelectedLandCoverFeaturesData = SelectedFeaturesCroplandStatFunction(filteredLandCoverFeaturesItems)
-
+    const { setIsLoading } = useLoaderContext();
 
     const handleBasemapSelection = (e) => {
         const selectedItem = BaseMapsLayers.find((item) => item.name === e.target.value);
         setSelectedBasemapLayer(selectedItem);
     };
-
 
 
     const getGeoJsonData = () => {
@@ -61,31 +54,72 @@ const HomePage = () => {
 
 
 
-    const handleDataViewChange = (e) => {
-        setSelectedView(e.target.value)
-        setSelectedFeatureName('');
+    const fetchHydroclimaticStats = (view, featureName) => {
+        axios
+            .get(`${process.env.REACT_APP_BACKEND}/featureData/HydroclimaticStats/`, {
+                params: {
+                    view: view,
+                    featureName: featureName
+                }
+            })
+            .then(response => {
+                setHydroclimaticStats(response.data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     }
 
-    const handleFeatureChange = (e) => {
-        setSelectedFeatureName(e.target.value);
-
+    const fetchLandCoverStats = (view, featureName) => {
+        axios
+            .get(`${process.env.REACT_APP_BACKEND}/featureData/LandcoverStats/`, {
+                params: {
+                    view: view,
+                    featureName: featureName
+                }
+            })
+            .then(response => {
+                setLandCoverStats(response.data);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     }
+
+
+    useEffect(() => {
+        if (selectedView && selectedFeatureName) {
+            setIsLoading(true);
+            Promise.all([
+                fetchHydroclimaticStats(selectedView, selectedFeatureName),
+                fetchLandCoverStats(selectedView, selectedFeatureName)
+            ]).then(() => {
+                setIsLoading(false);
+            }).catch(() => {
+                setIsLoading(false);
+            });
+        }
+    }, [selectedView, selectedFeatureName]);
+
+
+
+    // const SelectedHydroclimaticStats = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
+    const SelectedLandCoverStats = landCoverStats && SelectedFeaturesCroplandStatFunction(landCoverStats)
+
+
+
+
 
     function DistrictOnEachfeature(feature, layer) {
         // Determine the property name to use based on selectedView
-        const propertyName = selectedView === "DISTRICT" ? "DISTRICT" : "NAME";
 
         // Click event handler
         layer.on('click', function (e) {
-            setSelectedFeatureName(feature.properties[propertyName]);
+            setSelectedFeatureName(feature.properties["NAME"]);
         });
 
         // Mouseover event handler
         layer.on('mouseover', function (e) {
-            if (feature.properties && feature.properties[propertyName]) {
+            if (feature.properties && feature.properties["NAME"]) {
                 const popupContent = `
                     <div>
-                        ${feature.properties[propertyName]}<br/>
+                        ${feature.properties["NAME"]}<br/>
                     </div>
                 `;
                 layer.bindTooltip(popupContent, { sticky: true });
@@ -101,97 +135,44 @@ const HomePage = () => {
 
 
 
-    const getUniqueValues = (view) => {
-        const uniqueValues = new Set();
-        PlaceAttributes.forEach((item) => {
-            uniqueValues.add(item[view]);
-        });
-        return Array.from(uniqueValues).sort();
-    };
 
 
-
-
-    const totalArea = SelectedFeaturesStatsData.AREA
-
-    const croplandPercentage = (SelectedLandCoverFeaturesData.ESA_Landcover[3] * 100) / (SelectedLandCoverFeaturesData.ESA_Landcover[0] + SelectedLandCoverFeaturesData.ESA_Landcover[1] + SelectedLandCoverFeaturesData.ESA_Landcover[2] + SelectedLandCoverFeaturesData.ESA_Landcover[3] + SelectedLandCoverFeaturesData.ESA_Landcover[4] + SelectedLandCoverFeaturesData.ESA_Landcover[5] + SelectedLandCoverFeaturesData.ESA_Landcover[6] + SelectedLandCoverFeaturesData.ESA_Landcover[7] + SelectedLandCoverFeaturesData.ESA_Landcover[8] + SelectedLandCoverFeaturesData.ESA_Landcover[9])
-
-    const totalIrrigatedLand = SelectedLandCoverFeaturesData.AFG_Landcover[4]
-
-
-
-    const weightedAvgAeti = calculateAverageOfArray(getAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI))
-    const weightedAvgAeti_BCM = (weightedAvgAeti * 0.001 * totalArea) / 1000000000;
-
-    const weightedAvgPCP = calculateAverageOfArray(getAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP))
-    const weightedAvgPCP_BCM = (weightedAvgPCP * 0.001 * totalArea) / 1000000000;
-
-
-    const avg_monthly_AETI = calculateAverageOfArray((SelectedFeaturesStatsData.AETI))
-    const UnitWaterConsumption = (avg_monthly_AETI / (0.1));
-
-
-    const averageETG = calculateAverageOfArray(SelectedFeaturesStatsData.ETG)
-    const averageETG_BCM = (averageETG * 0.001 * totalArea) / 1000000000;
-
-    const averageETB = calculateAverageOfArray(SelectedFeaturesStatsData.ETB)
-    const averageETB_BCM = (averageETB * 0.001 * totalArea) / 1000000000;
-
-
-    const PCP_AETI_Difference_BCM = weightedAvgPCP_BCM - weightedAvgAeti_BCM;
-    // const PCP_ETValue = PCP_AETI_Difference < 0 ? "0" : PCP_AETI_Difference.toFixed(2);
-
-    const weightedAvgNPP = calculateAverageOfArray(getAnnualDataFromMonthly(SelectedFeaturesStatsData.NPP))
-
-
-    const AvgBiomassProdction_Ton = ((weightedAvgNPP) * 22.222 * 0.001 * totalArea * 0.0001) / 1000000;
 
 
     return (
         <div className='dasboard_page_container'>
             <div className='main_dashboard'>
                 <div className='left_panel_equal'>
-                    <div className='card_container'>
-                        <select className='m-1' value={selectedView} onChange={handleDataViewChange}>
-                            <option value="COUNTRY">Country View</option>
-                            <option value="BASIN">Basin View</option>
-                            <option value="WATERSHED">Watershed View</option>
-                            <option value="PROVINCE">Province View</option>
-                            <option value="DISTRICT">District View</option>
-                        </select>
+                    <SelectedFeatureHeading />
 
-                        <select className='m-1' value={selectedFeatureName} onChange={handleFeatureChange}>
-                            <option value="">Select Feature</option>
-                            {selectedView && getUniqueValues(selectedView).map((value, index) => (
-                                <option key={index} value={value}>{value}</option>
-                            ))}
-                        </select>
-
-                        {selectedFeatureName === '' && <p className='m-1' style={{ color: "red" }}>Please select a feature.</p>}
-
-                    </div>
-
-                    <div className='card_container'>
-                        <SelectedFeatureHeading
-                            selectedView={selectedView}
-                            selectedFeatureName={selectedFeatureName}
-                        />
-                    </div>
 
                     <div className='card_container' >
-                        <OverviewSection
-                            cropLandValue={(croplandPercentage).toFixed(2)}
-                            EvapotranspirationValue={(weightedAvgAeti_BCM).toFixed(2)}
-                            AreaValue={(totalArea * 0.0000001).toFixed(0)}
-                            IrrigatedLandValue={(totalIrrigatedLand * 0.001).toFixed(2)}
-                            PrecipitationValue={(weightedAvgPCP_BCM).toFixed(2)}
-                            WaterConsumption={(UnitWaterConsumption).toFixed(2)}
-                            PCP_ETValue={(PCP_AETI_Difference_BCM).toFixed(2)}
-                            BiomassProductionValue={(AvgBiomassProdction_Ton).toFixed(2)}
-                            BlueWaterFootprintValue={(averageETB_BCM).toFixed(2)}
-                            GreenWaterFootprintValue={(averageETG_BCM).toFixed(2)}
-                        />
+
+
+                        {hydroclimaticStats && SelectedLandCoverStats ? (
+                            <>
+                                <OverviewSection
+
+                                    SelectedLandCoverStats={SelectedLandCoverStats}
+                                    hydroclimaticStats={hydroclimaticStats}
+                                />
+
+                            </>
+
+
+
+
+                        ) : (
+                            <div className='card_loader_container'>
+                                <div class="card_loader">
+                                    <div class="card_loader_line"></div>
+                                </div>
+                            </div>
+
+                        )}
                     </div>
+
+
 
 
 

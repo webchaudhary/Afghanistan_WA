@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Chart from 'react-apexcharts';
-import {WaterFlowsC2CMatrix} from '../../assets/data/WaterFlowsC2CMatrix.js';
 
-const CTCBlueWaterFlowChart = () => {
+
+const CTCBlueWaterFlowChart = ({WaterFlowsC2CMatrix}) => {
     const [selectedSorting, setSelectedSorting] = useState('Import');
 
     const handleSortingSelection = (e) => {

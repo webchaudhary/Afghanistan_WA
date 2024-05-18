@@ -25,7 +25,7 @@ const FiltererdJsonFeature = () => {
             case 'PROVINCE':
                 return AFG_provinces.features.find(feature => feature.properties.NAME === selectedFeatureName);
             case 'DISTRICT':
-                return AFG_districts.features.find(feature => feature.properties.DISTRICT === selectedFeatureName);
+                return AFG_districts.features.find(feature => feature.properties.NAME === selectedFeatureName);
             case 'COUNTRY':
                 return AFG_boundary.features.find(feature => feature.properties.NAME === selectedFeatureName);
             default:

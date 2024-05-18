@@ -137,28 +137,30 @@ export const ColorLegendsData = {
     pcp_ssp585: {
         Title: "Precipitation",
         Unit: "(mm)",
-        Value: [200, 160, 120, 80, 40, 0, -20],
-        Colors: ["#0745A2", "#0768AC", "#2282BA", "#4EA9C7", "#67BDC6", "#A5DCBF", "#F0F9E7"],
+        Value: [180, 120, 60, 0, -20, -40],
+        // Colors: ["#013087","#345ead", "#5ba8d2", "#6bcbff", "#c8ecf4", "#ff7c3d", "#ca001b"],
+        Colors: ["#345ead", "#5ba8d2", "#c8ecf4", "#fffbb1", "#ff7c3d", "#ca001b"],
+        
     },
     pcp_ssp245: {
         Title: "Precipitation",
         Unit: "(mm)",
-        Value: [200, 160, 120, 80, 40, 0, -10],
-        Colors: ["#0745A2", "#0768AC", "#2282BA", "#4EA9C7", "#67BDC6", "#A5DCBF", "#F0F9E7"],
+        Value: [180, 120, 60, 0, -20, -40],
+        Colors: ["#345ead", "#5ba8d2", "#c8ecf4", "#fffbb1", "#ff7c3d", "#ca001b"],
 
     },
     tdeg_ssp245: {
         Title: "Temperature",
         Unit: "(°C)",
-        Value: [2, 1.6, 1.2, 0.8, 0.4, 0.2, 0],
-        Colors: ["#ca001b", "#ff7c3d", "#ffc469", "#fffbb1", "#c8ecf4", "#5ba8d2", "#345ead"],
+        Value: [180, 120, 60, 0, -20, -40],
+        Colors: ["#345ead", "#5ba8d2", "#c8ecf4", "#fffbb1", "#ff7c3d", "#ca001b"],
 
     },
     tdeg_ssp585: {
         Title: "Temperature",
         Unit: "(°C)",
-        Value: [2, 1.6, 1.2, 0.8, 0.4, 0.2, 0],
-        Colors: ["#ca001b", "#ff7c3d", "#ffc469", "#fffbb1", "#c8ecf4", "#5ba8d2", "#345ead"],
+        Value: [180, 120, 60, 0, -20, -40],
+        Colors: ["#345ead", "#5ba8d2", "#c8ecf4", "#fffbb1", "#ff7c3d", "#ca001b"],
 
     },
 

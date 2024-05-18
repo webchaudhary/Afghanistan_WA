@@ -6,7 +6,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 
 const NavbarMain = () => {
-    const { selectedView } = useSelectedFeatureContext();
+    const { selectedView, selectedFeatureName } = useSelectedFeatureContext();
     const [showMenu, setShowMenu] = useState(false);
 
     const handleToggle = () => {
@@ -86,7 +86,7 @@ const NavbarMain = () => {
                                     Water Productivity
                                 </NavLink>
 
-                                {selectedView === "COUNTRY" && (
+                                {(selectedFeatureName === "Afghanistan" || selectedFeatureName === "All") && (
                                     <NavLink
                                         className={({ isActive }) => (isActive ? 'active_nav' : 'nav__item')}
                                         to="/virtual-water" onClick={handleLinkClick}>
@@ -144,11 +144,11 @@ const NavbarMain = () => {
                                     to="/other-data" onClick={handleLinkClick}>
                                     Other Data
                                 </NavLink>
-                                <NavLink
+                                {/* <NavLink
                                     className={({ isActive }) => (isActive ? 'active_nav' : 'nav__item')}
                                     to="/download" onClick={handleLinkClick}>
                                     Download
-                                </NavLink>
+                                </NavLink> */}
 
                                 <NavLink
                                     className={({ isActive }) => (isActive ? 'active_nav' : 'nav__item')}

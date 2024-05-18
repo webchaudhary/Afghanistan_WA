@@ -1,0 +1,166 @@
+[
+  {
+    "BASIN": "Amu Darya",
+    "WATERSHED": "Ab-i-Rustaq"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Adraskan Rod"
+  },
+  {
+    "BASIN": "Kabul (Indus)",
+    "WATERSHED": "Alingar"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Arghistan"
+  },
+  {
+    "BASIN": "Harirud-Murghab",
+    "WATERSHED": "Bala Murghab"
+  },
+  {
+    "BASIN": "Northern",
+    "WATERSHED": "Balkhab"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Chagay"
+  },
+  {
+    "BASIN": "Kabul (Indus)",
+    "WATERSHED": "Chak wa Logar Rod"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Dasht-i Margo"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Dasht-i Naomid"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Dasht-i Nawur"
+  },
+  {
+    "BASIN": "Amu Darya",
+    "WATERSHED": "Dasht-i Shortepa"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Farah Rod"
+  },
+  {
+    "BASIN": "Kabul (Indus)",
+    "WATERSHED": "Ghorband wa Panjsher"
+  },
+  {
+    "BASIN": "Kabul (Indus)",
+    "WATERSHED": "Gomal"
+  },
+  {
+    "BASIN": "Kabul (Indus)",
+    "WATERSHED": "Kabul"
+  },
+  {
+    "BASIN": "Amu Darya",
+    "WATERSHED": "Khanabad"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Khash Rod"
+  },
+  {
+    "BASIN": "Northern",
+    "WATERSHED": "Khulm"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Khuspas Rod"
+  },
+  {
+    "BASIN": "Amu Darya",
+    "WATERSHED": "Kokcha"
+  },
+  {
+    "BASIN": "Kabul (Indus)",
+    "WATERSHED": "Kunar"
+  },
+  {
+    "BASIN": "Amu Darya",
+    "WATERSHED": "Kunduz"
+  },
+  {
+    "BASIN": "Harirud-Murghab",
+    "WATERSHED": "Kushk wa Kashan Rod"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Lower Arghandab"
+  },
+  {
+    "BASIN": "Harirud-Murghab",
+    "WATERSHED": "Lower Hari Rod"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Lower Hilmand"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Middle Hilmand"
+  },
+  {
+    "BASIN": "Amu Darya",
+    "WATERSHED": "Panj"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Pishin Lora"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Registan"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Registan-i Sedi"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Sardih wa Ghazni Rod"
+  },
+  {
+    "BASIN": "Northern",
+    "WATERSHED": "Sari Pul"
+  },
+  {
+    "BASIN": "Kabul (Indus)",
+    "WATERSHED": "Shamal"
+  },
+  {
+    "BASIN": "Northern",
+    "WATERSHED": "Shirin Tagab"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Sistan-Helmand"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Tarnak Rod"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Upper Arghandab"
+  },
+  {
+    "BASIN": "Harirud-Murghab",
+    "WATERSHED": "Upper Hari Rod"
+  },
+  {
+    "BASIN": "Helmand",
+    "WATERSHED": "Upper Helmand"
+  }
+ ]

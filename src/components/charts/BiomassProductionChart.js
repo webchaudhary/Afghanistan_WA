@@ -2,9 +2,9 @@ import React from 'react'
 import Chart from "react-apexcharts";
 import { calculateAverageOfArray, calculateSumOfArray, getAnnualDataFromMonthly } from '../../helpers/functions';
 
-const BiomassProductionChart = ({ filteredFeaturesItems }) => {
-    const districtData = filteredFeaturesItems.map((entry) => ({
-        name: entry.DISTRICT,
+const BiomassProductionChart = ({ hydroclimaticStats }) => {
+    const districtData = hydroclimaticStats.map((entry) => ({
+        name: entry.DISTRICT ? entry.DISTRICT: entry.WATERSHED ,
         biomassProduction: calculateAverageOfArray(getAnnualDataFromMonthly(entry.NPP.map((npp) => npp * 22.22))).toFixed(0)
     }));
 
@@ -19,15 +19,17 @@ const BiomassProductionChart = ({ filteredFeaturesItems }) => {
     const minHeight = Math.max(minHeightPerDistrict * districtNames.length, 300); // Minimum height of 300px
 
     
+    const yAxisTitle = hydroclimaticStats.some(entry => entry.DISTRICT) ? 'District Name' : 'Watershed Name';
+
     return (
         <Chart
             options={{
                 chart: {
                     type: 'bar',
                     stacked: true,
-                    toolbar: {
-                        show: false
-                    },
+                    // toolbar: {
+                    //     show: false
+                    // },
                     zoom: {
                         enabled: true
                     }
@@ -49,7 +51,7 @@ const BiomassProductionChart = ({ filteredFeaturesItems }) => {
                 },
                 yaxis: {
                     title: {
-                        text: 'District Name',
+                        text: yAxisTitle,
                         offsetY: 10
                     },
                     // reversed: true

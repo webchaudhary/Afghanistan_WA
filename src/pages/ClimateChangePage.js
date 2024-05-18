@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import BaseMap from '../components/BaseMap'
 import { MapContainer, GeoJSON, TileLayer } from 'react-leaflet'
 import * as L from "leaflet";
@@ -11,9 +11,11 @@ import ClimateProjectionsChart from '../components/charts/ClimateProjectionsChar
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 import MapLegend from '../components/MapLegend';
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
-import { ClimateChangeStats } from "../assets/data/ClimateChangeStats.js"
-import FiltereredDistrictsFeatures from './FiltereredDistrictsFeatures';
+import FiltereredDistrictsFeatures from '../components/FiltereredDistrictsFeatures.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
+import { useLoaderContext } from '../contexts/LoaderContext.js';
+import axios from 'axios';
+import Preloader from '../components/Preloader.js';
 
 
 
@@ -40,13 +42,47 @@ const MapDataLayers = [
 const ClimateChangePage = () => {
   const [selectedDataType, setSelectedDataType] = useState(MapDataLayers[0]);
   const [selectedTime, setSelectedTime] = useState(8);
-  const { selectedView, selectedFeatureName } = useSelectedFeatureContext();
+  const { selectedView, selectedFeatureName , dataView} = useSelectedFeatureContext();
+  const { setIsLoading } = useLoaderContext();
+  const [climateChangeStats, setClimateChangeStats] = useState(null);
 
-
-  const filteredFeaturesItems = selectedView && selectedFeatureName !== "" ? ClimateChangeStats.filter(item => item[selectedView] === selectedFeatureName) : ClimateChangeStats;
-  const SelectedFeaturesStatsData = SelectedFeaturesAverageClimateParaFunction(filteredFeaturesItems)
 
   const [selectedBasemapLayer, setSelectedBasemapLayer] = useState(BaseMapsLayers[0]);
+
+
+
+
+  const fetchClimateChangeStats = (view, featureName) => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/featureData/ClimateChangeStats/`, {
+        params: {
+          view: view,
+          featureName: featureName
+        }
+      })
+      .then(response => {
+        setClimateChangeStats(response.data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }
+
+  useEffect(() => {
+    if (selectedView && selectedFeatureName) {
+      setIsLoading(true);
+      Promise.all([
+        fetchClimateChangeStats(selectedView, selectedFeatureName),
+      ]).then(() => {
+        setIsLoading(false);
+      }).catch(() => {
+        setIsLoading(false);
+      });
+    }
+  }, [selectedView, selectedFeatureName]);
+
+  const SelectedFeaturesStatsData = climateChangeStats && SelectedFeaturesAverageClimateParaFunction(climateChangeStats);
+
+
+
 
 
   const handleBasemapSelection = (e) => {
@@ -67,12 +103,12 @@ const ClimateChangePage = () => {
 
   function DistrictOnEachfeature(feature, layer) {
     layer.on("mouseover", function (e) {
-      const DataItem = ClimateChangeStats.find(
-        (item) => item.DISTRICT === feature.properties.DISTRICT
+      const DataItem = climateChangeStats.find(
+        (item) => item[dataView] === feature.properties.NAME
       );
       const popupContent = `
             <div>
-              District Name: ${feature.properties.DISTRICT}<br/>
+              ${dataView}: ${feature.properties.NAME}<br/>
               ${selectedDataType.value === 'pcp_ssp585' ? `Precipitation: ${DataItem[selectedDataType.value][selectedTime]} (mm)` :
           selectedDataType.value === 'pcp_ssp245' ? `Precipitation: ${DataItem[selectedDataType.value][selectedTime]} (mm)` :
             selectedDataType.value === 'tdeg_ssp585' ? `Temperature: ${DataItem[selectedDataType.value][selectedTime]} (°C))` :
@@ -92,11 +128,11 @@ const ClimateChangePage = () => {
 
   const DistrictStyle = (feature) => {
     if (selectedTime !== "") {
-      const getDensityFromData = (name) => {
-        const DataItem = ClimateChangeStats.find((item) => item.DISTRICT === name);
+      const getDensityFromData = (name, view) => {
+        const DataItem = climateChangeStats.find((item) => item[view] === name);
         return DataItem[selectedDataType.value][selectedTime]
       };
-      const density = getDensityFromData(feature.properties.DISTRICT);
+      const density = getDensityFromData(feature.properties.NAME, dataView)
       return {
         fillColor: ColorLegendsDataItem ? fillDensityColor(ColorLegendsDataItem, density) : "none",
         // fillColor: selectedTime !== '' ? Annual_Density(density) : "none",
@@ -115,20 +151,19 @@ const ClimateChangePage = () => {
   const ClimateChangeProjectionYearsArray = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060, 2061, 2062, 2063, 2064, 2065, 2066, 2067, 2068, 2069, 2070, 2071, 2072, 2073, 2074, 2075, 2076, 2077, 2078, 2079, 2080, 2081, 2082, 2083, 2084, 2085, 2086, 2087, 2088, 2089, 2090, 2091, 2092, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100]
 
   return (
-    <div className='dasboard_page_container'>
+    <>
+    {SelectedFeaturesStatsData ? (
+      <div className='dasboard_page_container'>
       <div className='main_dashboard'>
 
         <div className='left_panel_equal'>
-        <div className='card_container'>
-              <SelectedFeatureHeading
-                selectedView={selectedView}
-                selectedFeatureName={selectedFeatureName}
-              />
-            </div>
+        <SelectedFeatureHeading/>
 
 
 
           <div className='card_container'>
+
+            
             <div className='defination_container'>
               <h4>Temperature</h4>
             </div>
@@ -338,6 +373,11 @@ const ClimateChangePage = () => {
 
       </div>
     </div>
+
+    ):(
+      <Preloader/>
+    )}</>
+    
   )
 }
 

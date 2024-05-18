@@ -3,7 +3,7 @@ import ReactApexChart from 'react-apexcharts';
 import regression from 'regression';
 import { SelectedFeaturesAveragePCPTrendFunction } from '../../helpers/functions';
 
-const PCPTrendChart = ({ climateChangeStats }) => {
+const ClimateChangeCharts = ({ climateChangeStats }) => {
     const SelectedFeaturesStatsData = SelectedFeaturesAveragePCPTrendFunction(climateChangeStats);
 
     const xData = [
@@ -45,13 +45,11 @@ const PCPTrendChart = ({ climateChangeStats }) => {
         ],
         xaxis: {
             categories: xData,
-            labels: {
-              rotate: 0,
-            },
-            tickPlacement: 'on',
-          },
-
-
+            title: {
+                text: ''
+            
+            }
+        },
         yaxis: {
             title: {
                 text: 'Precipitation (mm/year)'
@@ -80,4 +78,4 @@ const PCPTrendChart = ({ climateChangeStats }) => {
     );
 }
 
-export default PCPTrendChart;
+export default ClimateChangeCharts;

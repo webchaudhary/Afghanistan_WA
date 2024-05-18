@@ -1,14 +1,12 @@
 import React from 'react'
-
-import {CropSpecificWaterFootprints} from "../../assets/data/CropSpecificWaterFootprints"
 import Chart from "react-apexcharts";
 
-const CropWaterFootprintChart = () => {
+const CropWaterFootprintChart = ({cropSpecificWaterFootprints}) => {
     // Get the first three entries
-    const topCropEntries = CropSpecificWaterFootprints.slice(0, 10);
+    const topCropEntries = cropSpecificWaterFootprints.slice(0, 10);
 
     // Get the sum of the remaining entries
-    const restCropEntriesSum = CropSpecificWaterFootprints.slice(10).reduce((acc, curr) => acc + curr.WFP, 0);
+    const restCropEntriesSum = cropSpecificWaterFootprints.slice(10).reduce((acc, curr) => acc + curr.WFP, 0);
 
     // Combine the first three entries and the sum into a new array
     const newCropData = [
@@ -24,9 +22,26 @@ const CropWaterFootprintChart = () => {
                 chart: {
                     type: 'bar',
                     stacked: true,
-                    toolbar: {
-                        show: false
-                    },
+                    // toolbar: {
+                    //     show: false
+                    // },
+
+                    // toolbar: {
+                    //     show: true, // Set this to true to show the toolbar
+                    //     tools: {
+                    //         download: true, // Enables the download icon
+                    //         selection: true,
+                    //         zoom: true,
+                    //         zoomin: true,
+                    //         zoomout: true,
+                    //         pan: true,
+                    //         reset: true | '<img src="/static/icons/reset.png" width="20">',
+                    //         customIcons: []
+                    //     },
+                    //     autoSelected: 'zoom' // Default tool for selection
+                    // },
+
+
                     zoom: {
                         enabled: false
                     }

@@ -1,13 +1,15 @@
 import React from 'react'
-import Chart from "react-apexcharts";
 import { calculateSumOfArray, getAnnualDataFromMonthly } from '../../helpers/functions';
+import ReactApexChart from 'react-apexcharts';
 
-const TotalConsumptionChart = ({ filteredFeaturesItems }) => {
+const TotalConsumptionChart = ({ hydroclimaticStats }) => {
 
     // Calculate total consumptions and sort districts based on total consumption
-    const districtData = filteredFeaturesItems.map((entry) => {
+    const districtData = hydroclimaticStats.map((entry) => {
         const totalConsumption = (calculateSumOfArray(getAnnualDataFromMonthly(entry.AETI)) * 0.001 * entry.AREA / 1000000000).toFixed(2);
-        return { district: entry.DISTRICT, totalConsumption };
+        return { 
+            district: entry.DISTRICT ? entry.DISTRICT: entry.WATERSHED ,
+            totalConsumption };
     });
     districtData.sort((a, b) => b.totalConsumption - a.totalConsumption);
 
@@ -18,16 +20,15 @@ const TotalConsumptionChart = ({ filteredFeaturesItems }) => {
     const minHeightPerDistrict = 20; // Adjust this value as needed
     const minHeight = Math.max(minHeightPerDistrict * districtNames.length, 300); // Minimum height of 300px
 
+    const yAxisTitle = hydroclimaticStats.some(entry => entry.DISTRICT) ? 'District Name' : 'Watershed Name';
+
 
     return (
-        <Chart
+        <ReactApexChart
             options={{
                 chart: {
                     type: 'bar',
                     stacked: true,
-                    toolbar: {
-                        show: false
-                    },
                     zoom: {
                         enabled: false
                     }
@@ -49,7 +50,7 @@ const TotalConsumptionChart = ({ filteredFeaturesItems }) => {
                 },
                 yaxis: {
                     title: {
-                        text: 'District Name',
+                        text: yAxisTitle,
                         offsetY: 10
                     },
                     // reversed: true

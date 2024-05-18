@@ -1,26 +1,30 @@
 import React from 'react'
 import Chart from "react-apexcharts";
-import { calculateAverageOfArray, calculateSumOfArray, getAnnualDataFromMonthly } from '../../helpers/functions';
+import { calculateAverageOfArray } from '../../helpers/functions';
 
-const UnitConsumptionChart = ({ filteredFeaturesItems }) => {
 
-    const districtData = filteredFeaturesItems.map((entry) => ({
-        name: entry.DISTRICT,
+const UnitConsumptionChart = ({ hydroclimaticStats }) => {
+
+
+
+    const districtData = hydroclimaticStats.map((entry) => ({
+        name: entry.DISTRICT ? entry.DISTRICT: entry.WATERSHED ,
         UnitConsumptions: calculateAverageOfArray((entry.AETI.map((aeti) => aeti * 10))).toFixed(2)
     }));
 
     districtData.sort((a, b) => b.UnitConsumptions - a.UnitConsumptions);
 
 
-    const districtNames = districtData.map((entry) => entry.name);
+    const feraturesName = districtData.map((entry) => entry.name);
     const UnitConsumptions = districtData.map((entry) => entry.UnitConsumptions);
 
-    // const districtNames = filteredFeaturesItems.map((entry) => entry.DISTRICT);
-    // const UnitConsumptions= filteredFeaturesItems.map((entry) => (calculateAverageOfArray((entry.AETI)) * 10) );
 
 
    const minHeightPerDistrict = 20; // Adjust this value as needed
-    const minHeight = Math.max(minHeightPerDistrict * districtNames.length, 300); // Minimum height of 300px
+    const minHeight = Math.max(minHeightPerDistrict * feraturesName.length, 300); // Minimum height of 300px
+
+
+    const yAxisTitle = hydroclimaticStats.some(entry => entry.DISTRICT) ? 'District Name' : 'Watershed Name';
 
 
 
@@ -30,9 +34,9 @@ const UnitConsumptionChart = ({ filteredFeaturesItems }) => {
                 chart: {
                     type: 'bar',
                     stacked: true,
-                    toolbar: {
-                        show: false
-                    },
+                    // toolbar: {
+                    //     show: false
+                    // },
                     zoom: {
                         enabled: false
                     }
@@ -46,7 +50,7 @@ const UnitConsumptionChart = ({ filteredFeaturesItems }) => {
                     enabled: false
                 },
                 xaxis: {
-                    categories: districtNames,
+                    categories: feraturesName,
                     title: {
                         text: 'Average Annual Unit Consumption (m³/ha)',
                         offsetX: 10
@@ -54,7 +58,7 @@ const UnitConsumptionChart = ({ filteredFeaturesItems }) => {
                 },
                 yaxis: {
                     title: {
-                        text: 'District Name',
+                        text: yAxisTitle,
                         offsetY: 10
                     },
                     // reversed: true
@@ -84,7 +88,6 @@ const UnitConsumptionChart = ({ filteredFeaturesItems }) => {
             }]}
             type="bar"
             width="100%"
-            // height="4400px"
             height={minHeight + 'px'} // Set the height dynamically
         />
     );

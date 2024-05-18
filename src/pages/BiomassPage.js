@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import {
   MapContainer,
@@ -32,11 +32,15 @@ import MapLegend from "../components/MapLegend";
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
 import { useSelectedFeatureContext } from "../contexts/SelectedFeatureContext";
 import BiomassProductionChart from "../components/charts/BiomassProductionChart";
-import { HydroclimaticStats } from "../assets/data/HydroclimaticStats.js";
 import RasterLayerLegend from "../components/RasterLayerLegend";
 import PixelValue from "./PixelValue";
-import FiltereredDistrictsFeatures from "./FiltereredDistrictsFeatures";
+import FiltereredDistrictsFeatures from "../components/FiltereredDistrictsFeatures.js";
 import SelectedFeatureHeading from "../components/SelectedFeatureHeading.js";
+import { useLoaderContext } from "../contexts/LoaderContext.js";
+import axios from "axios";
+import Preloader from "../components/Preloader.js";
+import ReactApexChart from "react-apexcharts";
+import { BsInfoCircleFill } from "react-icons/bs";
 
 const MapDataLayers = [
   {
@@ -57,18 +61,44 @@ const BiomassPage = () => {
   const [intervalType, setIntervalType] = useState("Yearly");
   const [selectedTime, setSelectedTime] = useState(5);
   const [selectedDataType, setSelectedDataType] = useState(MapDataLayers[0]);
+  const { setIsLoading } = useLoaderContext();
+  const [hydroclimaticStats, setHydroclimaticStats] = useState(null);
 
-  const { selectedView, selectedFeatureName } = useSelectedFeatureContext();
+  const { selectedView, selectedFeatureName, dataView } = useSelectedFeatureContext();
 
-  const filteredFeaturesItems =
-    selectedView && selectedFeatureName !== ""
-      ? HydroclimaticStats.filter(
-        (item) => item[selectedView] === selectedFeatureName
-      )
-      : HydroclimaticStats;
-  const SelectedFeaturesStatsData = SelectedFeaturesAverageStatsFunction(
-    filteredFeaturesItems
-  );
+
+
+  const fetchHydroclimaticStats = (view, featureName) => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/featureData/HydroclimaticStats/`, {
+        params: {
+          view: view,
+          featureName: featureName
+        }
+      })
+      .then(response => {
+        setHydroclimaticStats(response.data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }
+
+  useEffect(() => {
+    if (selectedView && selectedFeatureName) {
+      setIsLoading(true);
+      Promise.all([
+        fetchHydroclimaticStats(selectedView, selectedFeatureName),
+      ]).then(() => {
+        setIsLoading(false);
+      }).catch(() => {
+        setIsLoading(false);
+      });
+    }
+  }, [selectedView, selectedFeatureName]);
+
+  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
+
+
+
 
   const [selectedBasemapLayer, setSelectedBasemapLayer] = useState(
     BaseMapsLayers[0]
@@ -85,39 +115,41 @@ const BiomassPage = () => {
     ColorLegendsData[`${intervalType}_${selectedDataType.value}`];
 
   function DistrictOnEachfeature(feature, layer) {
-    layer.on("mouseover", function (e) {
-      const DataItem = HydroclimaticStats.find(
-        (item) => item.DISTRICT === feature.properties.DISTRICT
-      );
-      const biomassProduction =
-        intervalType === "Monthly"
-          ? (DataItem[selectedDataType.value][selectedTime] * 22.222).toFixed(2)
-          : (
-            getAnnualDataFromMonthly(DataItem[selectedDataType.value])[
-            selectedTime
-            ] * 22.222
-          ).toFixed(2);
+    if (hydroclimaticStats) {
+      layer.on("mouseover", function (e) {
+        const DataItem = hydroclimaticStats.find(
+          (item) => item[dataView] === feature.properties.NAME
+        );
+        const biomassProduction =
+          intervalType === "Monthly"
+            ? (DataItem[selectedDataType.value][selectedTime] * 22.222).toFixed(2)
+            : (
+              getAnnualDataFromMonthly(DataItem[selectedDataType.value])[
+              selectedTime
+              ] * 22.222
+            ).toFixed(2);
 
-      const popupContent = `
+        const popupContent = `
             <div>
-              District: ${feature.properties.DISTRICT}<br/>
+            ${dataView}: ${feature.properties.NAME}<br/>
               Biomass Production: ${biomassProduction} ${intervalType === "Yearly" ? "(kg/ha/year)" : "(kg/ha/month)"
-        }<br/>
+          }<br/>
             </div>
           `;
-      layer.bindTooltip(popupContent, { sticky: true });
-      layer.openTooltip();
-    });
+        layer.bindTooltip(popupContent, { sticky: true });
+        layer.openTooltip();
+      });
 
-    layer.on("mouseout", function () {
-      layer.closeTooltip();
-    });
+      layer.on("mouseout", function () {
+        layer.closeTooltip();
+      });
+    }
   }
 
   const DistrictStyle = (feature) => {
-    if (selectedTime !== "") {
-      const getDensityFromData = (name) => {
-        const DataItem = HydroclimaticStats.find((item) => item.DISTRICT === name);
+    if (selectedTime !== "" && hydroclimaticStats) {
+      const getDensityFromData = (name, view) => {
+        const DataItem = hydroclimaticStats && hydroclimaticStats.find((item) => item[view] === name);
         if (!DataItem) return null;
         if (intervalType === "Monthly") {
           return DataItem[selectedDataType.value][selectedTime] * 22.222; // Monthly density calculation
@@ -127,7 +159,7 @@ const BiomassPage = () => {
         }
 
       };
-      const density = getDensityFromData(feature.properties.DISTRICT);
+      const density = getDensityFromData(feature.properties.NAME, dataView);
       return {
         // fillColor: density ? selectedDensityFunc(density):"none",
         fillColor: ColorLegendsDataItem
@@ -153,267 +185,374 @@ const BiomassPage = () => {
     setSelectedTime("");
   };
 
+
+  const seriesData = SelectedFeaturesStatsData && SelectedFeaturesStatsData.NPP.map((value, index) => {
+    // Calculate the value
+    const calculatedValue = (value * 22.222 * 0.0001) / (SelectedFeaturesStatsData.AETI[index] * 0.001);
+    // Return the value rounded to one decimal place
+    return parseFloat(calculatedValue.toFixed(2));
+  });
+
+
+
   return (
-    <div className="dasboard_page_container">
-      <div className="main_dashboard">
-        <div className="left_panel_equal">
-        <div className='card_container'>
-              <SelectedFeatureHeading
-                selectedView={selectedView}
-                selectedFeatureName={selectedFeatureName}
-              />
-            </div>
+    <>
+      {SelectedFeaturesStatsData ? (
+        <div className="dasboard_page_container">
+          <div className="main_dashboard">
+            <div className="left_panel_equal">
+              <SelectedFeatureHeading />
 
-          <div className="card_container">
-            <div className="defination_container">
-              <h4>Biomass Production</h4>
-            </div>
+              <div className="card_container">
 
-            <Plot
-              data={[
-                {
-                  x: MonthsArray,
-                  y: SelectedFeaturesStatsData.AETI,
-                  type: "scatter",
-                  mode: "lines+markers",
-                  name: "Evapotranspiration (mm/month)",
-                  marker: { color: "#265073" },
-                  yaxis: "y1",
-                  text: MonthsArray.map(
-                    (month, index) =>
-                      `${month}, Evapotranspiration: ${SelectedFeaturesStatsData.AETI[index]} (mm/month)`
-                  ),
-                  hoverinfo: "text",
-                  textposition: 'none'
-                },
-                {
-                  x: MonthsArray,
-                  y: SelectedFeaturesStatsData.NPP.map(
-                    (value) => value * 22.222
-                  ),
-                  type: "scatter",
-                  mode: "lines+markers",
-                  name: "Biomass Production (kg/ha/month)",
-                  marker: { color: "green" },
-                  yaxis: "y2",
-                  text: MonthsArray.map(
-                    (month, index) =>
-                      `${month}, Biomass Production: ${(
-                        SelectedFeaturesStatsData.NPP[index] * 22.222
-                      ).toFixed(2)} (kg/ha/month)`
-                  ),
-                  hoverinfo: "text",
-                  textposition: 'none'
-                },
-              ]}
-              layout={{
-                xaxis: {
-                  title: "Year",
-                },
-                yaxis: {
-                  title: "Evapotranspiration (mm/month)",
-                  side: "left",
-                  showgrid: false,
-                },
-                yaxis2: {
-                  title: "Biomass Production (kg/ha/month)",
-                  side: "right",
-                  overlaying: "y",
-                  showgrid: false,
-                },
-                legend: {
-                  orientation: "h",
-                  x: 0,
-                  y: 1.2,
-                },
-              }}
-              style={{ width: "100%", height: "100%" }}
-            />
-          </div>
 
-          <div className="card_container">
-            <div className="defination_container">
-              <h4>Biomass Water Productivity</h4>
-            </div>
-            <Plot
-              data={[
-                {
-                  x: MonthsArray,
-                  y: SelectedFeaturesStatsData.NPP.map(
-                    (value, index) =>
-                      (value * 22.222 * 0.0001) /
-                      (SelectedFeaturesStatsData.AETI[index] * 0.001)
-                  ),
-                  type: "bar",
-                },
-              ]}
-              layout={{
-                xaxis: {
-                  title: "Year",
-                },
-                yaxis: {
-                  title: "Average Water Productivity (kg/m³)",
-                },
-              }}
-              style={{ width: "100%", height: "100%" }}
-            />
-          </div>
+                <div className='card_heading_container'>
+                  <div className='card_heading'>
+                    <h4>Biomass Production</h4>
+                  </div>
 
-          <div
-            className="card_container"
-            style={{ maxHeight: "600px", overflow: "scroll" }}
-          >
-            <div className="defination_container">
-              <h4>Average Annual Biomass Production per District</h4>
-            </div>
-            <BiomassProductionChart
-              filteredFeaturesItems={filteredFeaturesItems}
-            />
-          </div>
-        </div>
+                  <div className='info_container'>
+                    <div className='heading_info_button'>
+                      <BsInfoCircleFill />
+                    </div>
+                    <div className='info_card_container'>
+                      <p>
+                      Biomass refers to organic matter derived from living or recently living organisms. Biomass production in agriculture refers to the harvesting of organic matter from plants, including crops, grasses, and trees, which can be used for various purposes such as food, feed, fiber and biofuels.
 
-        <div className="right_panel_equal">
-          <div className="card_container" style={{ height: "100%" }}>
-            <MapContainer
-              fullscreenControl={true}
-              center={mapCenter}
-              style={{
-                width: "100%",
-                height: "100%",
-                backgroundColor: "white",
-                border: "none",
-                margin: "auto",
-              }}
-              zoom={setInitialMapZoom()}
-              maxBounds={maxBounds}
-              // maxZoom={8}
-              minZoom={setInitialMapZoom()}
-              keyboard={false}
-              dragging={setDragging()}
-              // attributionControl={false}
-              // scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-              <div className="map_heading">
-                <p> {selectedDataType.name} </p>
+                      </p>
+            
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <ReactApexChart
+                  options={{
+                    chart: {
+                      height: "100%",
+                      type: 'line',
+                    },
+
+                    // markers: {
+                    //   size: 2,
+                    // },
+                    stroke: {
+                      curve: 'smooth',
+                      width: 3
+                    },
+
+
+                    xaxis: {
+                      categories: MonthsArray,
+                      labels: {
+                        rotate: 0,
+                      },
+                      tickPlacement: 'on',
+                    },
+
+                    yaxis: [
+                      {
+                        title: {
+                          text: 'Evapotranspiration (mm/month)',
+                        },
+                        labels: {
+                          formatter: (val) => `${parseInt(val)}`, // Ensure labels are integers
+                        },
+
+                      },
+                      {
+                        opposite: true,
+                        title: {
+                          text: 'Biomass Production (kg/ha/month)',
+                        },
+                        labels: {
+                          formatter: (val) => `${parseInt(val)}`, // Ensure labels are integers
+                        },
+                      }
+                    ],
+                    tooltip: {
+                      shared: true,
+                      intersect: false,
+                      y: [{
+                        formatter: function (val) {
+                          return `${val}`;
+                        }
+                      }, {
+                        formatter: function (val) {
+                          return `${val.toFixed(2)}`;
+                        }
+                      }]
+                    },
+                    legend: {
+                      horizontalAlign: 'left',
+                      offsetX: 40
+                    }
+                  }}
+                  series={[
+                    {
+                      name: 'Evapotranspiration (mm/month)',
+                      type: 'line',
+                      data: SelectedFeaturesStatsData.AETI,
+                      color: '#265073',
+                    },
+                    {
+                      name: 'Biomass Production (kg/ha/month)',
+                      type: 'line',
+                      data: SelectedFeaturesStatsData.NPP.map(value => value * 22.222),
+                      color: '#009957',
+                    }
+                  ]}
+                  type="line"
+                  style={{ width: "100%", height: "100%" }}
+                />
+
+
               </div>
 
-              <div className="map_layer_manager">
-                <div className="accordion" id="accordionPanelsStayOpenExample">
-                  <div className="accordion-item">
-                    <h2
-                      className="accordion-header"
-                      id="panelsStayOpen-headingOne"
-                    >
-                      <button
-                        className="accordion-button map_layer_collapse collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseOne"
-                      >
-                        Base Map
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseOne"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingOne"
-                    >
-                      <div className="accordion-body map_layer_collapse_body">
-                        {BaseMapsLayers.map((option, index) => (
-                          <div key={index} className="form-check">
-                            <input
-                              type="radio"
-                              className="form-check-input"
-                              id={option.name}
-                              name="data_type"
-                              value={option.name}
-                              checked={selectedBasemapLayer?.name === option.name}
-                              onChange={handleBasemapSelection}
-                            />
-                            <label htmlFor={option.name}>{option.name}</label>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item">
-                    <h2
-                      className="accordion-header"
-                      id="panelsStayOpen-headingTwo"
-                    >
-                      <button
-                        className="accordion-button map_layer_collapse collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwo"
-                      >
-                        Raster Layers
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseTwo"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingTwo"
-                    >
-                      <div className="accordion-body map_layer_collapse_body">
-                        {MapDataLayers.slice(0, 1).map((item, index) => (
-                          <div key={index} className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id={item.value}
-                              value={item.value}
-                              checked={selectedDataType.value === item.value}
-                              onChange={handleDataLayerSelection}
-                            />
-                            <label htmlFor={item.value}> {item.name}</label>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item">
-                    <h2
-                      className="accordion-header"
-                      id="panelsStayOpen-headingThree"
-                    >
-                      <button
-                        className="accordion-button map_layer_collapse collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseThree"
-                        aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseThree"
-                      >
-                        Vector Data Layers
-                      </button>
-                    </h2>
-                    <div
-                      id="panelsStayOpen-collapseThree"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="panelsStayOpen-headingThree"
-                    >
-                      <div className="accordion-body map_layer_collapse_body">
-                        {MapDataLayers.slice(1, 2).map((item, index) => (
-                          <div key={index} className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              id={item.value}
-                              value={item.value}
-                              checked={selectedDataType.value === item.value}
-                              onChange={handleDataLayerSelection}
-                            />
-                            <label htmlFor={item.value}> {item.name}</label>
-                          </div>
-                        ))}
+              <div className="card_container">
 
-                        {/* <select
+                <div className='card_heading_container'>
+                  <div className='card_heading'>
+                    <h4>Biomass Water Productivity</h4>
+                  </div>
+
+                  <div className='info_container'>
+                    <div className='heading_info_button'>
+                      <BsInfoCircleFill />
+                    </div>
+                    <div className='info_card_container'>
+                    <p>
+                        The  Water Productivity indicator gives an estimate about the crop production per unit of  water use. In this case seasonal TBP is  used representing the overall biomass growth rate. The biomass water productivity was computed using the below formula:
+                        <br />
+
+                        Annual WPb  = Annual TBP / Annual ETa
+
+
+                      </p>
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <ReactApexChart
+                  options={{
+                    chart: {
+                      type: 'bar',
+                      height: "100%"
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+
+                    xaxis: {
+                      categories: MonthsArray,
+                      labels: {
+                        rotate: 0,
+                      },
+                      tickPlacement: 'on',
+                    },
+
+                    yaxis: {
+                      title: {
+                        text: 'Average Water Productivity (kg/m³)'
+                      }
+                    },
+                    fill: {
+                      opacity: 1
+                    },
+                    tooltip: {
+                      y: {
+                        formatter: function (val) {
+                          return `${parseFloat(val).toFixed(2)} (kg/m³)`;
+                        }
+                      }
+                    }
+                  }}
+                  series={[{
+                    name: 'Average Water Productivity',
+                    data: seriesData,
+                  }]}
+                  type="bar"
+                />
+              </div>
+
+              <div
+                className="card_container"
+                style={{ maxHeight: "600px", overflow: "scroll" }}
+              >
+                <div className='card_heading_container'>
+                  <div className='card_heading'>
+                    <h4>Average annual Biomass Production per {dataView.toLowerCase()}</h4>
+                  </div>
+
+                  <div className='info_container'>
+                    <div className='heading_info_button'>
+                      <BsInfoCircleFill />
+                    </div>
+                    <div className='info_card_container'>
+                      <p>
+                      Average annual Biomass Production per {dataView.toLowerCase()}
+                      </p>
+             
+
+                    </div>
+                  </div>
+                </div>
+
+                <BiomassProductionChart
+                  hydroclimaticStats={hydroclimaticStats}
+                />
+              </div>
+            </div>
+
+            <div className="right_panel_equal">
+              <div className="card_container" style={{ height: "100%" }}>
+                <MapContainer
+                  fullscreenControl={true}
+                  center={mapCenter}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "white",
+                    border: "none",
+                    margin: "auto",
+                  }}
+                  zoom={setInitialMapZoom()}
+                  maxBounds={maxBounds}
+                  // maxZoom={8}
+                  minZoom={setInitialMapZoom()}
+                  keyboard={false}
+                  dragging={setDragging()}
+                  // attributionControl={false}
+                  // scrollWheelZoom={false}
+                  doubleClickZoom={false}
+                >
+                  <div className="map_heading">
+                    <p> {selectedDataType.name} </p>
+                  </div>
+
+                  <div className="map_layer_manager">
+                    <div className="accordion" id="accordionPanelsStayOpenExample">
+                      <div className="accordion-item">
+                        <h2
+                          className="accordion-header"
+                          id="panelsStayOpen-headingOne"
+                        >
+                          <button
+                            className="accordion-button map_layer_collapse collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseOne"
+                            aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseOne"
+                          >
+                            Base Map
+                          </button>
+                        </h2>
+                        <div
+                          id="panelsStayOpen-collapseOne"
+                          className="accordion-collapse collapse"
+                          aria-labelledby="panelsStayOpen-headingOne"
+                        >
+                          <div className="accordion-body map_layer_collapse_body">
+                            {BaseMapsLayers.map((option, index) => (
+                              <div key={index} className="form-check">
+                                <input
+                                  type="radio"
+                                  className="form-check-input"
+                                  id={option.name}
+                                  name="data_type"
+                                  value={option.name}
+                                  checked={selectedBasemapLayer?.name === option.name}
+                                  onChange={handleBasemapSelection}
+                                />
+                                <label htmlFor={option.name}>{option.name}</label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="accordion-item">
+                        <h2
+                          className="accordion-header"
+                          id="panelsStayOpen-headingTwo"
+                        >
+                          <button
+                            className="accordion-button map_layer_collapse collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseTwo"
+                            aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseTwo"
+                          >
+                            Raster Layers
+                          </button>
+                        </h2>
+                        <div
+                          id="panelsStayOpen-collapseTwo"
+                          className="accordion-collapse collapse"
+                          aria-labelledby="panelsStayOpen-headingTwo"
+                        >
+                          <div className="accordion-body map_layer_collapse_body">
+                            {MapDataLayers.slice(0, 1).map((item, index) => (
+                              <div key={index} className="form-check">
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id={item.value}
+                                  value={item.value}
+                                  checked={selectedDataType.value === item.value}
+                                  onChange={handleDataLayerSelection}
+                                />
+                                <label htmlFor={item.value}> {item.name}</label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="accordion-item">
+                        <h2
+                          className="accordion-header"
+                          id="panelsStayOpen-headingThree"
+                        >
+                          <button
+                            className="accordion-button map_layer_collapse collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseThree"
+                            aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseThree"
+                          >
+                            Vector Data Layers
+                          </button>
+                        </h2>
+                        <div
+                          id="panelsStayOpen-collapseThree"
+                          className="accordion-collapse collapse"
+                          aria-labelledby="panelsStayOpen-headingThree"
+                        >
+                          <div className="accordion-body map_layer_collapse_body">
+                            {MapDataLayers.slice(1, 2).map((item, index) => (
+                              <div key={index} className="form-check">
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id={item.value}
+                                  value={item.value}
+                                  checked={selectedDataType.value === item.value}
+                                  onChange={handleDataLayerSelection}
+                                />
+                                <label htmlFor={item.value}> {item.name}</label>
+                              </div>
+                            ))}
+
+                            {/* <select
                           value={intervalType}
                           onChange={handleIntervalTypeChange}
                         >
@@ -421,97 +560,103 @@ const BiomassPage = () => {
                           <option value="Yearly">Yearly</option>
                         </select> */}
 
-                        <select
-                          value={selectedTime}
-                          onChange={(e) => setSelectedTime(e.target.value)}
-                        >
-                          {renderTimeOptions(intervalType)}
-                        </select>
+                            <select
+                              value={selectedTime}
+                              onChange={(e) => setSelectedTime(e.target.value)}
+                            >
+                              {renderTimeOptions(intervalType)}
+                            </select>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <TileLayer
-                key={selectedBasemapLayer.url}
-                attribution={selectedBasemapLayer.attribution}
-                url={selectedBasemapLayer.url}
-                subdomains={selectedBasemapLayer.subdomains}
-              />
-
-              <BaseMap />
-
-              {selectedDataType.value === "avg_biomass_raster" ? (
-                <>
-                  <WMSTileLayer
-                    attribution={selectedDataType.attribution}
-                    url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
-                    params={{ LAYERS: "	AFG_Dashboard:BiomassProduction_2018-2023_avg" }}
-                    version="1.1.0"
-                    transparent={true}
-                    format="image/png"
-                    key="avg_biomass_raster"
-                  />
-                  <PixelValue
-                    layername="BiomassProduction_2018-2023_avg"
-                    unit="kg/ha/year"
-                  />
-                  <RasterLayerLegend
-                    layerName="BiomassProduction_2018-2023_avg"
-                    Unit="(kg/ha/year)"
+                  <TileLayer
+                    key={selectedBasemapLayer.url}
+                    attribution={selectedBasemapLayer.attribution}
+                    url={selectedBasemapLayer.url}
+                    subdomains={selectedBasemapLayer.subdomains}
                   />
 
+                  <BaseMap />
+
+                  {selectedDataType.value === "avg_biomass_raster" ? (
+                    <>
+                      <WMSTileLayer
+                        attribution={selectedDataType.attribution}
+                        url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
+                        params={{ LAYERS: "	AFG_Dashboard:BiomassProduction_2018-2023_avg" }}
+                        version="1.1.0"
+                        transparent={true}
+                        format="image/png"
+                        key="avg_biomass_raster"
+                      />
+                      <PixelValue
+                        layername="BiomassProduction_2018-2023_avg"
+                        unit="kg/ha/year"
+                      />
+                      <RasterLayerLegend
+                        layerName="BiomassProduction_2018-2023_avg"
+                        Unit="(kg/ha/year)"
+                      />
 
 
-                </>
-              ) : (
-                <>
 
-                </>
-              )}
+                    </>
+                  ) : (
+                    <>
 
-              {selectedDataType && selectedDataType.value && selectedTime !== "" && intervalType !== "" && ColorLegendsDataItem ? (
-
-                <>
-                  <FiltereredDistrictsFeatures
-                    DistrictStyle={DistrictStyle}
-                    DistrictOnEachfeature={DistrictOnEachfeature}
-                    layerKey={selectedDataType.value + selectedTime + intervalType}
-                    attribution={selectedDataType.attribution}
-                  />
-
-                  {ColorLegendsDataItem && (
-                    <MapLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                    </>
                   )}
 
-                </>
+                  {selectedDataType && selectedDataType.value && selectedTime !== "" && intervalType !== "" && ColorLegendsDataItem ? (
 
-              ) : (
-                <>
-                  <FiltereredDistrictsFeatures
-                    DistrictStyle={
-                      {
-                        fillColor: "none",
-                        weight: 2,
-                        opacity: 1,
-                        color: "black",
-                        fillOpacity: 1,
-                      }}
-                    layerKey={selectedDataType.value + selectedTime + intervalType}
-                  />
-                </>
+                    <>
+                      <FiltereredDistrictsFeatures
+                        DistrictStyle={DistrictStyle}
+                        DistrictOnEachfeature={DistrictOnEachfeature}
+                        layerKey={selectedDataType.value + selectedTime + intervalType}
+                        attribution={selectedDataType.attribution}
+                      />
+
+                      {ColorLegendsDataItem && (
+                        <MapLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                      )}
+
+                    </>
+
+                  ) : (
+                    <>
+                      <FiltereredDistrictsFeatures
+                        DistrictStyle={
+                          {
+                            fillColor: "none",
+                            weight: 2,
+                            opacity: 1,
+                            color: "black",
+                            fillOpacity: 1,
+                          }}
+                        layerKey={selectedDataType.value + selectedTime + intervalType}
+                      />
+                    </>
 
 
-              )}
+                  )}
 
 
-              {/* <FiltererdJsonFeature /> */}
-            </MapContainer>
+                  {/* <FiltererdJsonFeature /> */}
+                </MapContainer>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      )
+        : (
+          <Preloader />
+
+        )}</>
+
   );
 };
 

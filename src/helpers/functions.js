@@ -60,15 +60,24 @@ export const MonthsArray = ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2
 
 export const getAnnualDataFromMonthly = (monthlyData) => {
   const annualData = {};
-  monthlyData.forEach((value, index) => {
-    const year = Math.floor(index / 12) + 2018;
-    if (!annualData[year]) {
-      annualData[year] = 0;
-    }
-    annualData[year] += value;
-  });
-  return Object.values(annualData).map(value => Math.round(value * 100) / 100);
+
+  if (monthlyData !== "NA" && Array.isArray(monthlyData)) {
+    monthlyData.forEach((value, index) => {
+      const year = Math.floor(index / 12) + 2018; // Calculate year based on index
+      if (!annualData[year]) {
+        annualData[year] = 0; // Initialize year in annualData if not already present
+      }
+      annualData[year] += value; // Aggregate data for the year
+    });
+
+    // Return the accumulated values, rounded to two decimal places
+    return Object.values(annualData).map(value => Math.round(value * 100) / 100);
+  }
+
+  // Return an empty array or another appropriate default value if data is "NA" or invalid
+  return [];
 }
+
 
 export const calculateAverageOfArray = (arr) => {
   if (arr.length === 0) {
@@ -236,7 +245,6 @@ export const WaterProductivityStatsFunction = (data) => {
 export const SelectedFeaturesAverageStatsFunction = (data) => {
   let sumObject = {
     "AREA": 0,
-    "DISTRICT": [],
     "PCP": [],
     "AETI": [],
     "NPP": [],
@@ -258,7 +266,6 @@ export const SelectedFeaturesAverageStatsFunction = (data) => {
 
     sumObject["ETG"] = averageArrayOfArrays(data.map(obj => [...obj["ETG"]]));
     sumObject["ETB"] = averageArrayOfArrays(data.map(obj => [...obj["ETB"]]));
-    sumObject["DISTRICT"].push(obj["DISTRICT"]);
 
   });
 
@@ -270,7 +277,6 @@ export const SelectedFeaturesAverageStatsFunction = (data) => {
 
 export const SelectedFeaturesCroplandStatFunction = (data) => {
   let sumObject = {
-    "DISTRICT": [],
     "AFG_Landcover": [],
     "ESA_Landcover": [],
     "Cropland": [],
@@ -281,7 +287,6 @@ export const SelectedFeaturesCroplandStatFunction = (data) => {
     sumObject["AFG_Landcover"] = sumArrayOfArrays(data.map(obj => [...obj["AFG_Landcover"]]));
     sumObject["ESA_Landcover"] = sumArrayOfArrays(data.map(obj => [...obj["ESA_Landcover"]]));
     sumObject["Cropland"] = sumArrayOfArrays(data.map(obj => [...obj["Cropland"]]));
-    sumObject["DISTRICT"].push(obj["DISTRICT"]);
 
   });
 

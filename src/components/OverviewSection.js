@@ -10,23 +10,70 @@ import crop_land from "../assets/icons/crop_land.jpg"
 import area_icon from "../assets/icons/area_icon.jpg"
 import blue_water from "../assets/icons/blue_water.jpg"
 import { Link } from 'react-router-dom'
+import { calculateAverageOfArray, getAnnualDataFromMonthly } from '../helpers/functions'
 
 
 
 const OverviewSection = ({
-    cropLandValue,
-    EvapotranspirationValue,
-    AreaValue,
-    IrrigatedLandValue,
-    PrecipitationValue,
-    WaterConsumption,
-    PCP_ETValue,
-    BiomassProductionValue,
-    BlueWaterFootprintValue,
-    GreenWaterFootprintValue,
+    SelectedLandCoverStats,
+    hydroclimaticStats
+
 
 
 }) => {
+
+
+    let totalWeightedAETI = 0;
+    let totalWeightedPCP = 0;
+    let totalWeightedNPP = 0;
+    let totalWeightedETG = 0;
+    let totalWeightedETB = 0;
+    let totalArea = 0;
+
+
+
+    hydroclimaticStats.forEach(item => {
+        totalWeightedAETI += calculateAverageOfArray(getAnnualDataFromMonthly(item.AETI))  * 0.001* item.AREA;
+        totalWeightedPCP += calculateAverageOfArray(getAnnualDataFromMonthly(item.PCP))  * 0.001 * item.AREA;
+        totalWeightedNPP += calculateAverageOfArray(getAnnualDataFromMonthly(item.NPP))* 0.001 * item.AREA;
+        totalWeightedETG += calculateAverageOfArray(item.ETG) * 0.001* item.AREA;
+        totalWeightedETB += calculateAverageOfArray(item.ETB) * 0.001* item.AREA ;
+        totalArea += item.AREA; // Sum up total area for normalization
+    });
+
+
+
+    
+
+
+    const croplandPercentage = (SelectedLandCoverStats.ESA_Landcover[3] * 100) / (SelectedLandCoverStats.ESA_Landcover[0] + SelectedLandCoverStats.ESA_Landcover[1] + SelectedLandCoverStats.ESA_Landcover[2] + SelectedLandCoverStats.ESA_Landcover[3] + SelectedLandCoverStats.ESA_Landcover[4] + SelectedLandCoverStats.ESA_Landcover[5] + SelectedLandCoverStats.ESA_Landcover[6] + SelectedLandCoverStats.ESA_Landcover[7] + SelectedLandCoverStats.ESA_Landcover[8] + SelectedLandCoverStats.ESA_Landcover[9])
+    const totalIrrigatedLand = SelectedLandCoverStats.AFG_Landcover[4]
+
+
+
+
+
+
+    // console.log(totalWeightedAETI/(totalArea*0.0001))
+
+
+    // console.log(avgAnnualAETI)
+    // console.log(totalArea*0.0001)
+
+
+
+
+    const cropLandValue = croplandPercentage.toFixed(2)
+    const EvapotranspirationValue = (totalWeightedAETI/1000000000).toFixed(2)
+    const AreaValue = (totalArea * 0.0000001).toFixed(0)
+    const IrrigatedLandValue = (totalIrrigatedLand * 0.001).toFixed(2)
+    const PrecipitationValue = (totalWeightedPCP/1000000000).toFixed(2)
+    const WaterConsumption = (totalWeightedAETI/(totalArea*0.0001)).toFixed(2)
+    const PCP_ETValue = ((totalWeightedPCP-totalWeightedAETI)/1000000000).toFixed(2)
+    const BiomassProductionValue = (totalWeightedNPP*22.222*0.0001/1000000).toFixed(2)
+    const BlueWaterFootprintValue = (totalWeightedETB/1000000000).toFixed(2)
+    const GreenWaterFootprintValue = (totalWeightedETG/1000000000).toFixed(2)
+
 
     return (
         <div className='row'>

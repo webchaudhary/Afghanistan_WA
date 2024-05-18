@@ -1,5 +1,5 @@
 import React from 'react';
-import Plot from 'react-plotly.js';
+import ReactApexChart from 'react-apexcharts';
 import regression from 'regression';
 
 const ClimateProjectionsChart = ({ xData, yData, xAxisLabel, yAxisLabel,slopeUnit }) => {
@@ -8,44 +8,73 @@ const ClimateProjectionsChart = ({ xData, yData, xAxisLabel, yAxisLabel,slopeUni
 
     const slope = result.equation[0];
 
-    // Generate data points for the trendline
-    const trendlineX = [Math.min(...xData), Math.max(...xData)];
-    const trendlineY = trendlineX.map(x => result.predict(x)[1]);
+
+    const trendlineY = xData.map(x => result.predict(x)[1]);
+
+
+    const options = {
+        chart: {
+            height: '100%',
+            type: 'line',
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 2
+          },
+        series: [
+            {
+                name: yAxisLabel,
+                type: 'line',
+                data: yData,
+                color: '#265073',
+                
+            },
+            {
+                name: `Trendline (Slope: ${slope>0 ?"+":"-"} ${slope.toFixed(2)} ${slopeUnit})`,
+                type: 'line',
+                data: trendlineY,
+                color: '#e80202',
+            }
+        ],
+
+        xaxis: {
+            categories: xData,
+            labels: {
+              rotate: 0,
+            },
+            tickPlacement: 'on',
+          },
+
+        yaxis: {
+            title: {
+                text: yAxisLabel
+            },
+            labels: {
+                formatter: (val) => {
+                    return val.toFixed(0); // Formats values as integers
+                }
+            }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: (val) => `${val.toFixed(2)}`
+            }
+        },
+        // legend: {
+        //     horizontalAlign: 'left',
+        //     position: 'top',
+        //     offsetX: 0,
+        //     offsetY: -10
+        // },
+
+    };
+
 
     return (
         <div>
-            <Plot
-                data={[
-                    {
-                        x: xData,
-                        y: yData,
-                        type: 'scatter',
-                        mode: 'lines+markers',
-                        name: yAxisLabel,
-                    },
-                    {
-                        x: trendlineX,
-                        y: trendlineY,
-                        type: 'scatter',
-                        mode: 'lines',
-                        name: `Trendline (Slope: ${slope.toFixed(2)} ${slopeUnit})`,
-                    },
-                ]}
-                layout={{
-                    xaxis: {
-                        title: xAxisLabel,
-                    },
-                    yaxis: {
-                        title: yAxisLabel,
-                    },
-                    legend: {
-                        orientation: 'h',
-                        x: 0,
-                        y: 1.2,
-                    },
-                }}
-                style={{ width: "100%", height: "100%" }}
-            />
+             <ReactApexChart options={options} series={options.series} type="line" />
         </div>
     );
 }

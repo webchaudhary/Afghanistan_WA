@@ -1,39 +1,59 @@
-import React from 'react'
-import Plot from 'react-plotly.js'
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
 
-const LandCoverPiChart = ({landCoverValues,colorPallete,ClassesName}) => {
-  return (
-    <Plot
-    data={[
-      {
-        labels: ClassesName,
-        values: landCoverValues,
+const LandCoverPieChart = ({ landCoverValues, colorPallete, ClassesName }) => {
 
-        type: 'pie',
-        marker: {
-          colors: colorPallete,
-        },
-        hoverinfo: 'label+percent+text',
-        text: landCoverValues.map(value => `${value.toFixed(0)} ha`), // Display area in hectares
-        textinfo: 'percent',
-        // textinfo: 'label+text+percent',
-        // texttemplate: '%{label}: %{value:.0f} ha',
-        // textposition: 'inside',
-        // textinfo: 'none',
-      },
-    ]}
-    layout={{
-      margin: {
-        l: 100, 
-        t: 20, 
-        b: 100, 
-        r: 100, 
-      },
-    }}
 
-    style={{ width: "100%", height:"600px" }}
-  />
-  )
+  const options = {
+    labels: ClassesName,
+    colors: colorPallete,
+    legend: {
+      show: true,
+      position: 'bottom'
+    },
+    toolbar: {
+      show: true,
+    },
+    tooltip: {
+      y: {
+        formatter: (value) => `${value.toFixed(0)} ha`
+      }
+    },
+
+  };
+
+  const series = landCoverValues;
+
+
+  const downloadCsv = () => {
+    let csvContent = "data:text/csv;charset=utf-8,";
+    csvContent += "Landcover Class,Area (ha)\r\n";
+    ClassesName.forEach((cls, index) => {
+        csvContent += `${cls},${landCoverValues[index].toFixed(0)}\r\n`;
+    });
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "land_cover_data.csv");
+    document.body.appendChild(link); // Required for FF
+    link.click();
+    document.body.removeChild(link);
 }
 
-export default LandCoverPiChart
+
+  return (
+    <div className=''>
+      <div className='chart_download_btn'>
+      <button onClick={downloadCsv}>Download CSV</button>
+      </div>
+      
+      <ReactApexChart 
+        options={options}
+        series={series}
+        type="pie"
+      />
+    </div>
+  );
+}
+
+export default LandCoverPieChart;

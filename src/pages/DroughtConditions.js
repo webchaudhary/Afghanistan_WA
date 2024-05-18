@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SearchBar from '../components/SearchBar'
 import { MapContainer, GeoJSON, WMSTileLayer, TileLayer } from 'react-leaflet'
 import * as L from "leaflet";
@@ -10,13 +10,17 @@ import { MonthsArray, SelectedFeaturesAverageSPEIFunction, calculateAverageOfArr
 
 
 import Plot from 'react-plotly.js';
-import {DroughtConditionStats} from "../assets/data/DroughtConditionStats.js"
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 import { BaseMapsLayers, mapCenter, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 import spei_legend from "../assets/legends/spei_legend.jpg"
 import { ColorLegendsData } from '../assets/data/ColorLegendsData';
-import FiltereredDistrictsFeatures from './FiltereredDistrictsFeatures';
+import FiltereredDistrictsFeatures from '../components/FiltereredDistrictsFeatures.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
+import axios from 'axios';
+import { useLoaderContext } from '../contexts/LoaderContext.js';
+import Preloader from '../components/Preloader.js';
+import SPEIChart from '../components/charts/SPEIChart.js';
+import { BsInfoCircleFill } from 'react-icons/bs';
 
 
 const MapDataLayers = [
@@ -96,15 +100,46 @@ const DroughtConditions = () => {
   const [selectedDataType, setSelectedDataType] = useState(MapDataLayers[0]);
 
 
-  const { selectedView, selectedFeatureName } = useSelectedFeatureContext();
+  const { selectedView, selectedFeatureName, dataView } = useSelectedFeatureContext();
 
 
-  const filteredFeaturesItems = selectedView && selectedFeatureName !== "" ? DroughtConditionStats.filter(item => item[selectedView] === selectedFeatureName) : DroughtConditionStats;
-  const SelectedFeaturesAverageSPEIData = SelectedFeaturesAverageSPEIFunction(filteredFeaturesItems)
-
+  const { setIsLoading } = useLoaderContext();
+  const [droughtConditionStats, setDroughtConditionStats] = useState(null);
 
 
   const [selectedBasemapLayer, setSelectedBasemapLayer] = useState(BaseMapsLayers[0]);
+
+
+
+  const fetchHydroclimaticStats = (view, featureName) => {
+    axios
+      .get(`${process.env.REACT_APP_BACKEND}/featureData/DroughtConditionStats/`, {
+        params: {
+          view: view,
+          featureName: featureName
+        }
+      })
+      .then(response => {
+        setDroughtConditionStats(response.data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }
+
+  useEffect(() => {
+    if (selectedView && selectedFeatureName) {
+      setIsLoading(true);
+      Promise.all([
+        fetchHydroclimaticStats(selectedView, selectedFeatureName),
+      ]).then(() => {
+        setIsLoading(false);
+      }).catch(() => {
+        setIsLoading(false);
+      });
+    }
+  }, [selectedView, selectedFeatureName]);
+
+  const SelectedFeaturesStatsData = droughtConditionStats && SelectedFeaturesAverageSPEIFunction(droughtConditionStats);
+
 
 
   const handleBasemapSelection = (e) => {
@@ -153,8 +188,8 @@ const DroughtConditions = () => {
 
   function DistrictOnEachfeature(feature, layer) {
     layer.on("mouseover", function (e) {
-      const DataItem = DroughtConditionStats.find(
-        (item) => item.DISTRICT === feature.properties.DISTRICT
+      const DataItem = droughtConditionStats.find(
+        (item) => item[dataView] === feature.properties.NAME
       );
 
       const SPEI_value = DataItem && DataItem[selectedDataType.value] !== "NA"
@@ -162,7 +197,7 @@ const DroughtConditions = () => {
         : null;
       const popupContent = `
             <div>
-              District: ${feature.properties.DISTRICT}<br/>
+            ${dataView}: ${feature.properties.NAME}<br/>
               SPEI: ${SPEI_value}
 
         <br/>
@@ -179,22 +214,22 @@ const DroughtConditions = () => {
 
 
   const DistrictStyle = (feature) => {
-    const getDensityFromData = (name) => {
-      const DataItem = DroughtConditionStats.find((item) => item.DISTRICT === name);
+    const getDensityFromData = (name, view) => {
+      const DataItem = droughtConditionStats.find((item) => item[view] === name);
       return DataItem && DataItem[selectedDataType.value] !== "NA"
         ? DataItem[selectedDataType.value][0]
         : null;
     };
-    const density = getDensityFromData(feature.properties.DISTRICT);
+    const density = getDensityFromData(feature.properties.NAME, dataView)
 
     return {
       fillColor: DistrictDensity(density),
       // fillColor: ColorLegendsDataItem ? fillDensityColor(ColorLegendsDataItem, density) : "none",
       weight: 1,
-        opacity: 1,
-        color: "black",
-        dashArray: "2",
-        fillOpacity: 1,
+      opacity: 1,
+      color: "black",
+      dashArray: "2",
+      fillOpacity: 1,
     };
 
   };
@@ -204,211 +239,149 @@ const DroughtConditions = () => {
 
 
   return (
-    <div className='dasboard_page_container'>
-      <div className='main_dashboard'>
-        <div className='left_panel_equal'>
-        <div className='card_container'>
-              <SelectedFeatureHeading
-                selectedView={selectedView}
-                selectedFeatureName={selectedFeatureName}
-              />
-            </div>
+    <>
+      {SelectedFeaturesStatsData ? (
+        <div className='dasboard_page_container'>
+          <div className='main_dashboard'>
+            <div className='left_panel_equal'>
+              <SelectedFeatureHeading />
 
-          <div className='card_container'>
-            <div className='defination_container'>
-              <h4>Standardised Precipitation-Evapotranspiration Index (SPEI)</h4>
-            </div>
-            <Plot
-              data={[
-                {
-                  x: ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2018-6", "2018-7", "2018-8", "2018-9", "2018-10", "2018-11", "2018-12", "2019-1", "2019-2", "2019-3", "2019-4", "2019-5", "2019-6", "2019-7", "2019-8", "2019-9", "2019-10", "2019-11", "2019-12", "2020-1", "2020-2", "2020-3", "2020-4", "2020-5", "2020-6", "2020-7", "2020-8", "2020-9", "2020-10", "2020-11", "2020-12", "2021-1", "2021-2", "2021-3", "2021-4", "2021-5", "2021-6", "2021-7", "2021-8", "2021-9", "2021-10", "2021-11", "2021-12", "2022-1", "2022-2", "2022-3", "2022-4", "2022-5", "2022-6", "2022-7", "2022-8", "2022-9", "2022-10", "2022-11", "2022-12", "2023-1", "2023-2", "2023-3", "2023-4", "2023-5", "2023-6", "2023-7", "2023-8", "2023-9", "2023-10", "2023-11"],
-                  y: SelectedFeaturesAverageSPEIData.spei_03,
-                  type: 'bar',
-                  // type: 'scatter',
-                  mode: 'lines+markers',
-                  marker: {
-                    color: SelectedFeaturesAverageSPEIData.spei_03.map(value => value < 0 ? 'red' : 'blue'),
-                  },
-                },
-              ]}
-              layout={{
-                xaxis: {
-                  title: 'Date',
-                },
-                yaxis: {
-                  title: "SPEI 3-Months",
-                },
-                legend: {
-                  orientation: 'h',
-                  x: 0,
-                  y: 1.2,
-                },
-              }}
-              style={{ width: "100%", height: "100%" }}
-            />
+              <div className='card_container'>
 
-            <Plot
-              data={[
-                {
-                  x: ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2018-6", "2018-7", "2018-8", "2018-9", "2018-10", "2018-11", "2018-12", "2019-1", "2019-2", "2019-3", "2019-4", "2019-5", "2019-6", "2019-7", "2019-8", "2019-9", "2019-10", "2019-11", "2019-12", "2020-1", "2020-2", "2020-3", "2020-4", "2020-5", "2020-6", "2020-7", "2020-8", "2020-9", "2020-10", "2020-11", "2020-12", "2021-1", "2021-2", "2021-3", "2021-4", "2021-5", "2021-6", "2021-7", "2021-8", "2021-9", "2021-10", "2021-11", "2021-12", "2022-1", "2022-2", "2022-3", "2022-4", "2022-5", "2022-6", "2022-7", "2022-8", "2022-9", "2022-10", "2022-11", "2022-12", "2023-1", "2023-2", "2023-3", "2023-4", "2023-5", "2023-6", "2023-7", "2023-8", "2023-9", "2023-10", "2023-11"],
-                  y: SelectedFeaturesAverageSPEIData.spei_06,
-                  type: 'bar',
-                  // type: 'scatter',
-                  // mode: 'lines+markers',
-                  marker: {
-                    color: SelectedFeaturesAverageSPEIData.spei_06.map(value => value < 0 ? 'red' : 'blue'),
-                  },
-                },
-              ]}
-              layout={{
-                xaxis: {
-                  title: 'Date',
-                },
-                yaxis: {
-                  title: "SPEI 6-Months",
-                },
-                legend: {
-                  orientation: 'h',
-                  x: 0,
-                  y: 1.2,
-                },
-              }}
-              style={{ width: "100%", height: "100%" }}
-            />
+                  <div className='card_heading_container'>
+                    <div className='card_heading'>
+                      <h4>Standardised Precipitation-Evapotranspiration Index (SPEI)</h4>
+                    </div>
 
-            <Plot
-              data={[
-                {
-                  x: ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2018-6", "2018-7", "2018-8", "2018-9", "2018-10", "2018-11", "2018-12", "2019-1", "2019-2", "2019-3", "2019-4", "2019-5", "2019-6", "2019-7", "2019-8", "2019-9", "2019-10", "2019-11", "2019-12", "2020-1", "2020-2", "2020-3", "2020-4", "2020-5", "2020-6", "2020-7", "2020-8", "2020-9", "2020-10", "2020-11", "2020-12", "2021-1", "2021-2", "2021-3", "2021-4", "2021-5", "2021-6", "2021-7", "2021-8", "2021-9", "2021-10", "2021-11", "2021-12", "2022-1", "2022-2", "2022-3", "2022-4", "2022-5", "2022-6", "2022-7", "2022-8", "2022-9", "2022-10", "2022-11", "2022-12", "2023-1", "2023-2", "2023-3", "2023-4", "2023-5", "2023-6", "2023-7", "2023-8", "2023-9", "2023-10", "2023-11"],
-                  y: SelectedFeaturesAverageSPEIData.spei_12,
-                  type: 'bar',
-                  // type: 'scatter',
-                  mode: 'lines+markers',
-                  marker: {
-                    color: SelectedFeaturesAverageSPEIData.spei_12.map(value => value < 0 ? 'red' : 'blue'),
-                  },
-                },
-              ]}
-              layout={{
-                xaxis: {
-                  title: 'Date',
-                },
-                yaxis: {
-                  title: "SPEI 12-Months",
-                },
-                legend: {
-                  orientation: 'h',
-                  x: 0,
-                  y: 1.2,
-                },
-              }}
-              style={{ width: "100%", height: "100%" }}
-            />
+                    <div className='info_container'>
+                      <div className='heading_info_button'>
+                        <BsInfoCircleFill />
+                      </div>
+                      <div className='info_card_container'>
+                        <p>
+                        The SPEI is a multiscalar drought index based on climatic data. It can be used for determining the onset, duration and magnitude of drought conditions with respect to normal conditions in a variety of natural and managed systems such as crops, ecosystems, rivers, water resources, etc.
 
-            {/* <select
-              className="m-1"
-              value={intervalType}
-              onChange={handleIntervalTypeChange}
-            >
-              <option value="Monthly">Monthly</option>
-              <option value="Yearly">Yearly</option>
-            </select> */}
+                        </p>
+ 
 
-          </div>
-
-        </div>
-        <div className='right_panel_equal' >
-          <div className='card_container' style={{ height: "100%" }}>
-            <MapContainer
-              fullscreenControl={true}
-              center={mapCenter}
-              style={{ width: '100%', height: "100%", backgroundColor: 'white', border: 'none', margin: 'auto' }}
-              zoom={setInitialMapZoom()}
-              // maxBounds={[[23, 49], [41, 82]]}
-              // maxZoom={8}
-              // minZoom={setInitialMapZoom()}
-              keyboard={false}
-              dragging={setDragging()}
-              // attributionControl={false}
-              // scrollWheelZoom={false}
-              doubleClickZoom={false}
-            >
-
-<div className='map_heading'>
-                  <p> {selectedDataType.name} </p>
-                </div>
-
-              <div className='map_layer_manager'>
-                <div className="accordion" id="accordionPanelsStayOpenExample">
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="panelsStayOpen-headingOne">
-                      <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
-                        Base Map
-                      </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
-                      <div className="accordion-body map_layer_collapse_body">
-                        {BaseMapsLayers.map((option,index) => (
-                          <div key={index} className="form-check">
-                          <input
-                            type="radio"
-                            className="form-check-input"
-                            id={option.name}
-                            name="data_type"
-                            value={option.name}
-                            checked={selectedBasemapLayer?.name === option.name}
-                            onChange={handleBasemapSelection}
-                          />
-                          <label htmlFor={option.name}>{option.name}</label>
-                        </div>
-                        ))}
                       </div>
                     </div>
                   </div>
 
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="panelsStayOpen-headingThree">
-                      <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                        Data Layers
-                      </button>
-                    </h2>
-                    <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                      <div className="accordion-body map_layer_collapse_body">
 
-                        {MapDataLayers.map((item, index) => (
-                          <div key={index} className="form-check">
-                          <input
-                          className="form-check-input"
-                            type="checkbox"
-                            id={item.value}
-                            value={item.value}
-                            checked={selectedDataType.value === item.value}
-                            onChange={handleDataLayerSelection}
-                          />
-                          <label htmlFor={item.value}> {item.name}</label>
-                        </div>
-                        ))}
+              
+                <SPEIChart
+                  chartData={SelectedFeaturesStatsData.spei_03}
+                  title="SPEI 3-Months"
+                />
 
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <SPEIChart
+                  chartData={SelectedFeaturesStatsData.spei_06}
+                  title="SPEI 6-Months"
+                />
+
+                <SPEIChart
+                  chartData={SelectedFeaturesStatsData.spei_12}
+                  title="SPEI 12-Months"
+                />
+
+
+
               </div>
 
-              <TileLayer
-                key={selectedBasemapLayer.url}
-                attribution={selectedBasemapLayer.attribution}
-                url={selectedBasemapLayer.url}
-                subdomains={selectedBasemapLayer.subdomains}
-              />
+            </div>
+            <div className='right_panel_equal' >
+              <div className='card_container' style={{ height: "100%" }}>
+                <MapContainer
+                  fullscreenControl={true}
+                  center={mapCenter}
+                  style={{ width: '100%', height: "100%", backgroundColor: 'white', border: 'none', margin: 'auto' }}
+                  zoom={setInitialMapZoom()}
+                  // maxBounds={[[23, 49], [41, 82]]}
+                  // maxZoom={8}
+                  // minZoom={setInitialMapZoom()}
+                  keyboard={false}
+                  dragging={setDragging()}
+                  // attributionControl={false}
+                  // scrollWheelZoom={false}
+                  doubleClickZoom={false}
+                >
+
+                  <div className='map_heading'>
+                    <p> {selectedDataType.name} </p>
+                  </div>
+
+                  <div className='map_layer_manager'>
+                    <div className="accordion" id="accordionPanelsStayOpenExample">
+                      <div className="accordion-item">
+                        <h2 className="accordion-header" id="panelsStayOpen-headingOne">
+                          <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false" aria-controls="panelsStayOpen-collapseOne">
+                            Base Map
+                          </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingOne">
+                          <div className="accordion-body map_layer_collapse_body">
+                            {BaseMapsLayers.map((option, index) => (
+                              <div key={index} className="form-check">
+                                <input
+                                  type="radio"
+                                  className="form-check-input"
+                                  id={option.name}
+                                  name="data_type"
+                                  value={option.name}
+                                  checked={selectedBasemapLayer?.name === option.name}
+                                  onChange={handleBasemapSelection}
+                                />
+                                <label htmlFor={option.name}>{option.name}</label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="accordion-item">
+                        <h2 className="accordion-header" id="panelsStayOpen-headingThree">
+                          <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            Data Layers
+                          </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                          <div className="accordion-body map_layer_collapse_body">
+
+                            {MapDataLayers.map((item, index) => (
+                              <div key={index} className="form-check">
+                                <input
+                                  className="form-check-input"
+                                  type="checkbox"
+                                  id={item.value}
+                                  value={item.value}
+                                  checked={selectedDataType.value === item.value}
+                                  onChange={handleDataLayerSelection}
+                                />
+                                <label htmlFor={item.value}> {item.name}</label>
+                              </div>
+                            ))}
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <TileLayer
+                    key={selectedBasemapLayer.url}
+                    attribution={selectedBasemapLayer.attribution}
+                    url={selectedBasemapLayer.url}
+                    subdomains={selectedBasemapLayer.subdomains}
+                  />
 
 
-              <BaseMap />
+                  <BaseMap />
 
 
 
 
-              {/* {selectedDataType.value !== '' && (
+                  {/* {selectedDataType.value !== '' && (
                 <>
                   <TileLayer
                     attribution={selectedDataType.attribution}
@@ -421,7 +394,7 @@ const DroughtConditions = () => {
               )} */}
 
 
-              {/* <GeoJSON
+                  {/* <GeoJSON
                 style={{
                   fillColor: 'black',
                   weight: 2,
@@ -432,37 +405,42 @@ const DroughtConditions = () => {
                 data={AfghanistanCountry.features}
               /> */}
 
-<FiltereredDistrictsFeatures
-                          DistrictStyle={DistrictStyle}
-                          DistrictOnEachfeature={DistrictOnEachfeature}
-                          layerKey={selectedDataType.value }
+                  <FiltereredDistrictsFeatures
+                    DistrictStyle={DistrictStyle}
+                    DistrictOnEachfeature={DistrictOnEachfeature}
+                    layerKey={selectedDataType.value}
 
-                          selectedDataType={selectedDataType}
-                          attribution='Data Source: <a href="https://spei.csic.es/map/maps.html#months=1#month=1#year=2024" target="_blank">SPEI Global Drought Monitor</a>'
-                        />
+                    selectedDataType={selectedDataType}
+                    attribution='Data Source: <a href="https://spei.csic.es/map/maps.html#months=1#month=1#year=2024" target="_blank">SPEI Global Drought Monitor</a>'
+                  />
 
-              <div className='drought_legend_panel'>
-                {/* <div className="legend_heading">
+                  <div className='drought_legend_panel'>
+                    {/* <div className="legend_heading">
                   <p>
                    SPEI
                   </p>
                 </div> */}
-                <img src={spei_legend} alt='worldcover_Legend' />
+                    <img src={spei_legend} alt='worldcover_Legend' />
+                  </div>
+
+
+
+                  {/* <FiltererdJsonFeature /> */}
+
+                  {/* <BaseMap /> */}
+
+                </MapContainer>
               </div>
+            </div>
 
 
-
-              {/* <FiltererdJsonFeature /> */}
-
-              {/* <BaseMap /> */}
-
-            </MapContainer>
           </div>
         </div>
+      ) : (
+        <Preloader />
+      )}
+    </>
 
-
-      </div>
-    </div>
 
   )
 }

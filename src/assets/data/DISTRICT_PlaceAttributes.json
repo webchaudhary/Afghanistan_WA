@@ -1,0 +1,1642 @@
+[
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Ab Band"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badghis",
+    "DISTRICT": "Ab Kamari"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Achin"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Adraskan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Ajristan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kapisa",
+    "DISTRICT": "Alasay"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunduz",
+    "DISTRICT": "Ali abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Laghman",
+    "DISTRICT": "Alingar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Laghman",
+    "DISTRICT": "Alishing"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Almar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Anar Dara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Andar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Andarab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Andkhoy"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Aqcha"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Arghandab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Arghandab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Arghistan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Asad abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Atghar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Samangan",
+    "DISTRICT": "Aybak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Azro"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Baghlan City"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Baghlani Jadid"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Bagram"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Bagrami"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Baharak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Bak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Bakwa"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Bala Buluk"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Balkh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Sari Pul",
+    "DISTRICT": "Balkhab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Bamyan",
+    "DISTRICT": "Bamyan City"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Bangi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Bar Kunar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Logar",
+    "DISTRICT": "Baraki Barak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nuristan",
+    "DISTRICT": "Bargi Matal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Bati Kot"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Bilchiragh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Bughran"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Burka"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Burmul"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghor",
+    "DISTRICT": "Chaghcharan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Chah Ab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Chahar Asyab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Chaharikar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Chak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nimroz",
+    "DISTRICT": "Chakhansur"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Chal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Chamkani"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Chapa Dara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Chaparhar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Char Bolak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nimroz",
+    "DISTRICT": "Char Burjak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunduz",
+    "DISTRICT": "Char Dara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Logar",
+    "DISTRICT": "Charkh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Charkint"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Chawkay"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Chimtal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Chishti Sharif"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Uruzgan",
+    "DISTRICT": "Chora"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Dahana-I-Ghori"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Daman"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Dand Wa Patan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Dangam"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Dara-I-Nur"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Dara-i-Pech"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Samangan",
+    "DISTRICT": "Dara-i-Suf"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Darqad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Darwaz"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Darzab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunduz",
+    "DISTRICT": "Dashti Archi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Dawlat abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Laghman",
+    "DISTRICT": "Dawlat abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Dawlat Shah"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Daykundi",
+    "DISTRICT": "Day Kundi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Daychopan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Daymirdad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Dih Bala"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Dih Sabz"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Dihdadi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Uruzgan",
+    "DISTRICT": "Dihrawud"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Dihyak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Dila"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Disho"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Doshi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Dur Baba"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Farah City"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Farkhar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Farsi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Fayz abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Fayzabad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Gardez"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Garmser"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Gayan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Gelan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Ghazni"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Ghorak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Ghorband"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badghis",
+    "DISTRICT": "Ghormach"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Ghoryan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Giro"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Daykundi",
+    "DISTRICT": "Gizab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Gomal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Goshta"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Gul dara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Gulistan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Gulran"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Gurbuz"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Guzara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunduz",
+    "DISTRICT": "Hazrati Imam"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Samangan",
+    "DISTRICT": "Hazrati Sultan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Hirat City"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Panjshir",
+    "DISTRICT": "Hisa-i-Awali Bihsud"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Hisa-I-Awali Panjsher"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Panjshir",
+    "DISTRICT": "Hisa-I-Duwum Panjsher"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Hisarak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Injil"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Ishkamish"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Ishkashim"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Istalif"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Jabalussaraj"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Jadran"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Jaghatu"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Jaghuri"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Jaji"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Jaji Maydan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Jalal abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Jalrez"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Jani Khel"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badghis",
+    "DISTRICT": "Jawand"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Jurm"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Kabul City"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Kahmard"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Kajaki"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Kalafgan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Kalakan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Kaldar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Kama"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nuristan",
+    "DISTRICT": "Kamdesh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Kandahar City"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nimroz",
+    "DISTRICT": "Kang"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Karukh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Khaki Jabar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Khaki Safed"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Khakrez"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Khamyab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunduz",
+    "DISTRICT": "Khan Abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Khan Char Bagh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Khas Kunar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Uruzgan",
+    "DISTRICT": "Khas Uruzgan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nimroz",
+    "DISTRICT": "Khash Rod"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Khinjan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Khogyani"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Khost (Matun)"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Khost Wa Firing"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Khulm"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Samangan",
+    "DISTRICT": "Khuram Wa Sarbagh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Logar",
+    "DISTRICT": "Khushi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Khwahan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Khwaja Du Koh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Khwaja Ghar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Khwaja Sabz Posh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Daykundi",
+    "DISTRICT": "Kijran"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Kishim"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Kishindih"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kapisa",
+    "DISTRICT": "Kohband"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Kohi Safi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Kohistan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kapisa",
+    "DISTRICT": "Kohistan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Sari Pul",
+    "DISTRICT": "Kohistanat"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Kuhsan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunduz",
+    "DISTRICT": "Kunduz"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Kuran Wa Munjan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Kushk"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Kushki Kuhna"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Kuz Kunar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Lal Pur"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghor",
+    "DISTRICT": "Lal Wa Sarjangal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Lash Wa Juwayn"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Lashkargah"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Lija Mangal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kapisa",
+    "DISTRICT": "Mahmud Raqi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Malistan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Mando Zayi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nuristan",
+    "DISTRICT": "Mandol"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Mardyan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Markazi Bihsud"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Marmul"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Maruf"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Marwara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Mata Khan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Maydan Shahr"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Maymana"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Maywand"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Mazar-i-Sharif"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Laghman",
+    "DISTRICT": "Mihtarlam"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Mingajik"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Mirbacha Kot"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Mizan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Logar",
+    "DISTRICT": "Muhammad Agha"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Muhmand Dara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badghis",
+    "DISTRICT": "Muqur"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Muqur"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badghis",
+    "DISTRICT": "Murghab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Musa Khel"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Musa Qala"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Musayi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Nad Ali"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Nadir Shah Kot"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Nahri Sarraj"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Nahri Shahi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Nahrin"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Nali"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Narang Wa Badil"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Naw Zad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Nawa"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Nawa-i-Barak Zayi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Nawur"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Nazyan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Uruzgan",
+    "DISTRICT": "Nesh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kapisa",
+    "DISTRICT": "Nijrab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Nika"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Nirkh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Nurgal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nuristan",
+    "DISTRICT": "Nuristan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Obe"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Omna"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Pachir Wa Agam"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Paghman"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Bamyan",
+    "DISTRICT": "Panjab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Panjshir",
+    "DISTRICT": "Panjsher"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Panjwayi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghor",
+    "DISTRICT": "Pasaband"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Pashtun Kot"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Pashtun Zarghun"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Logar",
+    "DISTRICT": "Puli Alam"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Puli Khumri"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Purchaman"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Pusht Rod"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badghis",
+    "DISTRICT": "Qadis"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Qala-I-Kah"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badghis",
+    "DISTRICT": "Qala-I-Naw"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunduz",
+    "DISTRICT": "Qala-I-Zal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Qalandar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Qalat"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Qarabagh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Qarabagh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Qaram Qol"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Laghman",
+    "DISTRICT": "Qarghayi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Qarqin"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Qaysar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Ragh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Reg"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Reg"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Rodat"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Samangan",
+    "DISTRICT": "Royi Du Ab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Rustaq"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Sabari"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghor",
+    "DISTRICT": "Saghar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Salang"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Sari Pul",
+    "DISTRICT": "Sangcharak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Sangin"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Sar Hawza"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Sari Pul",
+    "DISTRICT": "Sar-i-Pul City"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Sarobi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Wardak",
+    "DISTRICT": "Sayid Abad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Sayid Karam"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Sari Pul",
+    "DISTRICT": "Sayyad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Shah Wali Kot"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Uruzgan",
+    "DISTRICT": "Shahidi Hasas"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Shahjoy"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghor",
+    "DISTRICT": "Shahrak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Shahri Buzurg"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Daykundi",
+    "DISTRICT": "Shahristan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Shakar Dara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Shamul"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Shamul zayi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Sharan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Shekh Ali"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Sherzad"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Farah",
+    "DISTRICT": "Shib Koh"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Bamyan",
+    "DISTRICT": "Shibar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Jawzjan",
+    "DISTRICT": "Shibirghan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Shighnan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Shindand"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Shinkay"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Shinwar"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Shinwari"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Faryab",
+    "DISTRICT": "Shirin Tagab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Sholgara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Shorabak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Balkh",
+    "DISTRICT": "Shortepa"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Shwak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kunar",
+    "DISTRICT": "Sirkanay"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Sari Pul",
+    "DISTRICT": "Sozma Qala"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Spera"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kandahar",
+    "DISTRICT": "Spin Boldak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nangarhar",
+    "DISTRICT": "Surkh Rod"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Parwan",
+    "DISTRICT": "Surkhi Parsa"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kabul",
+    "DISTRICT": "Surobi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Kapisa",
+    "DISTRICT": "Tagab"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Baghlan",
+    "DISTRICT": "Tala Wa Barfak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Taluqan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Tani"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Zabul",
+    "DISTRICT": "Tarnak Wa Jaldak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghor",
+    "DISTRICT": "Taywara"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Khost",
+    "DISTRICT": "Tere Zayi"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Uruzgan",
+    "DISTRICT": "Tirin Kot"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghor",
+    "DISTRICT": "Tulak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Urgun"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Wakhan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nuristan",
+    "DISTRICT": "Wama"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Bamyan",
+    "DISTRICT": "Waras"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Warsaj"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hilmand",
+    "DISTRICT": "Washer"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nuristan",
+    "DISTRICT": "Waygal"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Wazakhwa"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Wolmamay"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Bamyan",
+    "DISTRICT": "Yakawlang"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Takhar",
+    "DISTRICT": "Yangi Qala"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Ghazni",
+    "DISTRICT": "Zana Khan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Nimroz",
+    "DISTRICT": "Zaranj"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Zarghun Shahr"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Badakhshan",
+    "DISTRICT": "Zebak"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktika",
+    "DISTRICT": "Ziluk"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Hirat",
+    "DISTRICT": "Zinda Jan"
+  },
+  {
+    "COUNTRY": "Afghanistan",
+    "PROVINCE": "Paktya",
+    "DISTRICT": "Zurmat"
+  }
+ ]

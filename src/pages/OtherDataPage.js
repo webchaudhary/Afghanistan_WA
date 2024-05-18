@@ -12,7 +12,7 @@ import "leaflet-fullscreen/dist/Leaflet.fullscreen.js";
 import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
 import { BaseMapsLayers, mapCenter, maxBounds, pngRasterBounds, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 
-import irrigated_rainfed_cropland_area_legend from "../assets/legends/irrigated_rainfed_cropland_area_legend.jpg";
+import irrigated_rainfed_cropland_area_legend from "../assets/legends/irrigated_rainfed_cropland_area_legend-2.jpg";
 import cropping_intensity_legend from "../assets/legends/cropping_intensity_legend.jpg";
 import global_glacier_legend from "../assets/legends/global_glacier_legend.jpg"
 import surface_water_legend from "../assets/legends/surface_water_legend.jpg"
@@ -33,7 +33,7 @@ import RasterLayerLegend from "../components/RasterLayerLegend";
 
 const RasterLayersOptions = [
     {
-        name: 'Land Cover classification',
+        name: 'Irrigated/Rainfed Cropland',
         value: 'Irrigated_Rainfed',
         legend: "",
         attribution: 'Data Source: <a href="https://www.sciencedirect.com/science/article/pii/S2352340924002853?via%3Dihub" target="_blank">Afghanistan Land cover</a>'
@@ -57,12 +57,12 @@ const RasterLayersOptions = [
         legend: "",
         attribution: "Data Source: <a href='https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11' target='_blank'>SEDAC</a>"
     },
-    {
-        name: 'Reservoirs and Dams Locations',
-        value: 'global_dams_reservoirs',
-        legend: "",
-        attribution: "Data Source: <a href='https://sedac.ciesin.columbia.edu/maps/services' target='_blank'>SEDAC</a>"
-    },
+    // {
+    //     name: 'Reservoirs and Dams Locations',
+    //     value: 'global_dams_reservoirs',
+    //     legend: "",
+    //     attribution: "Data Source: <a href='https://sedac.ciesin.columbia.edu/maps/services' target='_blank'>SEDAC</a>"
+    // },
     {
         name: 'Glacier',
         value: 'global_glacier',
@@ -281,6 +281,7 @@ const OtherDataPage = () => {
 
                                         />
                                     </div> */}
+
                                     <div className='legend-panel'>
                                         <img src={irrigated_rainfed_cropland_area_legend} alt='worldcover_Legend' />
                                     </div>
@@ -298,12 +299,13 @@ const OtherDataPage = () => {
                                     <WMSTileLayer
                                         attribution={selectedRasterLayer.attribution}
                                         url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
-                                        params={{ LAYERS: '	AFG_Dashboard:KabirUddin_AFG_LANDCOVER_2018' }}
+                                        params={{ LAYERS: '	AFG_Dashboard:AFG_Irrigated_Rainfed_cropland' }}
                                         version="1.1.0"
                                         transparent={true}
                                         format="image/png"
                                         key="Irrigated_Rainfed"
                                     />
+                                    
 
 
                                 </>
@@ -321,6 +323,7 @@ const OtherDataPage = () => {
                                         transparent={true}
                                         format="image/png"
                                     />
+
 
                                     <RasterLayerLegend
                                         layerName="AFG_Cropping_Intensity_30m_2016_2018"
