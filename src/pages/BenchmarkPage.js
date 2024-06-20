@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import BenchmarkBarChart from '../components/charts/BenchmarkBarChart'
-import { SelectedFeaturesAverageStatsFunction, calculateAverageOfArray, getAnnualDataFromMonthly } from '../helpers/functions';
+import { SelectedFeaturesWeightedAverageStatsFunction, calculateAverageOfArray, getSumAnnualDataFromMonthly } from '../helpers/functions';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 
 import { useLoaderContext } from '../contexts/LoaderContext.js';
@@ -56,7 +56,7 @@ const BenchmarkPage = () => {
         }
     }, [selectedView, selectedFeatureName]);
 
-    const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
+    const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesWeightedAverageStatsFunction(hydroclimaticStats);
 
 
     let weightedAvgAeti;
@@ -64,9 +64,9 @@ const BenchmarkPage = () => {
     let weightedAvgNPP;
 
     if (SelectedFeaturesStatsData) {
-        weightedAvgAeti = calculateAverageOfArray(getAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI))
-        weightedAvgPCP = calculateAverageOfArray(getAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP))
-        weightedAvgNPP = calculateAverageOfArray(getAnnualDataFromMonthly(SelectedFeaturesStatsData.NPP))
+        weightedAvgAeti = calculateAverageOfArray(getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI))
+        weightedAvgPCP = calculateAverageOfArray(getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP))
+        weightedAvgNPP = calculateAverageOfArray(getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.NPP))
 
     }
 

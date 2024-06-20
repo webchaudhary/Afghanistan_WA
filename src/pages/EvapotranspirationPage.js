@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css"
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import BaseMap from '../components/BaseMap';
-import { MonthsArray, SelectedFeaturesAverageStatsFunction, YearsArray, calculateAverageOfArray, calculateSumOfArray, fillDensityColor, getAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
+import { MonthsArray, SelectedFeaturesAverageStatsFunction, SelectedFeaturesWeightedAverageStatsFunction, YearsArray, calculateAverageOfArray, calculateSumOfArray, fillDensityColor, getSumAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
 import { BaseMapsLayers, mapCenter, maxBounds, pngRasterBounds, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 import MapLegend from '../components/MapLegend';
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
@@ -134,7 +134,7 @@ const EvapotranspirationPage = () => {
 
 
 
-  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
+  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesWeightedAverageStatsFunction(hydroclimaticStats);
 
 
 
@@ -154,7 +154,7 @@ const EvapotranspirationPage = () => {
         } else if (selectedDataType.value === "PCP_ET") {
           const value = intervalType === 'Monthly' ?
             (DataItem["PCP"][selectedTime] - DataItem["AETI"][selectedTime]).toFixed(1) :
-            (getAnnualDataFromMonthly(DataItem["PCP"])[selectedTime] - getAnnualDataFromMonthly(DataItem["AETI"])[selectedTime]).toFixed(1);
+            (getSumAnnualDataFromMonthly(DataItem["PCP"])[selectedTime] - getSumAnnualDataFromMonthly(DataItem["AETI"])[selectedTime]).toFixed(1);
           popupContent = `
               <div>
                 ${dataView}: ${feature.properties.NAME}<br/>
@@ -172,7 +172,7 @@ const EvapotranspirationPage = () => {
         } else {
           const value = intervalType === 'Monthly' ?
             DataItem[selectedDataType.value][selectedTime] :
-            getAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime];
+            getSumAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime];
           popupContent = `
               <div>
               ${dataView}: ${feature.properties.NAME}<br/>
@@ -203,7 +203,7 @@ const EvapotranspirationPage = () => {
           if (intervalType === 'Monthly') {
             return DataItem["PCP"][selectedTime] - DataItem["AETI"][selectedTime];
           } else {
-            return getAnnualDataFromMonthly(DataItem["PCP"])[selectedTime] - getAnnualDataFromMonthly(DataItem["AETI"])[selectedTime];
+            return getSumAnnualDataFromMonthly(DataItem["PCP"])[selectedTime] - getSumAnnualDataFromMonthly(DataItem["AETI"])[selectedTime];
           }
         } if (selectedDataType.value === "PET") {
           if (intervalType === 'Yearly') {
@@ -214,7 +214,7 @@ const EvapotranspirationPage = () => {
           if (intervalType === 'Monthly') {
             return DataItem[selectedDataType.value] ? DataItem[selectedDataType.value][selectedTime] : null;
           } else {
-            return DataItem[selectedDataType.value] ? getAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime] : null;
+            return DataItem[selectedDataType.value] ? getSumAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime] : null;
           }
         }
       };
@@ -258,9 +258,9 @@ const EvapotranspirationPage = () => {
   if (SelectedFeaturesStatsData) {
     TableAnnualData = {
       Year: YearsArray,
-      Yearly_AETI: getAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI),
-      Yearly_PCP: getAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP),
-      Yearly_RET: getAnnualDataFromMonthly(SelectedFeaturesStatsData.RET),
+      Yearly_AETI: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI),
+      Yearly_PCP: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP),
+      Yearly_RET: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.RET),
       Yearly_ETB: SelectedFeaturesStatsData.ETB,
       Yearly_ETG: SelectedFeaturesStatsData.ETG,
     }
@@ -294,6 +294,7 @@ const EvapotranspirationPage = () => {
                     </div>
 
                     <div className='info_container'>
+                      
                       <div className='heading_info_button'>
                         <BsInfoCircleFill />
                       </div>
@@ -337,10 +338,11 @@ const EvapotranspirationPage = () => {
                       // },
 
                       xaxis: {
+                        type: 'datetime',
                         categories: MonthsArray,
                         labels: {
-                          rotate: 0,
-                          // rotateAlways: false,
+                          // rotate: 0,
+                          rotateAlways: false,
                           // formatter: (value) => {
                           //   // Ensure value is a string and ends with "-1" before processing
                           //   return value && value.endsWith("-1") ? value.split("-")[0] : "";
@@ -378,6 +380,11 @@ const EvapotranspirationPage = () => {
                       tooltip: {
                         shared: true,
                         intersect: false,
+                        x: {
+                          format: 'MMM yyyy'
+                        },
+
+                        
                         y: [{
                           formatter: function (val) {
                             return `${val.toFixed(1)}`;

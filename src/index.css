@@ -492,6 +492,8 @@ p {
 }
 
 .heading_info_button {
+  background: none;
+  border: none;
   font-size: 18px;
   color: white;
   cursor: pointer;

@@ -58,7 +58,7 @@ export const YearsArray = ["2018", "2019", "2020", "2021", "2022", "2023"]
 export const MonthsArray = ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2018-6", "2018-7", "2018-8", "2018-9", "2018-10", "2018-11", "2018-12", "2019-1", "2019-2", "2019-3", "2019-4", "2019-5", "2019-6", "2019-7", "2019-8", "2019-9", "2019-10", "2019-11", "2019-12", "2020-1", "2020-2", "2020-3", "2020-4", "2020-5", "2020-6", "2020-7", "2020-8", "2020-9", "2020-10", "2020-11", "2020-12", "2021-1", "2021-2", "2021-3", "2021-4", "2021-5", "2021-6", "2021-7", "2021-8", "2021-9", "2021-10", "2021-11", "2021-12", "2022-1", "2022-2", "2022-3", "2022-4", "2022-5", "2022-6", "2022-7", "2022-8", "2022-9", "2022-10", "2022-11", "2022-12", "2023-1", "2023-2", "2023-3", "2023-4", "2023-5", "2023-6", "2023-7", "2023-8", "2023-9"]
 
 
-export const getAnnualDataFromMonthly = (monthlyData) => {
+export const getSumAnnualDataFromMonthly = (monthlyData) => {
   const annualData = {};
 
   if (monthlyData !== "NA" && Array.isArray(monthlyData)) {
@@ -77,6 +77,39 @@ export const getAnnualDataFromMonthly = (monthlyData) => {
   // Return an empty array or another appropriate default value if data is "NA" or invalid
   return [];
 }
+
+
+
+export const getAnnualMeanDataFromMonthly = (monthlyData) => {
+  const annualSums = {};
+  const annualCounts = {};
+
+  if (monthlyData !== "NA" && Array.isArray(monthlyData)) {
+    monthlyData.forEach((value, index) => {
+      const year = Math.floor(index / 12) + 2018; // Calculate year based on index
+      if (!annualSums[year]) {
+        annualSums[year] = 0; // Initialize year in annualSums if not already present
+        annualCounts[year] = 0; // Initialize count for each year
+      }
+      annualSums[year] += value; // Aggregate data for the year
+      annualCounts[year]++; // Increment count for the year
+    });
+
+    // Calculate the average for each year, rounded to two decimal places
+    const annualAverages = {};
+    Object.keys(annualSums).forEach(year => {
+      annualAverages[year] = Math.round((annualSums[year] / annualCounts[year]) * 100) / 100;
+    });
+
+    // Return the averages
+    return Object.values(annualAverages);
+  }
+
+  // Return an empty array if data is "NA" or invalid
+  return [];
+}
+
+
 
 
 export const calculateAverageOfArray = (arr) => {
@@ -166,10 +199,9 @@ export const SelectedFeaturesAverageSPEIFunction = (data) => {
 }
 
 
-export const WaterProductivityStatsFunction = (data) => {
+export const WaterProductivityWeightedMeanStatsFunction = (data) => {
 
   let sumObject = {
-    "DISTRICT": [],
     "PCP_irrigated": [],
     "AETI_irrigated": [],
     "NPP_irrigated": [],
@@ -180,9 +212,87 @@ export const WaterProductivityStatsFunction = (data) => {
     "NPP_rainfed": [],
     "Area_rainfed": 0,
 
+    "PCP_overall": [],
     "AETI_overall": [],
     "NPP_overall": [],
-    "PCP_overall":[]
+    "Area_overall": 0,
+  };
+
+  data.forEach(obj => {
+    if (Array.isArray(obj["PCP_irrigated"])) {
+      sumObject["PCP_irrigated"].push(obj["PCP_irrigated"]);
+    }
+    if (Array.isArray(obj["AETI_irrigated"])) {
+      sumObject["AETI_irrigated"].push(obj["AETI_irrigated"]);
+    }
+    if (Array.isArray(obj["NPP_irrigated"])) {
+      sumObject["NPP_irrigated"].push(obj["NPP_irrigated"]);
+    }
+    if (Array.isArray(obj["PCP_rainfed"])) {
+      sumObject["PCP_rainfed"].push(obj["PCP_rainfed"]);
+    }
+    if (Array.isArray(obj["AETI_rainfed"])) {
+      sumObject["AETI_rainfed"].push(obj["AETI_rainfed"]);
+    }
+    if (Array.isArray(obj["NPP_rainfed"])) {
+      sumObject["NPP_rainfed"].push(obj["NPP_rainfed"]);
+    }
+    if (Array.isArray(obj["AETI_overall"])) {
+      sumObject["AETI_overall"].push(obj["AETI_overall"]);
+    }
+    if (Array.isArray(obj["NPP_overall"])) {
+      sumObject["NPP_overall"].push(obj["NPP_overall"]);
+    }
+    if (Array.isArray(obj["PCP_overall"])) {
+      sumObject["PCP_overall"].push(obj["PCP_overall"]);
+    }
+
+    sumObject["Area_irrigated"] += obj["Area_irrigated"];
+    sumObject["Area_rainfed"] += obj["Area_rainfed"];
+    sumObject["Area_overall"] += obj["Area_overall"];
+  });
+
+  const irrigatedAreas = data.map(obj => obj["Area_irrigated"]);
+  const rainfedAreas = data.map(obj => obj["Area_rainfed"]);
+  const overallAreas = data.map(obj => obj["Area_overall"]);
+
+  sumObject["PCP_irrigated"] = sumObject["PCP_irrigated"].length > 0 ? weighted_averageArrayOfArrays(sumObject["PCP_irrigated"], irrigatedAreas) : [];
+  sumObject["AETI_irrigated"] = sumObject["AETI_irrigated"].length > 0 ? weighted_averageArrayOfArrays(sumObject["AETI_irrigated"], irrigatedAreas) : [];
+  sumObject["NPP_irrigated"] = sumObject["NPP_irrigated"].length > 0 ? weighted_averageArrayOfArrays(sumObject["NPP_irrigated"], irrigatedAreas) : [];
+
+  sumObject["PCP_rainfed"] = sumObject["PCP_rainfed"].length > 0 ? weighted_averageArrayOfArrays(sumObject["PCP_rainfed"], rainfedAreas) : [];
+  sumObject["AETI_rainfed"] = sumObject["AETI_rainfed"].length > 0 ? weighted_averageArrayOfArrays(sumObject["AETI_rainfed"], rainfedAreas) : [];
+  sumObject["NPP_rainfed"] = sumObject["NPP_rainfed"].length > 0 ? weighted_averageArrayOfArrays(sumObject["NPP_rainfed"], rainfedAreas) : [];
+
+  sumObject["PCP_overall"] = sumObject["PCP_overall"].length > 0 ? weighted_averageArrayOfArrays(sumObject["PCP_overall"], overallAreas) : [];
+  sumObject["AETI_overall"] = sumObject["AETI_overall"].length > 0 ? weighted_averageArrayOfArrays(sumObject["AETI_overall"], overallAreas) : [];
+  sumObject["NPP_overall"] = sumObject["NPP_overall"].length > 0 ? weighted_averageArrayOfArrays(sumObject["NPP_overall"], overallAreas) : [];
+
+  return sumObject;
+}
+
+
+
+
+export const WaterProductivityMeanStatsFunction = (data) => {
+
+  let sumObject = {
+    // "DISTRICT": [],
+    "PCP_irrigated": [],
+    "AETI_irrigated": [],
+    "NPP_irrigated": [],
+    "Area_irrigated": 0,
+
+    "PCP_rainfed": [],
+    "AETI_rainfed": [],
+    "NPP_rainfed": [],
+    "Area_rainfed": 0,
+
+    "PCP_overall":[],
+    "AETI_overall": [],
+    "NPP_overall": [],
+    "Area_overall": [],
+
 
   };
 
@@ -215,21 +325,18 @@ export const WaterProductivityStatsFunction = (data) => {
       sumObject["PCP_overall"].push(obj["PCP_overall"]);
     }
     
-    sumObject["DISTRICT"].push(obj["DISTRICT"]);
     sumObject["Area_irrigated"] += obj["Area_irrigated"];
     sumObject["Area_rainfed"] += obj["Area_rainfed"];
+    sumObject["Area_overall"] += obj["Area_overall"];
   });
 
   sumObject["PCP_irrigated"] = sumObject["PCP_irrigated"].length > 0 ? averageArrayOfArrays(sumObject["PCP_irrigated"]) : [];
   sumObject["AETI_irrigated"] = sumObject["AETI_irrigated"].length > 0 ? averageArrayOfArrays(sumObject["AETI_irrigated"]) : [];
   sumObject["NPP_irrigated"] = sumObject["NPP_irrigated"].length > 0 ? averageArrayOfArrays(sumObject["NPP_irrigated"]) : [];
 
-
   sumObject["PCP_rainfed"] = sumObject["PCP_rainfed"].length > 0 ? averageArrayOfArrays(sumObject["PCP_rainfed"]) : [];
   sumObject["AETI_rainfed"] = sumObject["AETI_rainfed"].length > 0 ? averageArrayOfArrays(sumObject["AETI_rainfed"]) : [];
   sumObject["NPP_rainfed"] = sumObject["NPP_rainfed"].length > 0 ? averageArrayOfArrays(sumObject["NPP_rainfed"]) : [];
-
-
 
   sumObject["AETI_overall"] = sumObject["AETI_overall"].length > 0 ? averageArrayOfArrays(sumObject["AETI_overall"]) : [];
   sumObject["NPP_overall"] = sumObject["NPP_overall"].length > 0 ? averageArrayOfArrays(sumObject["NPP_overall"]) : [];
@@ -242,35 +349,35 @@ export const WaterProductivityStatsFunction = (data) => {
 
 
 
-export const SelectedFeaturesAverageStatsFunction = (data) => {
-  let sumObject = {
-    "AREA": 0,
-    "PCP": [],
-    "AETI": [],
-    "NPP": [],
-    "RET": [],
-    "AridityIndex": [],
-    "ETG": [],
-    "ETB": [],
+// export const SelectedFeaturesSimpleAverageStatsFunction = (data) => {
+//   let sumObject = {
+//     "AREA": 0,
+//     "PCP": [],
+//     "AETI": [],
+//     "NPP": [],
+//     "RET": [],
+//     "AridityIndex": [],
+//     "ETG": [],
+//     "ETB": [],
   
-  };
+//   };
 
 
-  data.forEach(obj => {
-    sumObject["AREA"] += obj["AREA"];
-    sumObject["PCP"] = averageArrayOfArrays(data.map(obj => [...obj["PCP"]]));
-    sumObject["AETI"] = averageArrayOfArrays(data.map(obj => [...obj["AETI"]]));
-    sumObject["NPP"] = averageArrayOfArrays(data.map(obj => [...obj["NPP"]]));
-    sumObject["RET"] = averageArrayOfArrays(data.map(obj => [...obj["RET"]]));
-    sumObject["AridityIndex"] = averageArrayOfArrays(data.map(obj => [...obj["AridityIndex"]]));
+//   data.forEach(obj => {
+//     sumObject["AREA"] += obj["AREA"];
+//     sumObject["PCP"] = averageArrayOfArrays(data.map(obj => [...obj["PCP"]]));
+//     sumObject["AETI"] = averageArrayOfArrays(data.map(obj => [...obj["AETI"]]));
+//     sumObject["NPP"] = averageArrayOfArrays(data.map(obj => [...obj["NPP"]]));
+//     sumObject["RET"] = averageArrayOfArrays(data.map(obj => [...obj["RET"]]));
+//     sumObject["AridityIndex"] = averageArrayOfArrays(data.map(obj => [...obj["AridityIndex"]]));
 
-    sumObject["ETG"] = averageArrayOfArrays(data.map(obj => [...obj["ETG"]]));
-    sumObject["ETB"] = averageArrayOfArrays(data.map(obj => [...obj["ETB"]]));
+//     sumObject["ETG"] = averageArrayOfArrays(data.map(obj => [...obj["ETG"]]));
+//     sumObject["ETB"] = averageArrayOfArrays(data.map(obj => [...obj["ETB"]]));
 
-  });
+//   });
 
-  return sumObject;
-}
+//   return sumObject;
+// }
 
 
 
@@ -279,14 +386,12 @@ export const SelectedFeaturesCroplandStatFunction = (data) => {
   let sumObject = {
     "AFG_Landcover": [],
     "ESA_Landcover": [],
-    "Cropland": [],
   };
 
 
   data.forEach(obj => {
     sumObject["AFG_Landcover"] = sumArrayOfArrays(data.map(obj => [...obj["AFG_Landcover"]]));
     sumObject["ESA_Landcover"] = sumArrayOfArrays(data.map(obj => [...obj["ESA_Landcover"]]));
-    sumObject["Cropland"] = sumArrayOfArrays(data.map(obj => [...obj["Cropland"]]));
 
   });
 
@@ -332,36 +437,68 @@ export const averageArrayOfArrays = (arrays) => {
 }
 
 
-
-// function weightedAverageArray(inputArray) {
-//   // console.log(inputArray)
-//   if (inputArray.length === 0) {
-//       return [];
-//   }
-
-//   const numWeights = inputArray.length;
-//   const numValues = inputArray[0].length - 1; // Adjust for excluding the weight column
-//   const weights = inputArray.map(item => item[0]); // Extract weights from inputArray
-//   const values = inputArray.map(item => item.slice(1)); // Extract values from inputArray
-
-//   // Initialize arrays for weighted sum and total weight
-//   let weightedSums = new Array(numValues).fill(0);
-//   let totalWeight = 0;
-
-//   // Calculate weighted sum and total weight
-//   for (let i = 0; i < numWeights; i++) {
-//       for (let j = 0; j < numValues; j++) {
-//           weightedSums[j] += values[i][j] * weights[i];
-//       }
-//       totalWeight += weights[i];
-//   }
-
-//   // Calculate weighted averages rounded to two decimal places
-//   let weightedAverages = weightedSums.map(sum => Math.round((sum / totalWeight) * 100) / 100);
-//   return weightedAverages;
+// export const convertToTimestamps = (dateStrings) => {
+//   return dateStrings.map(dateString => {
+//       const [year, month] = dateString.split("-");
+//       const date = new Date(year, month - 1);  
+//       return date.getTime();  // Gets the timestamp in milliseconds
+//   });
 // }
 
 
 
+
+export const SelectedFeaturesWeightedAverageStatsFunction = (data) => {
+  let sumObject = {
+    "AREA": 0,
+    "PCP": [],
+    "AETI": [],
+    "NPP": [],
+    "RET": [],
+    "AridityIndex": [],
+    "ETG": [],
+    "ETB": [],
+  };
+
+  const areas = data.map(obj => obj["AREA"]);
+
+
+  data.forEach(obj => {
+    sumObject["AREA"] += obj["AREA"];
+    sumObject["PCP"] = weighted_averageArrayOfArrays(data.map(obj => [...obj["PCP"]]), areas);
+    sumObject["AETI"] = weighted_averageArrayOfArrays(data.map(obj => [...obj["AETI"]]), areas);
+    sumObject["NPP"] = weighted_averageArrayOfArrays(data.map(obj => [...obj["NPP"]]), areas);
+    sumObject["RET"] = weighted_averageArrayOfArrays(data.map(obj => [...obj["RET"]]), areas);
+    sumObject["AridityIndex"] = weighted_averageArrayOfArrays(data.map(obj => [...obj["AridityIndex"]]), areas);
+    sumObject["ETG"] = weighted_averageArrayOfArrays(data.map(obj => [...obj["ETG"]]), areas);
+    sumObject["ETB"] = weighted_averageArrayOfArrays(data.map(obj => [...obj["ETB"]]), areas);
+  });
+
+  return sumObject;
+}
+
+
+export const weighted_averageArrayOfArrays = (arrays, weights) => {
+  if (arrays.length === 0 || arrays[0].length === 0 || weights.length === 0) {
+    return [];
+  }
+
+  const numArrays = arrays.length;
+  const arrayLength = arrays[0].length;
+
+  let sumArray = new Array(arrayLength).fill(0);
+  let totalWeights = new Array(arrayLength).fill(0);
+
+  arrays.forEach((array, index) => {
+    const weight = weights[index];
+    for (let i = 0; i < arrayLength; i++) {
+      sumArray[i] += array[i] * weight;
+      totalWeights[i] += weight;
+    }
+  });
+
+  let weightedAverages = sumArray.map((sum, idx) => Math.round((sum / totalWeights[idx]) * 1000) / 1000);
+  return weightedAverages;
+}
 
 

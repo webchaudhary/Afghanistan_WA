@@ -10,17 +10,15 @@ import crop_land from "../assets/icons/crop_land.jpg"
 import area_icon from "../assets/icons/area_icon.jpg"
 import blue_water from "../assets/icons/blue_water.jpg"
 import { Link } from 'react-router-dom'
-import { calculateAverageOfArray, getAnnualDataFromMonthly } from '../helpers/functions'
+import { calculateAverageOfArray, getSumAnnualDataFromMonthly } from '../helpers/functions'
 
 
 
 const OverviewSection = ({
     SelectedLandCoverStats,
     hydroclimaticStats
-
-
-
 }) => {
+
 
 
     let totalWeightedAETI = 0;
@@ -31,19 +29,20 @@ const OverviewSection = ({
     let totalArea = 0;
 
 
-
     hydroclimaticStats.forEach(item => {
-        totalWeightedAETI += calculateAverageOfArray(getAnnualDataFromMonthly(item.AETI))  * 0.001* item.AREA;
-        totalWeightedPCP += calculateAverageOfArray(getAnnualDataFromMonthly(item.PCP))  * 0.001 * item.AREA;
-        totalWeightedNPP += calculateAverageOfArray(getAnnualDataFromMonthly(item.NPP))* 0.001 * item.AREA;
+        totalWeightedAETI += calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI))  * 0.001* item.AREA;
+        totalWeightedPCP += calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP))  * 0.001 * item.AREA;
+        totalWeightedNPP += calculateAverageOfArray(getSumAnnualDataFromMonthly(item.NPP))* 0.001 * item.AREA;
         totalWeightedETG += calculateAverageOfArray(item.ETG) * 0.001* item.AREA;
         totalWeightedETB += calculateAverageOfArray(item.ETB) * 0.001* item.AREA ;
-        totalArea += item.AREA; // Sum up total area for normalization
+        totalArea += item.AREA; 
     });
 
 
 
     
+
+
 
 
     const croplandPercentage = (SelectedLandCoverStats.ESA_Landcover[3] * 100) / (SelectedLandCoverStats.ESA_Landcover[0] + SelectedLandCoverStats.ESA_Landcover[1] + SelectedLandCoverStats.ESA_Landcover[2] + SelectedLandCoverStats.ESA_Landcover[3] + SelectedLandCoverStats.ESA_Landcover[4] + SelectedLandCoverStats.ESA_Landcover[5] + SelectedLandCoverStats.ESA_Landcover[6] + SelectedLandCoverStats.ESA_Landcover[7] + SelectedLandCoverStats.ESA_Landcover[8] + SelectedLandCoverStats.ESA_Landcover[9])
@@ -54,16 +53,9 @@ const OverviewSection = ({
 
 
 
-    // console.log(totalWeightedAETI/(totalArea*0.0001))
-
-
-    // console.log(avgAnnualAETI)
-    // console.log(totalArea*0.0001)
-
-
-
-
     const cropLandValue = croplandPercentage.toFixed(2)
+
+// EvapotranspirationValue in BCM = ET (mm) * 0.001 * Area (m2)/1000000000
     const EvapotranspirationValue = (totalWeightedAETI/1000000000).toFixed(2)
     const AreaValue = (totalArea * 0.0000001).toFixed(0)
     const IrrigatedLandValue = (totalIrrigatedLand * 0.001).toFixed(2)
@@ -89,6 +81,7 @@ const OverviewSection = ({
             </div>
             <div className='col-md-4 col-sm-6 col-6 mb-2'>
                 <div className='overview_decsription'>
+                    {/* From Esa world cover starts */}
                     <h5>Total cropped land</h5>
                     <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>  {cropLandValue}</span> (%)</p>
                 </div>

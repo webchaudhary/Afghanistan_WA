@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css"
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import BaseMap from '../components/BaseMap';
-import { MonthsArray, SelectedFeaturesAverageStatsFunction, YearsArray, fillDensityColor, getAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
+import { MonthsArray, SelectedFeaturesAverageStatsFunction, SelectedFeaturesWeightedAverageStatsFunction, YearsArray, fillDensityColor, getSumAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
 import Plot from 'react-plotly.js';
 import { BaseMapsLayers, mapCenter, maxBounds, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
@@ -81,10 +81,14 @@ const PrecipitationPage = () => {
   const { selectedView, selectedFeatureName, dataView } = useSelectedFeatureContext();
   const [selectedDataType, setSelectedDataType] = useState(MapDataLayers[0]);
   const [intervalType, setIntervalType] = useState('Yearly');
+  const [selectedTableUnit, setSelectedTableUnit] = useState('mm_year');
+
   const [selectedTime, setSelectedTime] = useState(5);
   const [hydroclimaticStats, setHydroclimaticStats] = useState(null);
   const [climateChangeStats, setClimateChangeStats] = useState(null);
   const { setIsLoading } = useLoaderContext();
+
+
 
   const fetchHydroclimaticStats = (view, featureName) => {
     axios
@@ -130,7 +134,7 @@ const PrecipitationPage = () => {
     }
   }, [selectedView, selectedFeatureName]);
 
-  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
+  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesWeightedAverageStatsFunction(hydroclimaticStats);
 
 
 
@@ -176,7 +180,7 @@ const PrecipitationPage = () => {
           popupContent = `
             <div>
             ${dataView}: ${feature.properties.NAME}<br/>
-              ${selectedDataType.name}  ${selectedDataType.value === 'AridityIndex' ? '' : `(${intervalType === 'Yearly' ? 'mm/year' : 'mm/month'})`}: ${intervalType === 'Monthly' ? DataItem[selectedDataType.value][selectedTime] : getAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime]}
+              ${selectedDataType.name}  ${selectedDataType.value === 'AridityIndex' ? '' : `(${intervalType === 'Yearly' ? 'mm/year' : 'mm/month'})`}: ${intervalType === 'Monthly' ? DataItem[selectedDataType.value][selectedTime] : getSumAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime]}
             </div>
           `;
         }
@@ -203,7 +207,7 @@ const PrecipitationPage = () => {
           if (intervalType === 'Monthly') {
             return DataItem[selectedDataType.value] ? DataItem[selectedDataType.value][selectedTime] : null;
           } else {
-            return DataItem[selectedDataType.value] ? getAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime] : null;
+            return DataItem[selectedDataType.value] ? getSumAnnualDataFromMonthly(DataItem[selectedDataType.value])[selectedTime] : null;
           }
         }
       };
@@ -239,16 +243,15 @@ const PrecipitationPage = () => {
   if (SelectedFeaturesStatsData) {
     TableAnnualData = {
       Year: YearsArray,
-      Yearly_AETI: getAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI),
-      Yearly_PCP: getAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP),
-      Yearly_RET: getAnnualDataFromMonthly(SelectedFeaturesStatsData.RET),
+      AREA:SelectedFeaturesStatsData.AREA,
+      Yearly_AETI: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI),
+      Yearly_PCP: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP),
+      Yearly_RET: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.RET),
       Yearly_AridityIndex: SelectedFeaturesStatsData.AridityIndex,
       Yearly_ETB: SelectedFeaturesStatsData.ETB,
       Yearly_ETG: SelectedFeaturesStatsData.ETG,
     }
   }
-
-
 
 
   return (
@@ -266,32 +269,32 @@ const PrecipitationPage = () => {
 
               <div className='card_container'>
 
-              <div className='card_heading_container'>
-                      <div className='card_heading'>
-                      <h4>Precipitation and Ref. Evapotranspiration</h4>
-                      </div>
+                <div className='card_heading_container'>
+                  <div className='card_heading'>
+                    <h4>Precipitation and Ref. Evapotranspiration</h4>
+                  </div>
 
-                      <div className='info_container'>
-                        <div className='heading_info_button'>
-                          <BsInfoCircleFill />
-                        </div>
-                        <div className='info_card_container'>
-                          <p>
-                          <strong> Precipitation </strong>
-                            is the key water source in the hydrological cycle. It refers to all  forms of condensation of atmospheric water vapor 
-                            that falls from clouds. The  main forms of  precipitation include drizzling, rain, sleet, snow, ice  pellets, graupel and hail. In the river basins, where there is no  other inflow (e.g. through surface or  subsurface flow), the total precipitation accounts for  
-                            the entire total gross inflow, in  the water accounting terms, in any given time period
-
-
-                          </p>
-                          <p>
-                            <strong>  Reference evapotranspiration (RET)</strong> represents the rate at which water evaporates from a standardized reference
-                            crop under specified climatic conditions.
-                          </p>
-
-                        </div>
-                      </div>
+                  <div className='info_container'>
+                    <div className='heading_info_button'>
+                      <BsInfoCircleFill />
                     </div>
+                    <div className='info_card_container'>
+                      <p>
+                        <strong> Precipitation </strong>
+                        is the key water source in the hydrological cycle. It refers to all  forms of condensation of atmospheric water vapor
+                        that falls from clouds. The  main forms of  precipitation include drizzling, rain, sleet, snow, ice  pellets, graupel and hail. In the river basins, where there is no  other inflow (e.g. through surface or  subsurface flow), the total precipitation accounts for
+                        the entire total gross inflow, in  the water accounting terms, in any given time period
+
+
+                      </p>
+                      <p>
+                        <strong>  Reference evapotranspiration (RET)</strong> represents the rate at which water evaporates from a standardized reference
+                        crop under specified climatic conditions.
+                      </p>
+
+                    </div>
+                  </div>
+                </div>
 
 
 
@@ -315,10 +318,11 @@ const PrecipitationPage = () => {
                     // },
 
                     xaxis: {
+                      type: 'datetime',
                       categories: MonthsArray,
-                      labels: {
-                        rotate: 0,
-                      },
+                      // labels: {
+                      //   rotate: 0,
+                      // },
                       tickPlacement: 'on',
                     },
                     yaxis: [
@@ -344,6 +348,9 @@ const PrecipitationPage = () => {
                     tooltip: {
                       shared: true,
                       intersect: false,
+                      x: {
+                        format: 'MMM yyyy'
+                      },
                       y: [{
                         formatter: function (val) {
                           return `${val}`;
@@ -394,27 +401,24 @@ const PrecipitationPage = () => {
               <div className='card_container'>
 
                 <div className='card_heading_container'>
-                      <div className='card_heading'>
-                      <h4>Aridity Index</h4>
-                      </div>
+                  <div className='card_heading'>
+                    <h4>Aridity Index</h4>
+                  </div>
 
-                      <div className='info_container'>
-                        <div className='heading_info_button'>
-                          <BsInfoCircleFill />
-                        </div>
-                        <div className='info_card_container'>
-                          <p>
-                            <strong> The aridity index </strong>
-                             classifies the type of climate in relation to water availability.
-
-                            It is calculated by dividing the annual precipitation by the potential evapotranspiration (the amount of water that could be evaporated and transpired if there was sufficient water available)
-
-                          </p>
-                          
-
-                        </div>
-                      </div>
+                  <div className='info_container'>
+                    <div className='heading_info_button'>
+                      <BsInfoCircleFill />
                     </div>
+                    <div className='info_card_container'>
+                      <p>
+                        <strong> The aridity index </strong>
+                        classifies the type of climate in relation to water availability.
+
+                        It is calculated by dividing the annual precipitation by the potential evapotranspiration (the amount of water that could be evaporated and transpired if there was sufficient water available)
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
 
                 <AridityIndexChart
@@ -428,6 +432,16 @@ const PrecipitationPage = () => {
               <h4>Land Cover class area by district (ha)</h4>
             </div> */}
 
+
+
+                {/* <div className='chart_year_container' >
+                  <label>Select unit: &nbsp; </label>
+                  <select value={selectedTableUnit} style={{ marginRight: "10px" }}>
+                    <option value="mm_year">mm/year</option>
+                    <option value="mcm_year">MCM/year</option>
+                  </select>
+
+                </div> */}
 
                 <TableView
                   tableHeaders={[
@@ -449,6 +463,29 @@ const PrecipitationPage = () => {
                     TableAnnualData.Yearly_AridityIndex[index].toFixed(2),
                     TableAnnualData.Yearly_ETB[index].toFixed(0),
                     TableAnnualData.Yearly_ETG[index].toFixed(0)
+                  ])}
+                />
+
+<TableView
+                  tableHeaders={[
+                    "Year",
+                    "Evapotranspiration (MCM/year)",
+                    "Precipitation (MCM/year)",
+                    "PCP - ET (MCM/year)",
+                    "Ref. ET (MCM/year)",
+                    "Aridity Index",
+                    "ET Blue (MCM/year)",
+                    "ET Green (MCM/year)"
+                  ]}
+                  tableBody={TableAnnualData.Year.map((year, index) => [
+                    year,
+                    (TableAnnualData.Yearly_AETI[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0),
+                    (TableAnnualData.Yearly_PCP[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0),
+                    (TableAnnualData.Yearly_PCP[index] - TableAnnualData.Yearly_AETI[index]).toFixed(0),
+                    (TableAnnualData.Yearly_RET[index] / 10).toFixed(0),
+                    TableAnnualData.Yearly_AridityIndex[index].toFixed(2),
+                    (TableAnnualData.Yearly_ETB[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0),
+                    (TableAnnualData.Yearly_ETG[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)
                   ])}
                 />
 

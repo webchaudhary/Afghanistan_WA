@@ -15,9 +15,10 @@ import BaseMap from "../components/BaseMap";
 import {
   MonthsArray,
   SelectedFeaturesAverageStatsFunction,
+  SelectedFeaturesWeightedAverageStatsFunction,
   calculateAverageOfArray,
   fillDensityColor,
-  getAnnualDataFromMonthly,
+  getSumAnnualDataFromMonthly,
   renderTimeOptions,
 } from "../helpers/functions";
 import {
@@ -95,8 +96,7 @@ const BiomassPage = () => {
     }
   }, [selectedView, selectedFeatureName]);
 
-  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
-
+  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesWeightedAverageStatsFunction(hydroclimaticStats);
 
 
 
@@ -124,7 +124,7 @@ const BiomassPage = () => {
           intervalType === "Monthly"
             ? (DataItem[selectedDataType.value][selectedTime] * 22.222).toFixed(2)
             : (
-              getAnnualDataFromMonthly(DataItem[selectedDataType.value])[
+              getSumAnnualDataFromMonthly(DataItem[selectedDataType.value])[
               selectedTime
               ] * 22.222
             ).toFixed(2);
@@ -154,7 +154,7 @@ const BiomassPage = () => {
         if (intervalType === "Monthly") {
           return DataItem[selectedDataType.value][selectedTime] * 22.222; // Monthly density calculation
         } else {
-          const annualData = getAnnualDataFromMonthly(DataItem[selectedDataType.value]);
+          const annualData = getSumAnnualDataFromMonthly(DataItem[selectedDataType.value]);
           return DataItem[selectedDataType.value] ? annualData[selectedTime] * 22.222 : null;
         }
 
@@ -246,6 +246,7 @@ const BiomassPage = () => {
 
 
                     xaxis: {
+                      type: 'datetime',
                       categories: MonthsArray,
                       labels: {
                         rotate: 0,
@@ -276,6 +277,9 @@ const BiomassPage = () => {
                     tooltip: {
                       shared: true,
                       intersect: false,
+                      x: {
+                        format: 'MMM yyyy'
+                      },
                       y: [{
                         formatter: function (val) {
                           return `${val}`;
@@ -351,6 +355,7 @@ const BiomassPage = () => {
                     },
 
                     xaxis: {
+                      type: 'datetime',
                       categories: MonthsArray,
                       labels: {
                         rotate: 0,
@@ -367,6 +372,9 @@ const BiomassPage = () => {
                       opacity: 1
                     },
                     tooltip: {
+                      x: {
+                        format: 'MMM yyyy'
+                      },
                       y: {
                         formatter: function (val) {
                           return `${parseFloat(val).toFixed(2)} (kg/m³)`;

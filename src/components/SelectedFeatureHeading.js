@@ -47,10 +47,12 @@ const SelectedFeatureHeading = () => {
             <div className='card_container'>
                 <select className='m-1' value={selectedView} onChange={handleDataViewChange}>
                     <option value="COUNTRY">Country View</option>
+                    <option value="DISTRICT">District View</option>
+                    <option value="PROVINCE">Province View</option>
                     <option value="BASIN">Basin View</option>
                     <option value="WATERSHED">Watershed View</option>
-                    <option value="PROVINCE">Province View</option>
-                    <option value="DISTRICT">District View</option>
+                    
+                    
                 </select>
 
                 <select className='m-1' value={selectedFeatureName} onChange={handleFeatureChange}>

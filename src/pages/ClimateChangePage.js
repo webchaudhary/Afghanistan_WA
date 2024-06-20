@@ -5,7 +5,7 @@ import * as L from "leaflet";
 import "leaflet/dist/leaflet.css"
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
-import { MonthsArray, SelectedFeaturesAverageClimateParaFunction, YearsArray, fillDensityColor, getAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
+import { MonthsArray, SelectedFeaturesAverageClimateParaFunction, YearsArray, fillDensityColor, getSumAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
 import { BaseMapsLayers, mapCenter, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 import ClimateProjectionsChart from '../components/charts/ClimateProjectionsChart';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
@@ -146,9 +146,9 @@ const ClimateChangePage = () => {
   };
 
 
-  // const ClimateChangeProjectionYearsArray = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100"]
+  const ClimateChangeProjectionYears_StringArray = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100"]
 
-  const ClimateChangeProjectionYearsArray = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060, 2061, 2062, 2063, 2064, 2065, 2066, 2067, 2068, 2069, 2070, 2071, 2072, 2073, 2074, 2075, 2076, 2077, 2078, 2079, 2080, 2081, 2082, 2083, 2084, 2085, 2086, 2087, 2088, 2089, 2090, 2091, 2092, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100]
+  const ClimateChangeProjectionYears_NumArray = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036, 2037, 2038, 2039, 2040, 2041, 2042, 2043, 2044, 2045, 2046, 2047, 2048, 2049, 2050, 2051, 2052, 2053, 2054, 2055, 2056, 2057, 2058, 2059, 2060, 2061, 2062, 2063, 2064, 2065, 2066, 2067, 2068, 2069, 2070, 2071, 2072, 2073, 2074, 2075, 2076, 2077, 2078, 2079, 2080, 2081, 2082, 2083, 2084, 2085, 2086, 2087, 2088, 2089, 2090, 2091, 2092, 2093, 2094, 2095, 2096, 2097, 2098, 2099, 2100]
 
   return (
     <>
@@ -168,7 +168,8 @@ const ClimateChangePage = () => {
               <h4>Temperature</h4>
             </div>
             <ClimateProjectionsChart
-              xData={ClimateChangeProjectionYearsArray}
+            yearsArray={ClimateChangeProjectionYears_StringArray}
+              xData={ClimateChangeProjectionYears_NumArray}
               yData={SelectedFeaturesStatsData.tdeg_ssp245}
               xAxisLabel="Year"
               yAxisLabel="Temperature under SSP 245 (°C)"
@@ -176,7 +177,8 @@ const ClimateChangePage = () => {
               slopeUnit="°C"
             />
             <ClimateProjectionsChart
-              xData={ClimateChangeProjectionYearsArray}
+            yearsArray={ClimateChangeProjectionYears_StringArray}
+              xData={ClimateChangeProjectionYears_NumArray}
               yData={SelectedFeaturesStatsData.tdeg_ssp585}
               xAxisLabel="Year"
               yAxisLabel="Temperature under SSP 585 (°C)"
@@ -190,7 +192,8 @@ const ClimateChangePage = () => {
               <h4>Precipitation</h4>
             </div>
             <ClimateProjectionsChart
-              xData={ClimateChangeProjectionYearsArray}
+            yearsArray={ClimateChangeProjectionYears_StringArray}
+            xData={ClimateChangeProjectionYears_NumArray}
               yData={SelectedFeaturesStatsData.pcp_ssp245}
               xAxisLabel="Year"
               yAxisLabel="Precipitation under SSP 245 (mm/year)"
@@ -199,7 +202,8 @@ const ClimateChangePage = () => {
             />
 
             <ClimateProjectionsChart
-              xData={ClimateChangeProjectionYearsArray}
+            yearsArray={ClimateChangeProjectionYears_StringArray}
+            xData={ClimateChangeProjectionYears_NumArray}
               yData={SelectedFeaturesStatsData.pcp_ssp585}
               xAxisLabel="Year"
               yAxisLabel="Precipitation under SSP 585 (mm/year)"

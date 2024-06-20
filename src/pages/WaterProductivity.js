@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css"
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import BaseMap from '../components/BaseMap';
-import { MonthsArray, WaterProductivityStatsFunction, YearsArray, fillDensityColor, getAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
+import {  WaterProductivityWeightedMeanStatsFunction, YearsArray, calculateAverageOfArray, fillDensityColor, getSumAnnualDataFromMonthly, getAnnualMeanDataFromMonthly, renderTimeOptions } from '../helpers/functions';
 import { BaseMapsLayers, mapCenter, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 
 import MapLegend from '../components/MapLegend';
@@ -25,6 +25,9 @@ import { BsInfoCircleFill } from 'react-icons/bs';
 
 
 
+ const MonthsArray = ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2018-6", "2018-7", "2018-8", "2018-9", "2018-10", "2018-11", "2018-12", "2019-1", "2019-2", "2019-3", "2019-4", "2019-5", "2019-6", "2019-7", "2019-8", "2019-9", "2019-10", "2019-11", "2019-12", "2020-1", "2020-2", "2020-3", "2020-4", "2020-5", "2020-6", "2020-7", 
+ "2020-8", "2020-9", "2020-10", "2020-11", "2020-12", "2021-1", "2021-2", "2021-3", "2021-4", "2021-5", "2021-6", "2021-7", "2021-8", "2021-9", "2021-10", "2021-11", "2021-12", "2022-1", "2022-2", "2022-3", "2022-4", "2022-5", "2022-6", "2022-7", "2022-8", "2022-9", "2022-10", "2022-11", "2022-12", "2023-1", "2023-2", "2023-3", 
+ "2023-4", "2023-5", "2023-6", "2023-7", "2023-8", "2023-9","2023-10","2023-11","2023-12"]
 
 
 const MapDataLayers = [
@@ -45,6 +48,7 @@ const MapDataLayers = [
 
 
 ]
+
 
 const WaterProductivity = () => {
   const [intervalType, setIntervalType] = useState('Yearly');
@@ -86,12 +90,13 @@ const WaterProductivity = () => {
     }
   }, [selectedView, selectedFeatureName]);
 
-  const SelectedFeaturesStatsData = waterProductivityStats && WaterProductivityStatsFunction(waterProductivityStats);
+  const SelectedFeaturesStatsData = waterProductivityStats && WaterProductivityWeightedMeanStatsFunction(waterProductivityStats);
 
 
+console.log(SelectedFeaturesStatsData)
 
 
-
+// console.log(SelectedFeaturesStatsData && SelectedFeaturesStatsData.NPP_overall.map((value, index) => ((value * 22.222 * 0.1) )))
 
 
   const handleBasemapSelection = (e) => {
@@ -218,6 +223,7 @@ const WaterProductivity = () => {
                     },
 
                     xaxis: {
+                      type: 'datetime',
                       categories: YearsArray,
                       labels: {
                         rotate: 0,
@@ -233,9 +239,12 @@ const WaterProductivity = () => {
                       opacity: 1
                     },
                     tooltip: {
+                      x: {
+                        format: 'yyyy'
+                      },
                       y: {
                         formatter: function (val) {
-                          return `${val.toFixed(1)}`
+                          return `${val.toFixed(2)}`
                         }
                       }
                     }
@@ -244,7 +253,7 @@ const WaterProductivity = () => {
                   series={
                     [{
                       name: 'Biomass Water Productivity (kg/m³)',
-                      data: getAnnualDataFromMonthly(SelectedFeaturesStatsData.NPP_overall).map((value, index) => ((value * 22.222 * 0.1) / SelectedFeaturesStatsData.AETI_overall[index]).toFixed(2)),
+                      data: getAnnualMeanDataFromMonthly(SelectedFeaturesStatsData.NPP_overall.map((value, index) => ((value * 22.222 * 0.1) / SelectedFeaturesStatsData.AETI_overall[index]))),
                     }]
                   }
                   type="bar" />
@@ -298,7 +307,8 @@ const WaterProductivity = () => {
                     // },
 
                     xaxis: {
-                      categories: MonthsArray,
+                      type: 'datetime',
+                      categories: YearsArray,
                       labels: {
                         rotate: 0,
                       },
@@ -313,9 +323,13 @@ const WaterProductivity = () => {
                       opacity: 1
                     },
                     tooltip: {
+                      x: {
+                        format: 'yyyy'
+                      },
+             
                       y: {
                         formatter: function (val) {
-                          return `${val.toFixed(1)}`
+                          return `${val.toFixed(2)}`
                         }
                       }
                     }
@@ -324,10 +338,10 @@ const WaterProductivity = () => {
                   series={
                     [{
                       name: 'BWPcrop (kg/m³)',
-                      data: SelectedFeaturesStatsData.NPP_irrigated.map((value, index) => (((value + SelectedFeaturesStatsData.NPP_rainfed[index]) / 2 * 22.222 * 0.1) / ((SelectedFeaturesStatsData.AETI_irrigated[index] + SelectedFeaturesStatsData.AETI_rainfed[index]) / 2)).toFixed(2)),
+                      data: getAnnualMeanDataFromMonthly(SelectedFeaturesStatsData.NPP_irrigated.map((value, index) => (((value + SelectedFeaturesStatsData.NPP_rainfed[index]) / 2 * 22.222 * 0.1) / ((SelectedFeaturesStatsData.AETI_irrigated[index] + SelectedFeaturesStatsData.AETI_rainfed[index]) / 2)))),
                     }]
                   }
-                  type="line" />
+                  type="bar" />
 
 
               </div>
@@ -377,6 +391,7 @@ const WaterProductivity = () => {
                     // },
 
                     xaxis: {
+                      type: 'datetime',
                       categories: MonthsArray,
                       labels: {
                         rotate: 0,
@@ -392,9 +407,12 @@ const WaterProductivity = () => {
                       opacity: 1
                     },
                     tooltip: {
+                      x: {
+                        format: 'MMM yyyy'
+                      },
                       y: {
                         formatter: function (val) {
-                          return `${val.toFixed(1)}`
+                          return `${val.toFixed(2)}`
                         }
                       }
                     }
@@ -457,6 +475,7 @@ const WaterProductivity = () => {
                     // },
 
                     xaxis: {
+                      type: 'datetime',
                       categories: MonthsArray,
                       labels: {
                         rotate: 0,
@@ -472,9 +491,12 @@ const WaterProductivity = () => {
                       opacity: 1
                     },
                     tooltip: {
+                      x: {
+                        format: 'MMM yyyy'
+                      },
                       y: {
                         formatter: function (val) {
-                          return `${val.toFixed(1)}`
+                          return `${val.toFixed(2)}`
                         }
                       }
                     }
@@ -495,7 +517,7 @@ const WaterProductivity = () => {
 
               </div>
 
-              <div className="card_container">
+              {/* <div className="card_container">
                 <div className='card_heading_container'>
                   <div className='card_heading'>
                     <h4>Irrigation volume consumed</h4>
@@ -528,10 +550,6 @@ const WaterProductivity = () => {
                       curve: 'smooth',
                       width: 2
                     },
-                    // markers: {
-                    //   size: 3,
-                    // },
-
                     xaxis: {
                       categories: MonthsArray,
                       labels: {
@@ -565,7 +583,7 @@ const WaterProductivity = () => {
                   }
                   type="line" />
 
-              </div>
+              </div> */}
 
 
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import regression from 'regression';
 
-const ClimateProjectionsChart = ({ xData, yData, xAxisLabel, yAxisLabel,slopeUnit }) => {
+const ClimateProjectionsChart = ({ xData, yData, xAxisLabel, yAxisLabel,slopeUnit,yearsArray }) => {
     // Perform linear regression
     const result = regression.linear(xData.map((_, index) => [xData[index], yData[index]]));
 
@@ -38,7 +38,8 @@ const ClimateProjectionsChart = ({ xData, yData, xAxisLabel, yAxisLabel,slopeUni
         ],
 
         xaxis: {
-            categories: xData,
+            type: 'datetime',
+            categories: yearsArray,
             labels: {
               rotate: 0,
             },
@@ -56,6 +57,9 @@ const ClimateProjectionsChart = ({ xData, yData, xAxisLabel, yAxisLabel,slopeUni
             }
         },
         tooltip: {
+            x: {
+                format: 'yyyy'
+              },
             shared: true,
             intersect: false,
             y: {

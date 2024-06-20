@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css"
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import BaseMap from '../components/BaseMap';
-import { SelectedFeaturesAverageStatsFunction, calculateAverageOfArray, calculateSumOfArray, fillDensityColor, getAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
+import { SelectedFeaturesAverageStatsFunction, SelectedFeaturesWeightedAverageStatsFunction, calculateAverageOfArray, calculateSumOfArray, fillDensityColor, getSumAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
 import MapLegend from '../components/MapLegend';
 import { BaseMapsLayers, mapCenter, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 
@@ -122,7 +122,7 @@ const WaterFootprintPage = () => {
     }
   }, [selectedView, selectedFeatureName]);
 
-  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
+  const SelectedFeaturesStatsData = hydroclimaticStats && SelectedFeaturesWeightedAverageStatsFunction(hydroclimaticStats);
 
 
 

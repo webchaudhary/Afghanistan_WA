@@ -44,6 +44,7 @@ const PCPTrendChart = ({ climateChangeStats }) => {
             }
         ],
         xaxis: {
+            
             categories: xData,
             labels: {
               rotate: 0,

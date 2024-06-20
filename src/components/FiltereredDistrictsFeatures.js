@@ -28,13 +28,19 @@ const FiltereredDistrictsFeatures = ({ DistrictStyle, DistrictOnEachfeature, lay
     };
 
 
+    console.log(selectedJSONData().features[0].properties)
+    console.log(selectedFeatureName)
+    console.log(selectedView)
+
+
+
     let selectedFeatureData;
     if (selectedFeatureName !== "All" && selectedFeatureName !== "") {
         selectedFeatureData = selectedJSONData().features.filter(item => item.properties[selectedView] === selectedFeatureName);
     } else {
         selectedFeatureData = selectedJSONData().features;
     }
-
+    console.log(selectedFeatureData)
 
 
     useEffect(() => {

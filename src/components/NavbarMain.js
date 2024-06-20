@@ -96,7 +96,7 @@ const NavbarMain = () => {
 
                                 {/* <div className='dropdown_nav_container'>
                                     <div className={`dropdown_nav ${collapseName === 'water' ? 'active_nav' : 'nav__item'}`} >
-                                        Water&nbsp;<span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                                        Water&nbsp;<span><i className="fa fa-angle-down" aria-hidden="true"></i></span>
                                     </div>
                                     <div className="dropdown_content">
                                         <NavLink 

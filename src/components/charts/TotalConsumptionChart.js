@@ -1,12 +1,12 @@
 import React from 'react'
-import { calculateSumOfArray, getAnnualDataFromMonthly } from '../../helpers/functions';
+import { calculateSumOfArray, getSumAnnualDataFromMonthly } from '../../helpers/functions';
 import ReactApexChart from 'react-apexcharts';
 
 const TotalConsumptionChart = ({ hydroclimaticStats }) => {
 
     // Calculate total consumptions and sort districts based on total consumption
     const districtData = hydroclimaticStats.map((entry) => {
-        const totalConsumption = (calculateSumOfArray(getAnnualDataFromMonthly(entry.AETI)) * 0.001 * entry.AREA / 1000000000).toFixed(2);
+        const totalConsumption = (calculateSumOfArray(getSumAnnualDataFromMonthly(entry.AETI)) * 0.001 * entry.AREA / 1000000000).toFixed(2);
         return { 
             district: entry.DISTRICT ? entry.DISTRICT: entry.WATERSHED ,
             totalConsumption };

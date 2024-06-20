@@ -29,6 +29,7 @@ const SPEIChart = ({ chartData, title }) => {
                         enabled: false
                     },
                     xaxis: {
+                        type: 'datetime',
                         categories: MonthsArray,
                     },
 
@@ -54,6 +55,9 @@ const SPEIChart = ({ chartData, title }) => {
                         opacity: 1
                     },
                     tooltip: {
+                        x: {
+                            format: 'MMM yyyy'
+                          },
                         y: {
                             formatter: function (val) {
                                 return `${val.toFixed(2)}`; // Keeps tooltip values to two decimal places

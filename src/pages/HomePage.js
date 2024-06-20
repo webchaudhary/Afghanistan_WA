@@ -10,7 +10,7 @@ import AFG_districts from '../assets/data/shapefiles/AFG_districts.json';
 import AFG_provinces from '../assets/data/shapefiles/AFG_provinces.json';
 import AFG_watershed from '../assets/data/shapefiles/AFG_watershed.json';
 import AFG_water_basin from '../assets/data/shapefiles/AFG_water_basin.json';
-import { SelectedFeaturesAverageStatsFunction, SelectedFeaturesCroplandStatFunction, calculateAverageOfArray, getAnnualDataFromMonthly } from '../helpers/functions';
+import { SelectedFeaturesCroplandStatFunction } from '../helpers/functions';
 import OverviewSection from '../components/OverviewSection';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 import { BaseMapsLayers, mapCenter, maxBounds, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
@@ -99,7 +99,6 @@ const HomePage = () => {
 
 
 
-    // const SelectedHydroclimaticStats = hydroclimaticStats && SelectedFeaturesAverageStatsFunction(hydroclimaticStats);
     const SelectedLandCoverStats = landCoverStats && SelectedFeaturesCroplandStatFunction(landCoverStats)
 
 
@@ -164,8 +163,8 @@ const HomePage = () => {
 
                         ) : (
                             <div className='card_loader_container'>
-                                <div class="card_loader">
-                                    <div class="card_loader_line"></div>
+                                <div className="card_loader">
+                                    <div className="card_loader_line"></div>
                                 </div>
                             </div>
 

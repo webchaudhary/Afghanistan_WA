@@ -1,11 +1,11 @@
 import React from 'react'
 import Chart from "react-apexcharts";
-import { calculateAverageOfArray, calculateSumOfArray, getAnnualDataFromMonthly } from '../../helpers/functions';
+import { calculateAverageOfArray, calculateSumOfArray, getSumAnnualDataFromMonthly } from '../../helpers/functions';
 
 const BiomassProductionChart = ({ hydroclimaticStats }) => {
     const districtData = hydroclimaticStats.map((entry) => ({
         name: entry.DISTRICT ? entry.DISTRICT: entry.WATERSHED ,
-        biomassProduction: calculateAverageOfArray(getAnnualDataFromMonthly(entry.NPP.map((npp) => npp * 22.22))).toFixed(0)
+        biomassProduction: calculateAverageOfArray(getSumAnnualDataFromMonthly(entry.NPP.map((npp) => npp * 22.22))).toFixed(0)
     }));
 
     // Sort the district data based on biomass production (highest to lowest)

@@ -31,14 +31,14 @@ export const DataManualResources=[
         "DataDescription":"<p>Water footprint refers to the total volume of water used in the production process of goods or services, including both direct water use (e.g., irrigation, processing water) and indirect water use (e.g., water embedded in inputs like raw materials and energy). Here water footprint only refers direct water use. The data is output of the global simulation of crop water footprints (WFs) with a process-based gridded crop model ACEA (see model description in references). The model is based on FAO&rsquo;s AquaCrop and covers 175 widely-grown crops in the 1990&ndash;2019 period at a 5 arcminute resolution. The WFs is partitioned into green and blue and differentiate between rainfed and irrigated production systems. Below is description of individual WFs component.</p> <ol> <li>Irrigated Blue: The volume of surface irrigation water consumed in an irrigation production system.</li> <li>Rainfed Blue: The volume of water consumed from shallow aquifers via capillary rise in a rainfed irrigated system.</li> <li>Irrigated Green: The volume of precipitation water consumed in an irrigation production system.</li> <li>Rainfed Green: The volume of precipitation water consumed in a rainfed production system.</li> </ol>",
         "SourceLink":"https://data.4tu.nl/datasets/7b45bcc6-686b-404d-a910-13c87156716a/1",
     },
-    {
-        "Dataset":"Evaporative Demand Drought Index (EDDI)",
-        "Source":"",
-        "PeriodOfAvailablity":"",
-        "SpatialResolution":"",
-        "DataDescription":'The Evaporative Demand Drought Index (EDDI) is an experimental tool that examines how anomalous the atmospheric evaporative demand (E0; also known as "the thirst of the atmosphere") is for a given location and across a time period of interest. EDDI maps use atmospheric evaporative demand anomalies across a timescale of interest relative to its climatology to indicate the spatial extent and severity of drought. EDDI can serve as an indicator of both rapidly evolving "flash" droughts (developing over a few weeks) and sustained droughts (developing over months but lasting up to years).',
-        "SourceLink":"",
-    },
+    // {
+    //     "Dataset":"Evaporative Demand Drought Index (EDDI)",
+    //     "Source":"",
+    //     "PeriodOfAvailablity":"",
+    //     "SpatialResolution":"",
+    //     "DataDescription":'The Evaporative Demand Drought Index (EDDI) is an experimental tool that examines how anomalous the atmospheric evaporative demand (E0; also known as "the thirst of the atmosphere") is for a given location and across a time period of interest. EDDI maps use atmospheric evaporative demand anomalies across a timescale of interest relative to its climatology to indicate the spatial extent and severity of drought. EDDI can serve as an indicator of both rapidly evolving "flash" droughts (developing over a few weeks) and sustained droughts (developing over months but lasting up to years).',
+    //     "SourceLink":"",
+    // },
     {
         "Dataset":"Evapotranspiration (ET)",
         "Source":"<ol> <li>WaPOR L1 V3</li> <li>Landsat (GEE)</li> </ol>",
