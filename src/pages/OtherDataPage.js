@@ -26,7 +26,8 @@ import AFG_watershed from '../assets/data/shapefiles/AFG_watershed.json';
 import AFG_water_basin from '../assets/data/shapefiles/AFG_water_basin.json';
 import BaseMap from "../components/BaseMap";
 import PixelValue from "./PixelValue";
-import RasterLayerLegend from "../components/RasterLayerLegend";
+import GeoserverLegend from "../components/legend/GeoserverLegend";
+import ImageLegend from "../components/legend/ImageLegend";
 
 
 
@@ -272,31 +273,28 @@ const OtherDataPage = () => {
                                         <p>Irrigated/Rainfed</p>
                                     </div>
 
-                                    
 
-                                    {/* <div className="legend-panel" style={{ width: "180px" }}>
-                                        <img
-                                            src={irrigated_rainfed_cropland_area_legend}
-                                            alt="Legend_Img"
 
-                                        />
-                                    </div> */}
+                                    <ImageLegend
+                                        legend_image={irrigated_rainfed_cropland_area_legend}
+                                        Unit="" />
 
-                                    <div className='legend-panel'>
-                                        <img src={irrigated_rainfed_cropland_area_legend} alt='worldcover_Legend' />
-                                    </div>
+
 
 
                                     {/* <WMSTileLayer
+                                     opacity={rasterLayerOpacity}
                                         // attribution="Data Source: <a href='https://sedac.ciesin.columbia.edu/maps/services' target='_blank'>SEDAC</a>"
                                         url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
                                         params={{ LAYERS: 'AFG_Dashboard:AFG_Irrigated_Rainfed_cropland' }}
                                         version="1.1.0"
                                         transparent={true}
                                         format="image/png"
+                                        zIndex={3}
                                     /> */}
 
                                     <WMSTileLayer
+                                     opacity={rasterLayerOpacity}
                                         attribution={selectedRasterLayer.attribution}
                                         url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
                                         params={{ LAYERS: '	AFG_Dashboard:AFG_Irrigated_Rainfed_cropland' }}
@@ -304,8 +302,9 @@ const OtherDataPage = () => {
                                         transparent={true}
                                         format="image/png"
                                         key="Irrigated_Rainfed"
+                                        zIndex={3}
                                     />
-                                    
+
 
 
                                 </>
@@ -315,6 +314,7 @@ const OtherDataPage = () => {
                                         <p>Crop Intensity</p>
                                     </div>
                                     <WMSTileLayer
+                                     opacity={rasterLayerOpacity}
                                         key="crop_intensity"
                                         attribution={selectedRasterLayer.attribution}
                                         url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
@@ -322,10 +322,11 @@ const OtherDataPage = () => {
                                         version="1.1.0"
                                         transparent={true}
                                         format="image/png"
+                                        zIndex={3}
                                     />
 
 
-                                    <RasterLayerLegend
+                                    <GeoserverLegend
                                         layerName="AFG_Cropping_Intensity_30m_2016_2018"
                                         Unit=""
                                     />
@@ -339,6 +340,7 @@ const OtherDataPage = () => {
                                     </div>
 
                                     <WMSTileLayer
+                                     opacity={rasterLayerOpacity}
                                         attribution={selectedRasterLayer.attribution}
                                         url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
                                         params={{ LAYERS: 'AFG_Dashboard:Population_Density' }}
@@ -346,15 +348,14 @@ const OtherDataPage = () => {
                                         transparent={true}
                                         format="image/png"
                                         key="elevation"
+                                        zIndex={3}
                                     />
                                     <PixelValue layername="Population_Density" unit="persons/sq km" />
 
-                                    <RasterLayerLegend
+                                    <GeoserverLegend
                                         layerName="Population_Density"
                                         Unit="(persons/sq km)"
                                     />
-
-
 
 
 
@@ -369,13 +370,9 @@ const OtherDataPage = () => {
                                         version="1.1.1"
                                         // transparent={true}
                                         format="image/png"
+                                        zIndex={3}
                                     /> */}
-                                    {/* <div className="legend-panel" style={{ width: "150px" }}>
-                                        <img
-                                            src={global_population_legend}
-                                            alt="Legend_Img"
-                                        />
-                                    </div> */}
+
                                 </>
                             ) : selectedRasterLayer.value === "global_dams_reservoirs" ? (
                                 <>
@@ -384,7 +381,7 @@ const OtherDataPage = () => {
                                     </div>
                                     <WMSTileLayer
                                         opacity={rasterLayerOpacity}
-                                        zIndex={10}
+
                                         key="global_dams_reservoirs"
                                         attribution={selectedRasterLayer.attribution}
                                         url="https://sedac.ciesin.columbia.edu/geoserver/wms"
@@ -393,13 +390,14 @@ const OtherDataPage = () => {
                                         version="1.1.1"
                                         // transparent={true}
                                         format="image/png"
+                                        zIndex={3}
                                     />
-                                    <div className="legend-panel" style={{ width: "150px" }}>
-                                        <img
-                                            src={reservoirs_dams_legend}
-                                            alt="Legend_Img"
-                                        />
-                                    </div>
+
+
+                                    <ImageLegend
+                                        legend_image={reservoirs_dams_legend}
+                                        Unit="" />
+
 
                                 </>
                             ) : selectedRasterLayer.value === "global_glacier" ? (
@@ -409,16 +407,20 @@ const OtherDataPage = () => {
                                     </div>
                                     <WMSTileLayer
                                         opacity={rasterLayerOpacity}
-                                        zIndex={10}
+
                                         key="global_glacier"
                                         attribution={selectedRasterLayer.attribution}
                                         url="https://www.glims.org/geoserver/ows"
                                         params={{ LAYERS: "GLIMS_GLACIERS" }}
                                         version="1.3.0"
+                                        zIndex={3}
                                     />
-                                    <div className='legend-panel' style={{ width: "150px" }}>
-                                        <img src={global_glacier_legend} alt='Legend_Img' />
-                                    </div>
+
+
+                                    <ImageLegend
+                                        legend_image={global_glacier_legend}
+                                        Unit="" />
+
                                 </>
                             )
                                 : selectedRasterLayer.value === "elevation" ? (
@@ -428,6 +430,7 @@ const OtherDataPage = () => {
                                         </div>
 
                                         <WMSTileLayer
+                                         opacity={rasterLayerOpacity}
                                             attribution={selectedRasterLayer.attribution}
                                             url={`${process.env.REACT_APP_GEOSERVER_URL}/geoserver/AFG_Dashboard/wms`}
                                             params={{ LAYERS: 'AFG_Dashboard:AFG_DEM' }}
@@ -435,6 +438,7 @@ const OtherDataPage = () => {
                                             transparent={true}
                                             format="image/png"
                                             key="elevation"
+                                            zIndex={3}
                                         />
                                         <PixelValue layername="AFG_DEM" unit="m" />
 
@@ -445,9 +449,10 @@ const OtherDataPage = () => {
                                             attribution="Data Source: <a href='https://www.terrestris.de/en/hoehenmodell-srtm30-wms/' target='_blank'>Terrestris</a>"
                                             layers={"SRTM30-Colored"}
                                             url="https://ows.terrestris.de/osm/service?"
+                                            zIndex={3}
                                         /> */}
 
-                                        <RasterLayerLegend
+                                        <GeoserverLegend
                                             layerName="AFG_DEM"
                                             Unit=""
                                         />
@@ -471,9 +476,11 @@ const OtherDataPage = () => {
                                             url="https://storage.googleapis.com/global-surface-water/tiles2021/transitions/{z}/{x}/{y}.png"
 
                                         />
-                                        <div className='legend-panel' style={{ width: "220px" }}>
-                                            <img src={surface_water_legend} alt='Legend_Img' />
-                                        </div>
+
+                                        <ImageLegend
+                                            legend_image={surface_water_legend}
+                                            Unit="" />
+
                                     </>
                                 ) : (
                                     null

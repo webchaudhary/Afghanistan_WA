@@ -12,9 +12,9 @@ export const LoaderProvider = ({ children }) => {
   return (
     <LoaderContext.Provider value={{ setIsLoading }}>
       {isLoading && (
-        <div class="loader_container">
-          <div class="loader">
-            <div class="loader_line"></div>
+        <div className="loader_container">
+          <div className="loader">
+            <div className="loader_line"></div>
           </div>
 
         </div>

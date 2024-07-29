@@ -56,16 +56,7 @@ const VirtualWaterPage = () => {
                                         <h4> Virtual Blue Water Footprint</h4>
                                     </div>
 
-                                    <div className='info_container'>
-                                        <div className='heading_info_button'>
-                                            <BsInfoCircleFill />
-                                        </div>
-                                        <div className='info_card_container'>
-                                            <p>
-                                            Virtual Blue Water Footprint
-                                            </p>
-                                        </div>
-                                    </div>
+                    
                                 </div>
 
 
@@ -84,16 +75,7 @@ const VirtualWaterPage = () => {
                                     <h4> Virtual Green Water Footprint</h4>
                                     </div>
 
-                                    <div className='info_container'>
-                                        <div className='heading_info_button'>
-                                            <BsInfoCircleFill />
-                                        </div>
-                                        <div className='info_card_container'>
-                                            <p>
-                                            Virtual Green Water Footprint
-                                            </p>
-                                        </div>
-                                    </div>
+                     
                                 </div>
 
 
@@ -122,17 +104,7 @@ const VirtualWaterPage = () => {
                                         <h4>Country-to-Country Blue Water Flow</h4>
                                     </div>
 
-                                    <div className='info_container'>
-                                        <div className='heading_info_button'>
-                                            <BsInfoCircleFill />
-                                        </div>
-                                        <div className='info_card_container'>
-                                            <p>
-                                            Country-to-Country Blue Water Flow
-                                            </p>
-
-                                        </div>
-                                    </div>
+                                    
                                 </div>
 
 
@@ -146,17 +118,7 @@ const VirtualWaterPage = () => {
                                         <h4>Country-to-Country Green Water Flow</h4>
                                     </div>
 
-                                    <div className='info_container'>
-                                        <div className='heading_info_button'>
-                                            <BsInfoCircleFill />
-                                        </div>
-                                        <div className='info_card_container'>
-                                            <p>
-                                            Country-to-Country Green Water Flow
-                                            </p>
-
-                                        </div>
-                                    </div>
+                            
                                 </div>
 
 

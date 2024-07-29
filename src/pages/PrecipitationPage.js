@@ -9,12 +9,10 @@ import { MonthsArray, SelectedFeaturesAverageStatsFunction, SelectedFeaturesWeig
 import Plot from 'react-plotly.js';
 import { BaseMapsLayers, mapCenter, maxBounds, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
-import MapLegend from '../components/MapLegend';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 import PCPTrendChart from '../components/charts/PCPTrendChart';
 import PixelValue from './PixelValue';
 import FiltereredDistrictsFeatures from '../components/FiltereredDistrictsFeatures.js';
-import RasterLayerLegend from '../components/RasterLayerLegend.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
 import axios from 'axios';
 import { useLoaderContext } from '../contexts/LoaderContext.js';
@@ -23,23 +21,26 @@ import ReactApexChart from 'react-apexcharts';
 import AridityIndexChart from '../components/charts/AridityIndexChart.js';
 import TableView from '../components/TableView.js';
 import { BsInfoCircleFill } from 'react-icons/bs';
+import GeoserverLegend from '../components/legend/GeoserverLegend.js';
+import DynamicLegend from '../components/legend/DynamicLegend.js';
+import { useModalHandles } from '../components/ModalHandles.js';
 
 
 const MapDataLayers = [
   {
-    name: "Annual Precipitation (2018-2023 mean)",
+    name: "Annual Precipitation (Avg. 2018-2023)",
     value: "avg_pcp_raster",
     legend: "",
     attribution: "Data Source:<a href='https://www.chc.ucsb.edu/data/chirps' target='_blank'> Chirps </a>"
   },
   {
-    name: "Long Term Precipitation (1981-2023 mean)",
+    name: "Long term Precipitation (Avg. 1981-2023)",
     value: "avg_longterm_pcp_raster",
     legend: "",
     attribution: "Data Source:<a href='https://www.chc.ucsb.edu/data/chirps' target='_blank'> Chirps </a>"
   },
   {
-    name: "Annual Ref. ET",
+    name: "Annual  Ref. ET (Avg. 2018-2023)",
     value: "avg_ret_raster",
     legend: "",
     attribution: "Data Source: <a href='https://data.apps.fao.org/catalog/dataset/global-weather-for-agriculture-agera5' target='_blank'>AgERA5 </a>"
@@ -51,7 +52,7 @@ const MapDataLayers = [
   //   attribution: "Data Source: <a href='https://developers.google.com/earth-engine/datasets/catalog/NASA_GLDAS_V021_NOAH_G025_T3H' target='_blank'>GLDAS </a>"
   // },
   {
-    name: "Annual Aridity Index",
+    name: "Annual Aridity Index (Avg. 2018-2023)",
     value: "avg_aridityIndex_raster",
     legend: "",
     attribution: ""
@@ -87,7 +88,7 @@ const PrecipitationPage = () => {
   const [hydroclimaticStats, setHydroclimaticStats] = useState(null);
   const [climateChangeStats, setClimateChangeStats] = useState(null);
   const { setIsLoading } = useLoaderContext();
-
+  const { handlePCP, handleAridityIndex } = useModalHandles();
 
 
   const fetchHydroclimaticStats = (view, featureName) => {
@@ -243,7 +244,7 @@ const PrecipitationPage = () => {
   if (SelectedFeaturesStatsData) {
     TableAnnualData = {
       Year: YearsArray,
-      AREA:SelectedFeaturesStatsData.AREA,
+      AREA: SelectedFeaturesStatsData.AREA,
       Yearly_AETI: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.AETI),
       Yearly_PCP: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.PCP),
       Yearly_RET: getSumAnnualDataFromMonthly(SelectedFeaturesStatsData.RET),
@@ -275,24 +276,10 @@ const PrecipitationPage = () => {
                   </div>
 
                   <div className='info_container'>
-                    <div className='heading_info_button'>
+                    <div className='heading_info_button' onClick={handlePCP}>
                       <BsInfoCircleFill />
                     </div>
-                    <div className='info_card_container'>
-                      <p>
-                        <strong> Precipitation </strong>
-                        is the key water source in the hydrological cycle. It refers to all  forms of condensation of atmospheric water vapor
-                        that falls from clouds. The  main forms of  precipitation include drizzling, rain, sleet, snow, ice  pellets, graupel and hail. In the river basins, where there is no  other inflow (e.g. through surface or  subsurface flow), the total precipitation accounts for
-                        the entire total gross inflow, in  the water accounting terms, in any given time period
 
-
-                      </p>
-                      <p>
-                        <strong>  Reference evapotranspiration (RET)</strong> represents the rate at which water evaporates from a standardized reference
-                        crop under specified climatic conditions.
-                      </p>
-
-                    </div>
                   </div>
                 </div>
 
@@ -406,17 +393,10 @@ const PrecipitationPage = () => {
                   </div>
 
                   <div className='info_container'>
-                    <div className='heading_info_button'>
+                    <div className='heading_info_button' onClick={handleAridityIndex}>
                       <BsInfoCircleFill />
                     </div>
-                    <div className='info_card_container'>
-                      <p>
-                        <strong> The aridity index </strong>
-                        classifies the type of climate in relation to water availability.
 
-                        It is calculated by dividing the annual precipitation by the potential evapotranspiration (the amount of water that could be evaporated and transpired if there was sufficient water available)
-                      </p>
-                    </div>
                   </div>
                 </div>
 
@@ -446,8 +426,8 @@ const PrecipitationPage = () => {
                 <TableView
                   tableHeaders={[
                     "Year",
-                    "Evapotranspiration (mm/year)",
                     "Precipitation (mm/year)",
+                    "Evapotranspiration (mm/year)",
                     "PCP - ET (mm/year)",
                     "Ref. ET (mm/year)",
                     "Aridity Index",
@@ -456,21 +436,21 @@ const PrecipitationPage = () => {
                   ]}
                   tableBody={TableAnnualData.Year.map((year, index) => [
                     year,
-                    TableAnnualData.Yearly_AETI[index].toFixed(0),
-                    TableAnnualData.Yearly_PCP[index].toFixed(0),
-                    (TableAnnualData.Yearly_PCP[index] - TableAnnualData.Yearly_AETI[index]).toFixed(0),
-                    (TableAnnualData.Yearly_RET[index] / 10).toFixed(0),
-                    TableAnnualData.Yearly_AridityIndex[index].toFixed(2),
-                    TableAnnualData.Yearly_ETB[index].toFixed(0),
-                    TableAnnualData.Yearly_ETG[index].toFixed(0)
+                    parseFloat(TableAnnualData.Yearly_PCP[index].toFixed(0)).toLocaleString(),
+                    parseFloat(TableAnnualData.Yearly_AETI[index].toFixed(0)).toLocaleString(),
+                    parseFloat((TableAnnualData.Yearly_PCP[index] - TableAnnualData.Yearly_AETI[index]).toFixed(0)).toLocaleString(),
+                    parseFloat((TableAnnualData.Yearly_RET[index] ).toFixed(0)).toLocaleString(),
+                    parseFloat(TableAnnualData.Yearly_AridityIndex[index].toFixed(2)).toLocaleString(),
+                    parseFloat(TableAnnualData.Yearly_ETB[index].toFixed(0)).toLocaleString(),
+                    parseFloat(TableAnnualData.Yearly_ETG[index].toFixed(0)).toLocaleString()
                   ])}
                 />
 
-<TableView
+                <TableView
                   tableHeaders={[
                     "Year",
-                    "Evapotranspiration (MCM/year)",
                     "Precipitation (MCM/year)",
+                    "Evapotranspiration (MCM/year)",
                     "PCP - ET (MCM/year)",
                     "Ref. ET (MCM/year)",
                     "Aridity Index",
@@ -479,13 +459,13 @@ const PrecipitationPage = () => {
                   ]}
                   tableBody={TableAnnualData.Year.map((year, index) => [
                     year,
-                    (TableAnnualData.Yearly_AETI[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0),
-                    (TableAnnualData.Yearly_PCP[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0),
-                    (TableAnnualData.Yearly_PCP[index] - TableAnnualData.Yearly_AETI[index]).toFixed(0),
-                    (TableAnnualData.Yearly_RET[index] / 10).toFixed(0),
-                    TableAnnualData.Yearly_AridityIndex[index].toFixed(2),
-                    (TableAnnualData.Yearly_ETB[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0),
-                    (TableAnnualData.Yearly_ETG[index]* 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)
+                    parseFloat((TableAnnualData.Yearly_PCP[index] * 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)).toLocaleString(),
+                    parseFloat((TableAnnualData.Yearly_AETI[index] * 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)).toLocaleString(),
+                    parseFloat(((TableAnnualData.Yearly_PCP[index] - TableAnnualData.Yearly_AETI[index]) * 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)).toLocaleString(),
+                    parseFloat(((TableAnnualData.Yearly_RET[index]) * 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)).toLocaleString(),
+                    parseFloat(TableAnnualData.Yearly_AridityIndex[index].toFixed(2)).toLocaleString(),
+                    parseFloat((TableAnnualData.Yearly_ETB[index] * 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)).toLocaleString(),
+                    parseFloat((TableAnnualData.Yearly_ETG[index] * 0.001 * TableAnnualData.AREA / 1000000).toFixed(0)).toLocaleString()
                   ])}
                 />
 
@@ -546,11 +526,11 @@ const PrecipitationPage = () => {
                       </div>
                       <div className="accordion-item">
                         <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-                          <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Raster Layers
+                          <button className="accordion-button map_layer_collapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                            Raster layers
                           </button>
                         </h2>
-                        <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                        <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                           <div className="accordion-body map_layer_collapse_body">
                             {MapDataLayers.slice(0, 4).map((item, index) => (
                               <div key={index} className="form-check">
@@ -634,10 +614,11 @@ const PrecipitationPage = () => {
                         transparent={true}
                         format="image/png"
                         key="avg_pcp_raster"
+                        zIndex={3}
                       />
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="PCP_2018-2023_avg"
-                        Unit="(mm/year)"
+                        Unit="P (mm/year)"
                       />
 
                       <PixelValue layername="PCP_2018-2023_avg" unit="mm/year" />
@@ -655,10 +636,11 @@ const PrecipitationPage = () => {
                         transparent={true}
                         format="image/png"
                         key="avg_longterm_pcp_raster"
+                        zIndex={3}
                       />
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="PCP_Long_Term_Mean_1981-2023"
-                        Unit="(mm/year)"
+                        Unit="P (mm/year)"
                       />
 
                       <PixelValue layername="PCP_Long_Term_Mean_1981-2023" unit="mm/year" />
@@ -676,12 +658,13 @@ const PrecipitationPage = () => {
                         transparent={true}
                         format="image/png"
                         key="avg_ret_raster"
+                        zIndex={3}
                       />
                       <PixelValue layername="RET_2018-2023_avg" unit="mm/year" />
 
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="RET_2018-2023_avg"
-                        Unit="(mm/year)"
+                        Unit=" REF. ET (mm/year)"
                       />
 
 
@@ -697,12 +680,13 @@ const PrecipitationPage = () => {
                         transparent={true}
                         format="image/png"
                         key="avg_pet_raster"
+                        zIndex={3}
                       />
                       <PixelValue layername="PET_2018-2023_avg" unit="mm/year" />
 
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="PET_2018-2023_avg"
-                        Unit="(mm/year)"
+                        Unit="PET (mm/year)"
                       />
 
 
@@ -720,12 +704,13 @@ const PrecipitationPage = () => {
                         transparent={true}
                         format="image/png"
                         key="avg_aridityIndex_raster"
+                        zIndex={3}
                       />
                       <PixelValue layername="AridityIndex_2018-2023_avg" unit="" />
 
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="AridityIndex_2018-2023_avg"
-                        Unit=""
+                        Unit="Aridity Index"
                       />
 
                     </>
@@ -743,12 +728,12 @@ const PrecipitationPage = () => {
                       <FiltereredDistrictsFeatures
                         DistrictStyle={DistrictStyle}
                         DistrictOnEachfeature={DistrictOnEachfeature}
-                        layerKey={selectedDataType.value + selectedTime + intervalType}
+                        layerKey={selectedDataType.value + selectedTime + intervalType + (hydroclimaticStats && hydroclimaticStats.length)}
                         attribution={selectedDataType.attribution}
                       />
 
                       {ColorLegendsDataItem && (
-                        <MapLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                        <DynamicLegend ColorLegendsDataItem={ColorLegendsDataItem} />
                       )}
 
                     </>

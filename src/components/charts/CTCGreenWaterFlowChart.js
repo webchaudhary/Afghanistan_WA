@@ -86,6 +86,11 @@ const CTCGreenWaterFlowChart = ({WaterFlowsC2CMatrix}) => {
                             text: `Country-to-Country Green Water Flow (MCM/year)`,
                             offsetX: 10,
                         },
+                        labels: {
+                            formatter: function (value) {
+                                return parseFloat(value).toLocaleString();
+                            }
+                        },
                     },
                     yaxis: {
                         title: {

@@ -28,10 +28,6 @@ const FiltereredDistrictsFeatures = ({ DistrictStyle, DistrictOnEachfeature, lay
     };
 
 
-    console.log(selectedJSONData().features[0].properties)
-    console.log(selectedFeatureName)
-    console.log(selectedView)
-
 
 
     let selectedFeatureData;
@@ -40,7 +36,7 @@ const FiltereredDistrictsFeatures = ({ DistrictStyle, DistrictOnEachfeature, lay
     } else {
         selectedFeatureData = selectedJSONData().features;
     }
-    console.log(selectedFeatureData)
+
 
 
     useEffect(() => {

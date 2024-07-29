@@ -44,6 +44,11 @@ const BiomassProductionChart = ({ hydroclimaticStats }) => {
                 },
                 xaxis: {
                     categories: districtNames,
+                    labels: {
+                        formatter: function (value) {
+                            return parseFloat(value).toLocaleString();
+                        }
+                    },
                     title: {
                         text: 'Mean Annual Biomass Production (kg/ha/year)',
                         offsetX: 10

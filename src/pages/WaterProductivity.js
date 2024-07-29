@@ -5,34 +5,30 @@ import "leaflet/dist/leaflet.css"
 import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import BaseMap from '../components/BaseMap';
-import {  WaterProductivityWeightedMeanStatsFunction, YearsArray, calculateAverageOfArray, fillDensityColor, getSumAnnualDataFromMonthly, getAnnualMeanDataFromMonthly, renderTimeOptions } from '../helpers/functions';
+import { WaterProductivityWeightedMeanStatsFunction, YearsArray, calculateAverageOfArray, fillDensityColor, getSumAnnualDataFromMonthly, getAnnualMeanDataFromMonthly, renderTimeOptions, MonthsArray } from '../helpers/functions';
 import { BaseMapsLayers, mapCenter, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 
-import MapLegend from '../components/MapLegend';
 import Plot from 'react-plotly.js';
 import { ColorLegendsData } from '../assets/data/ColorLegendsData';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 
 import FiltereredDistrictsFeatures from '../components/FiltereredDistrictsFeatures.js';
 import PixelValue from './PixelValue';
-import RasterLayerLegend from '../components/RasterLayerLegend.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
 import { useLoaderContext } from '../contexts/LoaderContext.js';
 import axios from 'axios';
 import Preloader from '../components/Preloader.js';
 import ReactApexChart from 'react-apexcharts';
 import { BsInfoCircleFill } from 'react-icons/bs';
+import GeoserverLegend from '../components/legend/GeoserverLegend.js';
+import DynamicLegend from '../components/legend/DynamicLegend.js';
+import { useModalHandles } from '../components/ModalHandles.js';
 
-
-
- const MonthsArray = ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2018-6", "2018-7", "2018-8", "2018-9", "2018-10", "2018-11", "2018-12", "2019-1", "2019-2", "2019-3", "2019-4", "2019-5", "2019-6", "2019-7", "2019-8", "2019-9", "2019-10", "2019-11", "2019-12", "2020-1", "2020-2", "2020-3", "2020-4", "2020-5", "2020-6", "2020-7", 
- "2020-8", "2020-9", "2020-10", "2020-11", "2020-12", "2021-1", "2021-2", "2021-3", "2021-4", "2021-5", "2021-6", "2021-7", "2021-8", "2021-9", "2021-10", "2021-11", "2021-12", "2022-1", "2022-2", "2022-3", "2022-4", "2022-5", "2022-6", "2022-7", "2022-8", "2022-9", "2022-10", "2022-11", "2022-12", "2023-1", "2023-2", "2023-3", 
- "2023-4", "2023-5", "2023-6", "2023-7", "2023-8", "2023-9","2023-10","2023-11","2023-12"]
 
 
 const MapDataLayers = [
   {
-    name: "Annual Biomass Water Productivity",
+    name: "Annual Biomass Water Productivity (Avg. 2018-2023)",
     value: "avg_biomass_water_productivity",
     legend: "",
     attribution: "",
@@ -58,7 +54,7 @@ const WaterProductivity = () => {
   const [selectedDataType, setSelectedDataType] = useState(MapDataLayers[0]);
   const { setIsLoading } = useLoaderContext();
   const [waterProductivityStats, setWaterProductivityStats] = useState(null);
-
+  const {  handleBiomassWaterProductivity} = useModalHandles();
 
 
 
@@ -93,10 +89,10 @@ const WaterProductivity = () => {
   const SelectedFeaturesStatsData = waterProductivityStats && WaterProductivityWeightedMeanStatsFunction(waterProductivityStats);
 
 
-console.log(SelectedFeaturesStatsData)
+  console.log(SelectedFeaturesStatsData)
 
 
-// console.log(SelectedFeaturesStatsData && SelectedFeaturesStatsData.NPP_overall.map((value, index) => ((value * 22.222 * 0.1) )))
+  // console.log(SelectedFeaturesStatsData && SelectedFeaturesStatsData.NPP_overall.map((value, index) => ((value * 22.222 * 0.1) )))
 
 
   const handleBasemapSelection = (e) => {
@@ -190,22 +186,10 @@ console.log(SelectedFeaturesStatsData)
                   </div>
 
                   <div className='info_container'>
-                    <div className='heading_info_button'>
+                    <div className='heading_info_button' onClick={handleBiomassWaterProductivity}>
                       <BsInfoCircleFill />
                     </div>
-                    <div className='info_card_container'>
-
-                      <p>
-                        The  Water Productivity indicator gives an estimate about the crop production per unit of  water use. In this case seasonal TBP is  used representing the overall biomass growth rate. The biomass water productivity was computed using the below formula:
-                        <br />
-
-                        Annual WPb  = Annual TBP / Annual ETa
-
-
-                      </p>
-
-
-                    </div>
+                    
                   </div>
                 </div>
 
@@ -273,19 +257,7 @@ console.log(SelectedFeaturesStatsData)
                     <h4>Biomass Water Productivity for only cropland (BWP<sub>crop</sub>)</h4>
                   </div>
 
-                  <div className='info_container'>
-                    <div className='heading_info_button'>
-                      <BsInfoCircleFill />
-                    </div>
-                    <div className='info_card_container'>
-                      <p>
-                      Biomass Water Productivity for only cropland (BWP<sub>crop</sub>)
 
-                      </p>
-           
-
-                    </div>
-                  </div>
                 </div>
 
 
@@ -326,7 +298,7 @@ console.log(SelectedFeaturesStatsData)
                       x: {
                         format: 'yyyy'
                       },
-             
+
                       y: {
                         formatter: function (val) {
                           return `${val.toFixed(2)}`
@@ -357,17 +329,7 @@ console.log(SelectedFeaturesStatsData)
                     <h4>Irrigated Water Productivity (IWP)</h4>
                   </div>
 
-                  <div className='info_container'>
-                    <div className='heading_info_button'>
-                      <BsInfoCircleFill />
-                    </div>
-                    <div className='info_card_container'>
-                      <p>
-                      Irrigated Water Productivity (IWP)
-                      </p>
 
-                    </div>
-                  </div>
                 </div>
 
 
@@ -441,18 +403,7 @@ console.log(SelectedFeaturesStatsData)
                     <h4>Rainfed Water Productivity (RWP)</h4>
                   </div>
 
-                  <div className='info_container'>
-                    <div className='heading_info_button'>
-                      <BsInfoCircleFill />
-                    </div>
-                    <div className='info_card_container'>
-                      <p>
-                      Rainfed Water Productivity (RWP)
 
-                      </p>
-
-                    </div>
-                  </div>
                 </div>
 
 
@@ -523,16 +474,7 @@ console.log(SelectedFeaturesStatsData)
                     <h4>Irrigation volume consumed</h4>
                   </div>
 
-                  <div className='info_container'>
-                    <div className='heading_info_button'>
-                      <BsInfoCircleFill />
-                    </div>
-                    <div className='info_card_container'>
-                     <p>
-                     Irrigation volume consumed
-                     </p>
-                    </div>
-                  </div>
+                  
                 </div>
 
 
@@ -636,12 +578,12 @@ console.log(SelectedFeaturesStatsData)
                         </div>
                       </div>
                       <div className="accordion-item">
-                        <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-                          <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Raster Layers
-                          </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                      <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button className="accordion-button map_layer_collapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                              Raster layers
+                            </button>
+                          </h2>
+                          <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                           <div className="accordion-body map_layer_collapse_body">
                             {MapDataLayers.slice(0, 1).map((item, index) => (
                               <div key={index} className="form-check">
@@ -713,12 +655,13 @@ console.log(SelectedFeaturesStatsData)
                         transparent={true}
                         format="image/png"
                         key="avg_ETB_raster"
+                        zIndex={3}
                       />
                       <PixelValue layername="Biomass_Water_Productivity_2018-2023_avg" unit="mm/year" />
 
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="Biomass_Water_Productivity_2018-2023_avg"
-                        Unit="(kg/m³)"
+                        Unit="WP (kg/m³)"
                       />
 
 
@@ -740,12 +683,14 @@ console.log(SelectedFeaturesStatsData)
                       <FiltereredDistrictsFeatures
                         DistrictStyle={DistrictStyle}
                         DistrictOnEachfeature={DistrictOnEachfeature}
-                        layerKey={selectedDataType.value + selectedTime + intervalType}
+                        layerKey={selectedDataType.value + selectedTime + intervalType + (waterProductivityStats && waterProductivityStats.length)}
                         attribution={selectedDataType.attribution}
                       />
 
                       {ColorLegendsDataItem && (
-                        <MapLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                        <DynamicLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+
+
                       )}
 
                     </>

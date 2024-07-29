@@ -97,7 +97,7 @@ const OverviewSection = ({
             <div className='col-md-4 col-sm-6 col-6 mb-2'>
                 <div className='overview_decsription'>
                     <h5>Area</h5>
-                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{AreaValue}</span> (1000 ha)</p>
+                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{parseFloat(AreaValue).toLocaleString()}</span> (1000 ha)</p>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@ const OverviewSection = ({
             <div className='col-md-4 col-sm-6 col-6 mb-2'>
                 <div className='overview_decsription'>
                     <h5>Evapotranspiration</h5>
-                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{EvapotranspirationValue}</span> (BCM/year)</p>
+                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{parseFloat(EvapotranspirationValue).toLocaleString()}</span> (BCM/year)</p>
                 </div>
             </div>
 
@@ -129,7 +129,7 @@ const OverviewSection = ({
             <div className='col-md-4 col-sm-6 col-6 mb-2'>
                 <div className='overview_decsription'>
                     <h5>Total irrigated land</h5>
-                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{IrrigatedLandValue}</span>  (1000 ha)</p>
+                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{parseFloat(IrrigatedLandValue).toLocaleString()}</span>  (1000 ha)</p>
                 </div>
             </div>
 
@@ -144,7 +144,7 @@ const OverviewSection = ({
             <div className='col-md-4 col-sm-6 col-6 mb-2'>
                 <div className='overview_decsription'>
                     <h5>Precipitation</h5>
-                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{PrecipitationValue}</span> (BCM/year)</p>
+                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{parseFloat(PrecipitationValue).toLocaleString()}</span> (BCM/year)</p>
                 </div>
             </div>
 
@@ -159,7 +159,7 @@ const OverviewSection = ({
             <div className='col-md-4 col-sm-6 col-6 mb-2'>
                 <div className='overview_decsription'>
                     <h5>Unit water consumption</h5>
-                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{WaterConsumption}</span> (m³/ha)</p>
+                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{parseFloat(WaterConsumption).toLocaleString()}</span> (m³/ha)</p>
                 </div>
             </div>
 
@@ -177,13 +177,13 @@ const OverviewSection = ({
                     <p>
                         {PCP_ETValue < 0 ? (
                             <>
-                                <span style={{ fontSize: "24px", color: "red" }}>{PCP_ETValue}</span> (BCM/year)
+                                <span style={{ fontSize: "24px", color: "red" }}>{parseFloat(PCP_ETValue).toLocaleString()}</span> (BCM/year)
                             </>
 
 
                         ) : (
                             <>
-                                <span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{PCP_ETValue}</span> (BCM/year)
+                                <span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{parseFloat(PCP_ETValue).toLocaleString()}</span> (BCM/year)
                             </>
 
                         )}
@@ -202,7 +202,7 @@ const OverviewSection = ({
             <div className='col-md-4 col-sm-6 col-6 mb-2'>
                 <div className='overview_decsription'>
                     <h5>Biomass production</h5>
-                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{BiomassProductionValue}</span> (million tons/year)</p>
+                    <p><span style={{ fontSize: "24px", color: "rgb(5, 45, 131)" }}>{parseFloat(BiomassProductionValue).toLocaleString()}</span> (million tons/year)</p>
                 </div>
             </div>
 

@@ -7,13 +7,11 @@ import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import BaseMap from '../components/BaseMap';
 import { MonthsArray, SelectedFeaturesAverageStatsFunction, SelectedFeaturesWeightedAverageStatsFunction, YearsArray, calculateAverageOfArray, calculateSumOfArray, fillDensityColor, getSumAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
 import { BaseMapsLayers, mapCenter, maxBounds, pngRasterBounds, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
-import MapLegend from '../components/MapLegend';
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 import TotalConsumptionChart from '../components/charts/TotalConsumptionChart';
 import UnitConsumptionChart from '../components/charts/UnitConsumptionChart';
 import Plot from 'react-plotly.js';
-import RasterLayerLegend from '../components/RasterLayerLegend';
 import PixelValue from './PixelValue';
 import FiltereredDistrictsFeatures from '../components/FiltereredDistrictsFeatures.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
@@ -24,16 +22,19 @@ import ReactApexChart from 'react-apexcharts';
 import TableView from '../components/TableView.js';
 import CardHeading from '../components/charts/CardHeading.js';
 import { BsInfoCircleFill } from "react-icons/bs";
+import GeoserverLegend from '../components/legend/GeoserverLegend.js';
+import DynamicLegend from '../components/legend/DynamicLegend.js';
+import { useModalHandles } from '../components/ModalHandles.js';
 
 const MapDataLayers = [
   {
-    name: "Annual ET",
+    name: "Annual ET (Avg. 2018-2023)",
     value: "avg_aeti_raster",
     legend: "",
     attribution: "Data Source: <a href='https://www.fao.org/in-action/remote-sensing-for-water-productivity/wapor-data/en' target='_blank'>WaPOR L1 V3</a>"
   },
   {
-    name: "Annual Ref. ET",
+    name: "Annual Ref. ET (Avg. 2018-2023)",
     value: "avg_ret_raster",
     legend: "",
     attribution: "Data Source: <a href='https://data.apps.fao.org/catalog/dataset/global-weather-for-agriculture-agera5' target='_blank'>AgERA5 </a>"
@@ -46,7 +47,7 @@ const MapDataLayers = [
   //   attribution: "Data Source: <a href='https://developers.google.com/earth-engine/datasets/catalog/NASA_GLDAS_V021_NOAH_G025_T3H' target='_blank'>GLDAS </a>"
   // },
   {
-    name: "Annual PCP-ET",
+    name: "Annual PCP-ET (Avg. 2018-2023)",
     value: "avg_pcp_et",
     legend: "",
     attribution: ""
@@ -84,7 +85,7 @@ const EvapotranspirationPage = () => {
   const [selectedTime, setSelectedTime] = useState(5);
   const { selectedView, selectedFeatureName, dataView } = useSelectedFeatureContext();
   const { setIsLoading } = useLoaderContext();
-
+  const { handleET } = useModalHandles();
   const [selectedBasemapLayer, setSelectedBasemapLayer] = useState(BaseMapsLayers[0]);
   const [hydroclimaticStats, setHydroclimaticStats] = useState(null);
 
@@ -294,22 +295,11 @@ const EvapotranspirationPage = () => {
                     </div>
 
                     <div className='info_container'>
-                      
-                      <div className='heading_info_button'>
+
+                      <div className='heading_info_button' onClick={handleET}>
                         <BsInfoCircleFill />
                       </div>
-                      <div className='info_card_container'>
-                      <p>
-                            <strong> Evapotranspiration (ET)</strong> refers to the water that is lost to the atmosphere through the vaporisation process. Water that becomes evapotranspired is 
-                            no longer available for further use, hence it is commonly referred to as consumed water in the water accounting terminology. 
-                          </p>
-                        <p>
-                          <strong>  Reference evapotranspiration (RET) </strong>
-                           is a theoretical concept representing the rate of evapotranspiration from an extensive surface of 8 to 15 cm tall, green grass cover of uniform height, actively growing, completely shading the ground and not short of water (Doorenbos and Pruitt, 1977). 
-                          
-                        </p>
-
-                      </div>
+                      
                     </div>
                   </div>
 
@@ -384,7 +374,7 @@ const EvapotranspirationPage = () => {
                           format: 'MMM yyyy'
                         },
 
-                        
+
                         y: [{
                           formatter: function (val) {
                             return `${val.toFixed(1)}`;
@@ -441,7 +431,7 @@ const EvapotranspirationPage = () => {
                       (TableAnnualData.Yearly_ETB[index] * 0.001 * SelectedFeaturesStatsData.AREA / 1000000000).toFixed(1),
                       (TableAnnualData.Yearly_ETG[index] * 0.001 * SelectedFeaturesStatsData.AREA / 1000000000).toFixed(1),
                       (TableAnnualData.Yearly_PCP[index] * 0.001 * SelectedFeaturesStatsData.AREA / 1000000000).toFixed(1),
-                      ((TableAnnualData.Yearly_PCP[index] - TableAnnualData.Yearly_AETI[index]) * 0.001 * SelectedFeaturesStatsData.AREA / 1000000000).toFixed(2),
+                      ((TableAnnualData.Yearly_PCP[index] - TableAnnualData.Yearly_AETI[index]) * 0.001 * SelectedFeaturesStatsData.AREA / 1000000000).toFixed(1),
                       (TableAnnualData.Yearly_AETI[index] * 100 / TableAnnualData.Yearly_PCP[index]).toFixed(1)
                     ])}
                   />
@@ -457,17 +447,7 @@ const EvapotranspirationPage = () => {
                         <h4>Average annual consumption per {dataView.toLowerCase()}</h4>
                       </div>
 
-                      <div className='info_container'>
-                        <div className='heading_info_button'>
-                          <BsInfoCircleFill />
-                        </div>
-                        <div className='info_card_container'>
-                         <p>
-                         Average annual consumption per {dataView.toLowerCase()}
-                         </p>
-
-                        </div>
-                      </div>
+                      
                     </div>
 
 
@@ -486,22 +466,7 @@ const EvapotranspirationPage = () => {
                         <h4>Average annual unit consumption per {dataView.toLowerCase()}</h4>
                       </div>
 
-                      <div className='info_container'>
-                        <div className='heading_info_button'>
-                          <BsInfoCircleFill />
-                        </div>
-                        <div className='info_card_container'>
-                          <p>
-                            <strong> Evapotranspiration (ET)</strong> is the combined process of water transfer from the Earth's surface to the atmosphere,
-                            encompassing both evaporation from open water bodies and soil surfaces as well as transpiration from plant leaves.
-                          </p>
-                          <p>
-                            <strong>  Reference evapotranspiration (RET)</strong> represents the rate at which water evaporates from a standardized reference
-                            crop under specified climatic conditions.
-                          </p>
-
-                        </div>
-                      </div>
+                      
                     </div>
 
 
@@ -563,11 +528,11 @@ const EvapotranspirationPage = () => {
                         </div>
                         <div className="accordion-item">
                           <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-                            <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            <button className="accordion-button map_layer_collapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
                               Raster layers
                             </button>
                           </h2>
-                          <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                          <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                             <div className="accordion-body map_layer_collapse_body">
                               {MapDataLayers.slice(0, 3).map((item, index) => (
                                 <div key={item.value} className="form-check">
@@ -644,15 +609,16 @@ const EvapotranspirationPage = () => {
                           transparent={true}
                           format="image/png"
                           key="avg_aeti_raster"
+                          zIndex={3}
                         />
 
 
 
                         <PixelValue layername="AETI_2018-2023_avg" unit="mm/year" />
 
-                        <RasterLayerLegend
+                        <GeoserverLegend
                           layerName="AETI_2018-2023_avg"
-                          Unit="(mm/year)"
+                          Unit="AETI (mm/year)"
                         />
 
                       </>
@@ -667,14 +633,15 @@ const EvapotranspirationPage = () => {
                           transparent={true}
                           format="image/png"
                           key="avg_ret_raster"
+                          zIndex={3}
 
                         />
 
                         <PixelValue layername="RET_2018-2023_avg" unit="mm/year" />
 
-                        <RasterLayerLegend
+                        <GeoserverLegend
                           layerName="RET_2018-2023_avg"
-                          Unit="(mm/year)"
+                          Unit="Ref. ET (mm/year)"
                         />
 
 
@@ -693,12 +660,13 @@ const EvapotranspirationPage = () => {
                           transparent={true}
                           format="image/png"
                           key="avg_pet_raster"
+                          zIndex={3}
                         />
                         <PixelValue layername="PET_2018-2023_avg" unit="mm/year" />
 
-                        <RasterLayerLegend
+                        <GeoserverLegend
                           layerName="PET_2018-2023_avg"
-                          Unit="(mm/year)"
+                          Unit="PET (mm/year)"
                         />
 
 
@@ -714,13 +682,14 @@ const EvapotranspirationPage = () => {
                           transparent={true}
                           format="image/png"
                           key="avg_pcp_et"
+                          zIndex={3}
                         />
 
                         <PixelValue layername="P-AETI_2018-2023_avg" unit="mm/year" />
 
-                        <RasterLayerLegend
+                        <GeoserverLegend
                           layerName="P-AETI_2018-2023_avg"
-                          Unit="(mm/year)"
+                          Unit="P-ET (mm/year)"
                         />
 
 
@@ -742,12 +711,12 @@ const EvapotranspirationPage = () => {
                         <FiltereredDistrictsFeatures
                           DistrictStyle={DistrictStyle}
                           DistrictOnEachfeature={DistrictOnEachfeature}
-                          layerKey={selectedDataType.value + selectedTime + intervalType}
+                          layerKey={selectedDataType.value + selectedTime + intervalType + (hydroclimaticStats && hydroclimaticStats.length)}
                           attribution={selectedDataType.attribution}
                         />
 
                         {ColorLegendsDataItem && (
-                          <MapLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                          <DynamicLegend ColorLegendsDataItem={ColorLegendsDataItem} />
                         )}
 
                       </>
@@ -763,7 +732,7 @@ const EvapotranspirationPage = () => {
                               color: "black",
                               fillOpacity: 1,
                             }}
-                          layerKey={selectedDataType.value + selectedTime + intervalType}
+                          layerKey={selectedDataType.value + selectedTime + intervalType+selectedView}
                         />
                       </>
 

@@ -7,7 +7,6 @@ import 'leaflet-fullscreen/dist/Leaflet.fullscreen.js';
 import 'leaflet-fullscreen/dist/leaflet.fullscreen.css';
 import BaseMap from '../components/BaseMap';
 import { SelectedFeaturesAverageStatsFunction, SelectedFeaturesWeightedAverageStatsFunction, calculateAverageOfArray, calculateSumOfArray, fillDensityColor, getSumAnnualDataFromMonthly, renderTimeOptions } from '../helpers/functions';
-import MapLegend from '../components/MapLegend';
 import { BaseMapsLayers, mapCenter, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
@@ -15,7 +14,6 @@ import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
 import CropWaterFootprintChart from '../components/charts/CropWaterFootprintChart';
 
 import WaterFootprintChart from '../components/charts/WaterFootprintChart';
-import RasterLayerLegend from '../components/RasterLayerLegend';
 import PixelValue from './PixelValue';
 import FiltereredDistrictsFeatures from '../components/FiltereredDistrictsFeatures.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
@@ -24,17 +22,20 @@ import axios from 'axios';
 import Preloader from '../components/Preloader.js';
 import TableView from '../components/TableView.js';
 import { BsInfoCircleFill } from 'react-icons/bs';
+import GeoserverLegend from '../components/legend/GeoserverLegend.js';
+import DynamicLegend from '../components/legend/DynamicLegend.js';
+import { useModalHandles } from '../components/ModalHandles.js';
 
 
 const MapDataLayers = [
   {
-    name: "Annual ET Blue",
+    name: "Annual ET Blue (Avg. 2018-2023)",
     value: "avg_ETB_raster",
     legend: "",
     attribution: "Data Source: <a href='https://www.fao.org/in-action/remote-sensing-for-water-productivity/wapor-data/en' target='_blank'>WaPOR L1 V3	</a>"
   },
   {
-    name: "Annual ET Green",
+    name: "Annual ET Green (Avg. 2018-2023)",
     value: "avg_ETG_raster",
     legend: "",
     attribution: "Data Source: <a href='https://www.fao.org/in-action/remote-sensing-for-water-productivity/wapor-data/en' target='_blank'>WaPOR L1 V3	</a>"
@@ -62,7 +63,7 @@ const WaterFootprintPage = () => {
   const [hydroclimaticStats, setHydroclimaticStats] = useState(null);
   const [allWaterFootprintStats, setAllWaterFootprintStats] = useState(null);
   const [cropSpecificWaterFootprints, setCropSpecificWaterFootprints] = useState(null);
-
+  const { handleWaterFootprint, handleBlueAndGreenET} = useModalHandles();
 
 
 
@@ -215,29 +216,10 @@ const WaterFootprintPage = () => {
                     </div>
 
                     <div className='info_container'>
-                      <div className='heading_info_button'>
+                      <div className='heading_info_button' onClick={handleWaterFootprint}>
                         <BsInfoCircleFill />
                       </div>
-                      <div className='info_card_container'>
-                        <p>
-                          <strong>Water footprint</strong> refers to the total volume of water used in the production process of goods or services, including both direct water use (e.g., irrigation, processing water) and indirect water use (e.g., water embedded in inputs like raw materials and energy). Here water footprint only refers direct water use. The data is output of the global simulation of crop water footprints (WFs) with a process-based gridded crop model ACEA (see model description in references). The model is based on FAO’s AquaCrop and covers 175 widely-grown crops in the 1990–2019 period at a 5 arcminute resolution. The WFs is partitioned into green and blue and differentiate between rainfed and irrigated production systems. Below is description of individual WFs component.
-                          <ol>
-                            <li>
-                            <strong>Irrigated Blue:</strong> The volume of surface irrigation water consumed in an irrigation production system.
-                            </li>
-                            <li>
-                            <strong>Rainfed Blue:</strong> The volume of water consumed from shallow aquifers via capillary rise in a rainfed irrigated system.</li>
-                            <li><strong>Irrigated Green:</strong> The volume of precipitation water consumed in an irrigation production system.</li>
-                            <li><strong>Rainfed Green:</strong> The volume of precipitation water consumed in a rainfed production system.</li>
-                          </ol>
-
-
-
-
-                        </p>
-
-
-                      </div>
+            
                     </div>
                   </div>
 
@@ -261,18 +243,11 @@ const WaterFootprintPage = () => {
                   <div className='card_heading'>
                     <h4>Average anuual Green and Blue ET by {dataView.toLowerCase()}</h4>
                   </div>
-
                   <div className='info_container'>
-                    <div className='heading_info_button'>
+                    <div className='heading_info_button' onClick={handleBlueAndGreenET}>
                       <BsInfoCircleFill />
                     </div>
-                    <div className='info_card_container'>
-                      <p>
-                        The  annual actual ETa is divided into green and blue water. Green water represents the fraction of  precipitation that infiltrates into the soil  and is  available to plants; while blue water comprising runoff, groundwater, and stream base flow.
-                      </p>
-
-
-                    </div>
+                
                   </div>
                 </div>
 
@@ -305,19 +280,8 @@ const WaterFootprintPage = () => {
                       <h4>Crop Specific water footprint </h4>
                     </div>
 
-                    <div className='info_container'>
-                      <div className='heading_info_button'>
-                        <BsInfoCircleFill />
-                      </div>
-                      <div className='info_card_container'>
-                      <p>
-                      Crop Specific water footprint 
-           </p>
-
-             
-
-                      </div>
-                    </div>
+                    
+                    
                   </div>
 
 
@@ -382,12 +346,12 @@ const WaterFootprintPage = () => {
                         </div>
                       </div>
                       <div className="accordion-item">
-                        <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-                          <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Raster Layers
-                          </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                      <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button className="accordion-button map_layer_collapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                              Raster layers
+                            </button>
+                          </h2>
+                          <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                           <div className="accordion-body map_layer_collapse_body">
 
                             {MapDataLayers.slice(0, 2).map((item, index) => (
@@ -460,12 +424,13 @@ const WaterFootprintPage = () => {
                         transparent={true}
                         format="image/png"
                         key="avg_ETB_raster"
+                        zIndex={3}
                       />
                       <PixelValue layername="ETb_2018-2023_avg" unit="mm/year" />
 
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="ETb_2018-2023_avg"
-                        Unit="(mm/year)"
+                        Unit="ET Blue (mm/year)"
                       />
 
 
@@ -484,13 +449,14 @@ const WaterFootprintPage = () => {
                         transparent={true}
                         format="image/png"
                         key="avg_ETG_raster"
+                        zIndex={3}
                       />
 
                       <PixelValue layername="ETg_2018-2023_avg" unit="mm/year" />
 
-                      <RasterLayerLegend
+                      <GeoserverLegend
                         layerName="ETg_2018-2023_avg"
-                        Unit="(mm/year)"
+                        Unit="ET Green (mm/year)"
                       />
 
                     </>
@@ -509,12 +475,12 @@ const WaterFootprintPage = () => {
                       <FiltereredDistrictsFeatures
                         DistrictStyle={DistrictStyle}
                         DistrictOnEachfeature={DistrictOnEachfeature}
-                        layerKey={selectedDataType.value + selectedTime + intervalType}
+                        layerKey={selectedDataType.value + selectedTime + intervalType + (hydroclimaticStats && hydroclimaticStats.length)}
                         attribution={selectedDataType.attribution}
                       />
 
                       {ColorLegendsDataItem && (
-                        <MapLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                        <DynamicLegend ColorLegendsDataItem={ColorLegendsDataItem} />
                       )}
 
                     </>

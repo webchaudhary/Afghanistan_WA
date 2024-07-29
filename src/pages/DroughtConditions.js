@@ -21,6 +21,8 @@ import { useLoaderContext } from '../contexts/LoaderContext.js';
 import Preloader from '../components/Preloader.js';
 import SPEIChart from '../components/charts/SPEIChart.js';
 import { BsInfoCircleFill } from 'react-icons/bs';
+import { useModalHandles } from '../components/ModalHandles.js';
+import DynamicLegend from '../components/legend/DynamicLegend.js';
 
 
 const MapDataLayers = [
@@ -97,8 +99,10 @@ const XYZTilelayersData = [
 
 const DroughtConditions = () => {
   // const [selectedDataType, setSelectedDataType] = useState(XYZTilelayersData[0]);
+  const [intervalType, setIntervalType] = useState('Monthly');
   const [selectedDataType, setSelectedDataType] = useState(MapDataLayers[0]);
-
+  const [selectedTime, setSelectedTime] = useState(68);
+  const { handleSPEI } = useModalHandles();
 
   const { selectedView, selectedFeatureName, dataView } = useSelectedFeatureContext();
 
@@ -109,6 +113,8 @@ const DroughtConditions = () => {
 
   const [selectedBasemapLayer, setSelectedBasemapLayer] = useState(BaseMapsLayers[0]);
 
+
+  const ColorLegendsDataItem = ColorLegendsData['SPEI'];
 
 
   const fetchHydroclimaticStats = (view, featureName) => {
@@ -163,25 +169,25 @@ const DroughtConditions = () => {
 
 
 
-  const DistrictDensity = (density) => {
-    if (density === null) {
-      return 'none';
-    }
+  // const DistrictDensity = (density) => {
+  //   if (density === null) {
+  //     return 'none';
+  //   }
 
-    return density > -0.5
-      ? 'white'
-      : density > -0.8
-        ? 'yellow'
-        : density > -1.3
-          ? 'rgb(252, 214, 148)'
-          : density > -1.6
-            ? 'orange'
-            : density > -2
-              ? 'red'
-              : density > -3
-                ? 'brown'
-                : 'none';
-  };
+  //   return density > -0.5
+  //     ? 'white'
+  //     : density > -0.8
+  //       ? 'yellow'
+  //       : density > -1.3
+  //         ? 'rgb(252, 214, 148)'
+  //         : density > -1.6
+  //           ? 'orange'
+  //           : density > -2
+  //             ? 'red'
+  //             : density > -3
+  //               ? 'brown'
+  //               : 'none';
+  // };
 
 
 
@@ -191,9 +197,10 @@ const DroughtConditions = () => {
       const DataItem = droughtConditionStats.find(
         (item) => item[dataView] === feature.properties.NAME
       );
+      console.log(DataItem)
 
       const SPEI_value = DataItem && DataItem[selectedDataType.value] !== "NA"
-        ? calculateAverageOfArray(DataItem[selectedDataType.value])
+        ? DataItem[selectedDataType.value][selectedTime]
         : null;
       const popupContent = `
             <div>
@@ -217,14 +224,15 @@ const DroughtConditions = () => {
     const getDensityFromData = (name, view) => {
       const DataItem = droughtConditionStats.find((item) => item[view] === name);
       return DataItem && DataItem[selectedDataType.value] !== "NA"
-        ? DataItem[selectedDataType.value][0]
+        ? DataItem[selectedDataType.value][selectedTime]
         : null;
     };
     const density = getDensityFromData(feature.properties.NAME, dataView)
 
+
     return {
-      fillColor: DistrictDensity(density),
-      // fillColor: ColorLegendsDataItem ? fillDensityColor(ColorLegendsDataItem, density) : "none",
+      // fillColor: DistrictDensity(density),
+      fillColor: ColorLegendsDataItem ? fillDensityColor(ColorLegendsDataItem, density) : "none",
       weight: 1,
       opacity: 1,
       color: "black",
@@ -248,28 +256,21 @@ const DroughtConditions = () => {
 
               <div className='card_container'>
 
-                  <div className='card_heading_container'>
-                    <div className='card_heading'>
-                      <h4>Standardised Precipitation-Evapotranspiration Index (SPEI)</h4>
-                    </div>
-
-                    <div className='info_container'>
-                      <div className='heading_info_button'>
-                        <BsInfoCircleFill />
-                      </div>
-                      <div className='info_card_container'>
-                        <p>
-                        The SPEI is a multiscalar drought index based on climatic data. It can be used for determining the onset, duration and magnitude of drought conditions with respect to normal conditions in a variety of natural and managed systems such as crops, ecosystems, rivers, water resources, etc.
-
-                        </p>
- 
-
-                      </div>
-                    </div>
+                <div className='card_heading_container'>
+                  <div className='card_heading'>
+                    <h4>Standardised Precipitation-Evapotranspiration Index (SPEI)</h4>
                   </div>
 
+                  <div className='info_container'>
+                    <div className='heading_info_button' onClick={handleSPEI}>
+                      <BsInfoCircleFill />
+                    </div>
 
-              
+                  </div>
+                </div>
+
+
+
                 <SPEIChart
                   chartData={SelectedFeaturesStatsData.spei_03}
                   title="SPEI 3-Months"
@@ -341,12 +342,18 @@ const DroughtConditions = () => {
 
                       <div className="accordion-item">
                         <h2 className="accordion-header" id="panelsStayOpen-headingThree">
-                          <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                          <button className="accordion-button map_layer_collapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
                             Data Layers
                           </button>
                         </h2>
-                        <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                        <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
                           <div className="accordion-body map_layer_collapse_body">
+                          <select
+                              value={selectedTime}
+                              onChange={(e) => setSelectedTime(e.target.value)}
+                            >
+                              {renderTimeOptions(intervalType)}
+                            </select>
 
                             {MapDataLayers.map((item, index) => (
                               <div key={index} className="form-check">
@@ -361,6 +368,9 @@ const DroughtConditions = () => {
                                 <label htmlFor={item.value}> {item.name}</label>
                               </div>
                             ))}
+
+                            
+
 
                           </div>
                         </div>
@@ -379,55 +389,29 @@ const DroughtConditions = () => {
                   <BaseMap />
 
 
-
-
-                  {/* {selectedDataType.value !== '' && (
-                <>
-                  <TileLayer
-                    attribution={selectedDataType.attribution}
-                    url={`${selectedDataType.baselayerURL}/{z}/{x}/{y}.png`}
-                  />
-
-                </>
-
-
-              )} */}
-
-
-                  {/* <GeoJSON
-                style={{
-                  fillColor: 'black',
-                  weight: 2,
-                  color: 'black',
-                  fillOpacity: "0.001",
-                  interactive: false
-                }}
-                data={AfghanistanCountry.features}
-              /> */}
-
                   <FiltereredDistrictsFeatures
                     DistrictStyle={DistrictStyle}
                     DistrictOnEachfeature={DistrictOnEachfeature}
-                    layerKey={selectedDataType.value}
+                    layerKey={selectedDataType.value +selectedTime+intervalType+ (droughtConditionStats && droughtConditionStats.length)}
 
                     selectedDataType={selectedDataType}
                     attribution='Data Source: <a href="https://spei.csic.es/map/maps.html#months=1#month=1#year=2024" target="_blank">SPEI Global Drought Monitor</a>'
                   />
 
-                  <div className='drought_legend_panel'>
-                    {/* <div className="legend_heading">
-                  <p>
-                   SPEI
-                  </p>
-                </div> */}
+
+                  {ColorLegendsDataItem && (
+                    <DynamicLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                  )}
+
+
+                  {/* <div className='drought_legend_panel'>
+
                     <img src={spei_legend} alt='worldcover_Legend' />
-                  </div>
+                  </div> */}
 
 
 
-                  {/* <FiltererdJsonFeature /> */}
 
-                  {/* <BaseMap /> */}
 
                 </MapContainer>
               </div>

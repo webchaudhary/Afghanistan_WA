@@ -16,7 +16,7 @@ const LandCoverPieChart = ({ landCoverValues, colorPallete, ClassesName }) => {
     },
     tooltip: {
       y: {
-        formatter: (value) => `${value.toFixed(0)} ha`
+        formatter: (value) => `${parseFloat(value.toFixed(0)).toLocaleString()} ha`
       }
     },
 
@@ -29,7 +29,7 @@ const LandCoverPieChart = ({ landCoverValues, colorPallete, ClassesName }) => {
     let csvContent = "data:text/csv;charset=utf-8,";
     csvContent += "Landcover Class,Area (ha)\r\n";
     ClassesName.forEach((cls, index) => {
-        csvContent += `${cls},${landCoverValues[index].toFixed(0)}\r\n`;
+        csvContent += `${cls},${parseFloat(landCoverValues[index].toFixed(0)).toLocaleString()}\r\n`;
     });
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");

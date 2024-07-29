@@ -9,13 +9,13 @@ import { MonthsArray, SelectedFeaturesAverageClimateParaFunction, YearsArray, fi
 import { BaseMapsLayers, mapCenter, setDragging, setInitialMapZoom } from '../helpers/mapFunction';
 import ClimateProjectionsChart from '../components/charts/ClimateProjectionsChart';
 import { useSelectedFeatureContext } from '../contexts/SelectedFeatureContext';
-import MapLegend from '../components/MapLegend';
 import { ColorLegendsData } from "../assets/data/ColorLegendsData";
 import FiltereredDistrictsFeatures from '../components/FiltereredDistrictsFeatures.js';
 import SelectedFeatureHeading from '../components/SelectedFeatureHeading.js';
 import { useLoaderContext } from '../contexts/LoaderContext.js';
 import axios from 'axios';
 import Preloader from '../components/Preloader.js';
+import DynamicLegend from '../components/legend/DynamicLegend.js';
 
 
 
@@ -303,11 +303,11 @@ const ClimateChangePage = () => {
                   </div> */}
                   <div className="accordion-item">
                     <h2 className="accordion-header" id="panelsStayOpen-headingThree">
-                      <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                      <button className="accordion-button map_layer_collapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true" aria-controls="panelsStayOpen-collapseThree">
                         Climate Change Projection
                       </button>
                     </h2>
-                    <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div id="panelsStayOpen-collapseThree" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingThree">
                       <div className="accordion-body map_layer_collapse_body">
 
                         {MapDataLayers.map((item, index) => (
@@ -354,12 +354,12 @@ const ClimateChangePage = () => {
               {selectedDataType && selectedDataType.value && selectedTime !== '' && (
                 <>
                   {ColorLegendsDataItem && (
-                    <MapLegend ColorLegendsDataItem={ColorLegendsDataItem} />
+                    <DynamicLegend ColorLegendsDataItem={ColorLegendsDataItem} />
                   )}
                   <FiltereredDistrictsFeatures
                     DistrictStyle={DistrictStyle}
                     DistrictOnEachfeature={DistrictOnEachfeature}
-                    layerKey={selectedDataType.value + selectedTime}
+                    layerKey={selectedDataType.value + selectedTime + (climateChangeStats && climateChangeStats.length)}
                     attribution="Model: <a href='https://gmd.copernicus.org/articles/12/4823/2019/gmd-12-4823-2019.html' target='_blank'>CanESM5.0.3</a>"
                   />
 

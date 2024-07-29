@@ -3,19 +3,19 @@
     margin: 0px 10vw;
   }
   .navbar_container {
-    height: 50px;
+    height: 40px;
   }
   .nav__item {
     margin-right: 5px;
     padding: 0px 10px;
-    line-height: 50px;
+
     font-size:16px;
   }
   .active_nav {
     align-items: center;
     margin-right: 5px;
     padding: 0px 10px;
-    line-height: 50px;
+
     font-size: 16px;
     background-color: var(--theme-hover-clor);
   }
@@ -25,7 +25,7 @@
   .dropdown_content {
     display: none;
     position: absolute;
-    top: 125px;
+    top: 145px;
     z-index: 10;
     background-color: white;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -162,15 +162,15 @@ overflow-x: scroll;
   .logo_text h1 {
     color: black;
     /* text-shadow: 3px 3px 3px rgba(99, 99, 99, 0.5); */
-    font-size: 20px;
+    font-size: 1.25rem;
     text-align: left;
   }
   .leaflet-top,
   .leaflet-bottom {
     z-index: 1000000 !important;
   }
-
   .short_nav_container {
+    height: 75px;
     justify-content: space-between;
     background-color: #ffffff;
   }
@@ -208,7 +208,7 @@ overflow-x: scroll;
     padding: 10px 0;
     z-index: 10;
     transition: 0.5s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
     border-top: 2px solid rgb(200, 200, 200);
     z-index: 10000000000 !important;
   }

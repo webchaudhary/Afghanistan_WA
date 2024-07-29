@@ -19,6 +19,8 @@ import { useLoaderContext } from '../contexts/LoaderContext.js';
 import Preloader from '../components/Preloader.js';
 import TableView from '../components/TableView.js';
 import { BsInfoCircleFill } from 'react-icons/bs';
+import ImageLegend from '../components/legend/ImageLegend.js';
+import { useModalHandles } from '../components/ModalHandles.js';
 
 const MapDataLayers = [
   {
@@ -47,6 +49,7 @@ const LandClassificationPage = () => {
   const [waterProductivityStats, setWaterProductivityStats] = useState(null);
 
 
+  const { handleLCC } = useModalHandles();
   const [selectedYear, setSelectedYear] = useState('2023');
 
   const handleYearSelection = (e) => {
@@ -377,17 +380,10 @@ const LandClassificationPage = () => {
                   </div>
 
                   <div className='info_container'>
-                    <div className='heading_info_button'>
+                    <div className='heading_info_button' onClick={handleLCC}>
                       <BsInfoCircleFill />
                     </div>
-                    <div className='info_card_container'>
-                      <p>
-                        WorldCover provides the first global land cover products for 2020 and 2021 at 10 m resolution, developed and validated in near-real time based on Sentinel-1 and Sentinel-2 data.
 
-                      </p>
-
-
-                    </div>
                   </div>
                 </div>
 
@@ -452,17 +448,7 @@ const LandClassificationPage = () => {
                     <h4>Landcover classes area by {dataView.toLowerCase()}</h4>
                   </div>
 
-                  <div className='info_container'>
-                    <div className='heading_info_button'>
-                      <BsInfoCircleFill />
-                    </div>
-                    <div className='info_card_container'>
-                      <p>
-                        Landcover classes area by {dataView.toLowerCase()}
-                      </p>
-
-                    </div>
-                  </div>
+                 
                 </div>
                 {/* ["Snow",	"Builtup area",	"Water body",	"Forest",	"Irrigated agriculture"	"Rainfed agriculture",	"Fruit trees",	
                 "Vineyards",	"Marshland",	"Bare land",	"Rangeland",	"Sand cover",	"Streams"] */}
@@ -470,77 +456,77 @@ const LandClassificationPage = () => {
 
                 {selectedDataType.value === 'AFG_Landcover' ? (
                   <TableView
-                  tableHeaders={[
-                    dataView.charAt(0).toUpperCase() + dataView.slice(1).toLowerCase(),
-                    "Snow (ha)",
-                    "Builtup area (ha)",
-                    "Water body (ha)",
-                    "Forest (ha)",
-                    "Irrigated agriculture (ha)",
-                    "Rainfed agriculture (ha)",
-                    "Fruit trees (ha)",
-                    "Vineyards (ha)",
-                    "Marshland (ha)",
-                    "Bare land (ha)",
-                    "Rangeland (ha)",
-                    "Sand cover (ha)",
-                    "Streams (ha)",
-                  ]}
-                  tableBody={landCoverStats && landCoverStats.map(item => [
-                    item[dataView],
-                    item.AFG_Landcover[0].toFixed(0),
-                    item.AFG_Landcover[1].toFixed(0),
-                    item.AFG_Landcover[2].toFixed(0),
-                    item.AFG_Landcover[3].toFixed(0),
-                    item.AFG_Landcover[4].toFixed(0),
-                    item.AFG_Landcover[5].toFixed(0),
-                    item.AFG_Landcover[6].toFixed(0),
-                    item.AFG_Landcover[7].toFixed(0),
-                    item.AFG_Landcover[8].toFixed(0),
-                    item.AFG_Landcover[9].toFixed(0),
-                    item.AFG_Landcover[10].toFixed(0),
-                    item.AFG_Landcover[11].toFixed(0),
-                    item.AFG_Landcover[12].toFixed(0),
+                    tableHeaders={[
+                      dataView.charAt(0).toUpperCase() + dataView.slice(1).toLowerCase(),
+                      "Snow (ha)",
+                      "Builtup area (ha)",
+                      "Water body (ha)",
+                      "Forest (ha)",
+                      "Irrigated agriculture (ha)",
+                      "Rainfed agriculture (ha)",
+                      "Fruit trees (ha)",
+                      "Vineyards (ha)",
+                      "Marshland (ha)",
+                      "Bare land (ha)",
+                      "Rangeland (ha)",
+                      "Sand cover (ha)",
+                      "Streams (ha)",
+                    ]}
+                    tableBody={landCoverStats && landCoverStats.map(item => [
+                      item[dataView],
+                      parseFloat(item.AFG_Landcover[0].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[1].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[2].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[3].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[4].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[5].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[6].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[7].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[8].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[9].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[10].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[11].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[12].toFixed(0)).toLocaleString(),
 
-                  ])}
-                />
+                    ])}
+                  />
 
 
                 ) : selectedDataType.value === 'ESA_Landcover' ? (
                   <TableView
-                  tableHeaders={[
-                    dataView.charAt(0).toUpperCase() + dataView.slice(1).toLowerCase(),
-                    "Trees (ha)",
-                    "Shrubland (ha)",
-                    "Grassland (ha)",
-                    "Cropland (ha)",
-                    "Builtup (ha)",
-                    "Bare, Sparse vegetation (ha)",
-                    "Snow and ice (ha)",
-                    "Permanent water bodies (ha)",
-                    "Herbaceous wetland (ha)",
-                    "Moss and lichen (ha)",
-  
-                  ]}
-                  tableBody={landCoverStats && landCoverStats.map(item => [
-                    item[dataView],
-                    item.ESA_Landcover[0].toFixed(0),
-                    item.ESA_Landcover[1].toFixed(0),
-                    item.ESA_Landcover[2].toFixed(0),
-                    item.ESA_Landcover[3].toFixed(0),
-                    item.ESA_Landcover[4].toFixed(0),
-                    item.AFG_Landcover[5].toFixed(0),
-                    item.ESA_Landcover[6].toFixed(0),
-                    item.ESA_Landcover[7].toFixed(0),
-                    item.ESA_Landcover[8].toFixed(0),
-                    item.ESA_Landcover[9].toFixed(0),
+                    tableHeaders={[
+                      dataView.charAt(0).toUpperCase() + dataView.slice(1).toLowerCase(),
+                      "Trees (ha)",
+                      "Shrubland (ha)",
+                      "Grassland (ha)",
+                      "Cropland (ha)",
+                      "Builtup (ha)",
+                      "Bare, Sparse vegetation (ha)",
+                      "Snow and ice (ha)",
+                      "Permanent water bodies (ha)",
+                      "Herbaceous wetland (ha)",
+                      "Moss and lichen (ha)",
 
-                  ])}
-                />
+                    ]}
+                    tableBody={landCoverStats && landCoverStats.map(item => [
+                      item[dataView],
+                      parseFloat(item.ESA_Landcover[0].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[1].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[2].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[3].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[4].toFixed(0)).toLocaleString(),
+                      parseFloat(item.AFG_Landcover[5].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[6].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[7].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[8].toFixed(0)).toLocaleString(),
+                      parseFloat(item.ESA_Landcover[9].toFixed(0)).toLocaleString(),
+
+                    ])}
+                  />
 
                 ) : null}
 
-                
+
 
               </div>
 
@@ -551,17 +537,7 @@ const LandClassificationPage = () => {
                     <h4>Cropland classes area by {dataView.toLowerCase()}</h4>
                   </div>
 
-                  <div className='info_container'>
-                    <div className='heading_info_button'>
-                      <BsInfoCircleFill />
-                    </div>
-                    <div className='info_card_container'>
-                      <p>
-                        Cropland classes area by {dataView.toLowerCase()}
-                      </p>
-
-                    </div>
-                  </div>
+                  
                 </div>
 
 
@@ -624,18 +600,7 @@ const LandClassificationPage = () => {
                       <h4>Irrigated/Rainfed area by {dataView.toLowerCase()}</h4>
                     </div>
 
-                    <div className='info_container'>
-                      <div className='heading_info_button'>
-                        <BsInfoCircleFill />
-                      </div>
-                      <div className='info_card_container'>
-                        <p>
-                          The Landsat-Derived Global Rainfed and Irrigated-Cropland Product (LGRIP) maps the world’s agricultural lands by dividing them into irrigated and rainfed croplands. The data is produced using Landsat 8 time-series satellite sensor data for the 2014-2017 time period to create a nominal 2015 product.
-                        </p>
-
-
-                      </div>
-                    </div>
+                    
                   </div> */}
 
 
@@ -673,17 +638,17 @@ const LandClassificationPage = () => {
                         {waterProductivityStats.map((item, index) => (
                           <tr key={index}>
                             <td>{item[dataView]}</td>
-                            <td>{(item.Area_irrigated / 10000).toFixed(0)}</td>
-                            <td>{calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_irrigated)).toFixed(0)}</td>
-                            <td>{calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_irrigated)).toFixed(0)}</td>
+                            <td>{parseFloat((item.Area_irrigated / 10000).toFixed(0)).toLocaleString()}</td>
+                            <td>{parseFloat(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_irrigated)).toFixed(0)).toLocaleString()}</td>
+                            <td>{parseFloat(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_irrigated)).toFixed(0)).toLocaleString()}</td>
                             {/* <td>{(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.NPP_irrigated)) * 22.222).toFixed(0)}</td> */}
-                            <td>{(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_irrigated)) - calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_irrigated))).toFixed(0)}</td>
+                            <td>{parseFloat((calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_irrigated)) - calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_irrigated))).toFixed(0)).toLocaleString()}</td>
 
-                            <td>{(item.Area_rainfed / 10000).toFixed(0)}</td>
-                            <td>{calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_rainfed)).toFixed(0)}</td>
-                            <td>{calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_rainfed)).toFixed(0)}</td>
+                            <td>{parseFloat((item.Area_rainfed / 10000).toFixed(0)).toLocaleString()}</td>
+                            <td>{parseFloat(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_rainfed)).toFixed(0)).toLocaleString()}</td>
+                            <td>{parseFloat(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_rainfed)).toFixed(0)).toLocaleString()}</td>
                             {/* <td>{(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.NPP_rainfed)) * 22.222).toFixed(0)}</td> */}
-                            <td>{(calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_rainfed)) - calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_rainfed))).toFixed(0)}</td>
+                            <td>{parseFloat((calculateAverageOfArray(getSumAnnualDataFromMonthly(item.PCP_rainfed)) - calculateAverageOfArray(getSumAnnualDataFromMonthly(item.AETI_rainfed))).toFixed(0)).toLocaleString()}</td>
 
                           </tr>
                         ))}
@@ -758,12 +723,12 @@ const LandClassificationPage = () => {
                         </div>
                       </div>
                       <div className="accordion-item">
-                        <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
-                          <button className="accordion-button map_layer_collapse collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Raster Layers
-                          </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                      <h2 className="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button className="accordion-button map_layer_collapse" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                              Raster layers
+                            </button>
+                          </h2>
+                          <div id="panelsStayOpen-collapseTwo" className="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingTwo">
                           <div className="accordion-body map_layer_collapse_body">
 
                             {MapDataLayers.map((item, index) => (
@@ -805,7 +770,8 @@ const LandClassificationPage = () => {
                   <FiltereredDistrictsFeatures
                     // DistrictStyle={DistrictStyle}
                     attribution={selectedDataType.attribution}
-                    layerKey={selectedDataType.value}
+                    layerKey={selectedDataType.value + (landCoverStats && landCoverStats.length)}
+                    
                     DistrictStyle={{
                       fillColor: 'black',
                       weight: 2,
@@ -830,11 +796,11 @@ const LandClassificationPage = () => {
                         format="image/png"
                         key="AFG_Landcover"
                       />
+                      <ImageLegend
+                        legend_image={irrigated_rainfed_cropland_area_legend}
+                        Unit="" />
 
 
-                      <div className='legend-panel'>
-                        <img src={irrigated_rainfed_cropland_area_legend} alt='worldcover_Legend' />
-                      </div>
 
 
                       {/* <PixelValue layername="Avg_PCP_2018_2023" unit="mm/year" /> */}
@@ -868,9 +834,10 @@ const LandClassificationPage = () => {
 
                       {/* <PixelValue layername="Avg_RET_2018_2023" unit="mm/year" /> */}
 
-                      <div className='legend-panel'>
-                        <img src={worldcover_Legend} alt='worldcover_Legend' />
-                      </div>
+                      <ImageLegend
+                        legend_image={worldcover_Legend}
+                        Unit="" />
+
 
 
 
